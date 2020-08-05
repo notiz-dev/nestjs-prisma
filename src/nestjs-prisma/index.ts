@@ -28,7 +28,6 @@ export function nestjsPrismaAdd(_options: Schema): Rule {
       _context.addTask(new NodePackageInstallTask());
     }
 
-    console.log(_options);
     return chain([
       addDependencies(_options),
       addNpmScripts(_options),
@@ -107,7 +106,6 @@ function addDocker(_options: Schema): Rule {
 function initPrisma(_options: Schema): Rule {
   return async () => {
     if (!_options.skipPrismaInit) {
-      console.log('Init prisma');
       try {
         await asyncExec(`npx prisma init`);
       } catch (e) {
