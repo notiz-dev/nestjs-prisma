@@ -31,6 +31,8 @@ nest add nestjs-prisma --skipInstall
 
 Add `Dockerfile` and `docker-compose.yaml`, you can even use a different `node` version (`12-alpine` or `14`).
 
+> Currently uses to **PostgreSQL** as a default database in `docker-compose.yaml`.
+
 ```bash
 nest add nestjs-prisma --addDocker --dockerNodeImageVersion 12-alpine
 ```
