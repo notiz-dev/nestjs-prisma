@@ -29,12 +29,21 @@ If you want to skip installing dependencies use `--skipInstall` flag:
 nest add nestjs-prisma --skipInstall
 ```
 
+Add `Dockerfile` and `docker-compose.yaml`, you can even use a different `node` version (`12-alpine` or `14`).
+
+```bash
+nest add nestjs-prisma --addDocker --dockerNodeImageVersion 12-alpine
+```
+
 All available flags:
 
-| Flag             |  Description                         |  Default                                                     |
-| ---------------- | ------------------------------------ | ------------------------------------------------------------ |
-|  `prismaVersion` | The Prisma version to be installed.  | [2.4.0](https://github.com/prisma/prisma/releases/tag/2.4.0) |
-|  `skipInstall`   | Skip installing dependency packages. | `false`                                                      |
+| Flag                      |  Description                                   | Type      |  Default                                                     |
+| ------------------------- | ---------------------------------------------- | --------- | ------------------------------------------------------------ |
+|  `addDocker`              | Create a Dockerfile and docker-compose.yaml.   | `boolean` |  `false`                                                     |
+|  `dockerNodeImageVersion` | Node version for the builder and runner image. | `string`  | `12`                                                         |
+|  `prismaVersion`          | The Prisma version to be installed.            | `string`  | [2.4.0](https://github.com/prisma/prisma/releases/tag/2.4.0) |
+|  `skipInstall`            | Skip installing dependency packages.           | `boolean` | `false`                                                      |
+|  `skipPrismaInit`         | Skip initializing Prisma.                      | `boolean` | `false`                                                      |
 
 ## Developing
 

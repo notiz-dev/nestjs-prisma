@@ -5,6 +5,21 @@
   "type": "object",
   "description": "Add Prisma support to the NestJs application",
   "properties": {
+    "addDocker": {
+      "type": "boolean",
+      "description": "Create a Dockerfile and docker-compose.yaml.",
+      "default": false
+    },
+    "dockerNodeImageVersion": {
+      "type": "string",
+      "description": "Node version for the builder and runner image.",
+      "default": "12"
+    },
+    "name": {
+      "type": "string",
+      "description": "The name for the Prisma Service extending the Prisma Client.",
+      "default": "Prisma"
+    },
     "prismaVersion": {
       "type": "string",
       "description": "The Prisma version to be installed.",
@@ -13,6 +28,11 @@
     "skipInstall": {
       "type": "boolean",
       "description": "Skip installing dependency packages.",
+      "default": false
+    },
+    "skipPrismaInit": {
+      "type": "boolean",
+      "description": "Skip initializing Prisma.",
       "default": false
     }
   }

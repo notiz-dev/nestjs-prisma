@@ -4,12 +4,21 @@ import {
   SchematicContext,
   Tree,
   chain,
+  SchematicsException,
+  url,
+  apply,
+  template,
+  mergeWith,
 } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import {
   addPackageJsonDependency,
   NodeDependencyType,
 } from '@schematics/angular/utility/dependencies';
+import { exec } from 'child_process';
+import { promisify } from 'util';
+import { strings } from '@angular-devkit/core';
+const asyncExec = promisify(exec);
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
@@ -18,8 +27,15 @@ export function nestjsPrismaAdd(_options: Schema): Rule {
     if (!_options.skipInstall) {
       _context.addTask(new NodePackageInstallTask());
     }
+
     console.log(_options);
-    return chain([addDependencies(_options)]);
+    return chain([
+      addDependencies(_options),
+      addNpmScripts(_options),
+      addPrismaService(_options),
+      addDocker(_options),
+      initPrisma(_options),
+    ]);
   };
 }
 
@@ -37,5 +53,66 @@ function addDependencies(_options: Schema): Rule {
       version: _options.prismaVersion,
     });
     return tree;
+  };
+}
+
+function addNpmScripts(_options: Schema): Rule {
+  return (tree: Tree) => {
+    const pkgPath = 'package.json';
+    const buffer = tree.read(pkgPath);
+
+    if (buffer === null) {
+      throw new SchematicsException('Could not find package.json');
+    }
+
+    const pkg = JSON.parse(buffer.toString());
+
+    pkg.scripts['prisma:generate'] = 'npx prisma generate';
+    pkg.scripts['prisma:generate:watch'] = 'npx prisma generate --watch';
+    pkg.scripts['prisma:save'] = 'npx prisma migrate save --experimental';
+    pkg.scripts['prisma:studio'] = 'npx prisma studio --experimental';
+    pkg.scripts['prisma:up'] = 'npx prisma migrate up --experimental';
+
+    tree.overwrite(pkgPath, JSON.stringify(pkg, null, 2));
+    return tree;
+  };
+}
+
+function addPrismaService(_options: Schema): Rule {
+  return (_tree: Tree) => {
+    const sourceTemplates = url('./templates/services');
+
+    const sourceParametrizedTemplates = apply(sourceTemplates, [
+      template({ ..._options, ...strings }),
+    ]);
+    return mergeWith(sourceParametrizedTemplates);
+  };
+}
+
+function addDocker(_options: Schema): Rule {
+  return (_tree: Tree) => {
+    if (_options.addDocker) {
+      const sourceTemplates = url('./templates/docker');
+
+      const sourceParametrizedTemplates = apply(sourceTemplates, [
+        template({ ..._options, ...strings }),
+      ]);
+      return mergeWith(sourceParametrizedTemplates);
+    }
+
+    return _tree;
+  };
+}
+
+function initPrisma(_options: Schema): Rule {
+  return async () => {
+    if (!_options.skipPrismaInit) {
+      console.log('Init prisma');
+      try {
+        await asyncExec(`npx prisma init`);
+      } catch (e) {
+        console.error(e);
+      }
+    }
   };
 }
