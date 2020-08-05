@@ -1,0 +1,9 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "nestjs-prisma": {
+      "description": "A blank schematic.",
+      "factory": "./nestjs-prisma/index#nestjsPrisma"
+    }
+  }
+}
