@@ -1,6 +1,6 @@
 # NestJS Prisma Schematics
 
-Add [Prisma](https://github.com/prisma/prisma) support to your NestJS application.
+Add [Prisma](https://github.com/prisma/prisma) support to your [NestJS](https://github.com/nestjs/nest) application.
 
 ## Installation
 
@@ -60,7 +60,9 @@ npm run build
 # or
 npm run build:watch
 
+# dry-run
 schematics .:nest-add
+
 # execute schematics
 schematics .:nest-add --debug=false
 # or
