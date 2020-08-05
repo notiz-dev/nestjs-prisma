@@ -1,28 +1,63 @@
-# Getting Started With Schematics
+# NestJS Prisma Schematics
 
-This repository is a basic Schematic implementation that serves as a starting point to create and publish Schematics to NPM.
+Add [Prisma](https://github.com/prisma/prisma) support to your NestJS application.
 
-### Testing
+## Installation
 
-To test locally, install `@angular-devkit/schematics-cli` globally and use the `schematics` command line tool. That tool acts the same as the `generate` command of the Angular CLI, but also has a debug mode.
-
-Check the documentation with
 ```bash
-schematics --help
+nest add nestjs-prisma
 ```
 
-### Unit Testing
+Example output
 
-`npm run test` will run the unit tests, using Jasmine as a runner and test framework.
+```bash
+...
+UPDATE package.json  ...
+```
 
-### Publishing
+## Additional options
 
-To publish, simply do:
+You can pass additional flags to customize the schematic. For example, if you want to install a different version for **Prisma** use `--prismaVersion` flag:
+
+```bash
+nest add nestjs-prisma --prismaVersion 2.2.0
+```
+
+If you want to skip installing dependencies use `--skipInstall` flag:
+
+```bash
+nest add nestjs-prisma --skipInstall
+```
+
+All available flags:
+
+| Flag             |  Description                         |  Default                                                     |
+| ---------------- | ------------------------------------ | ------------------------------------------------------------ |
+|  `prismaVersion` | The Prisma version to be installed.  | [2.4.0](https://github.com/prisma/prisma/releases/tag/2.4.0) |
+|  `skipInstall`   | Skip installing dependency packages. | `false`                                                      |
+
+## Developing
+
+Install `@angular-devkit/schematics-cli` to be able to use `schematics` command
+
+```bash
+npm i -g @angular-devkit/schematics-cli
+```
+
+Now build the schematics and run the schematic.
 
 ```bash
 npm run build
-npm publish
+# or
+npm run build:watch
+
+schematics .:nest-add
+# execute schematics
+schematics .:nest-add --debug=false
+# or
+schematics .:nest-add --dry-run=false
 ```
 
-That's it!
- 
+## Helpful
+
+Helpful article about [Custom Angular Schematics](https://medium.com/@tomastrajan/total-guide-to-custom-angular-schematics-5c50cf90cdb4) which also applies to Nest.

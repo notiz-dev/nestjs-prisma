@@ -3,7 +3,7 @@
   "schematics": {
     "nest-add": {
       "description": "Adds Prisma support to the NestJS application",
-      "factory": "./nestjs-prisma/index#nestjsPrisma",
+      "factory": "./nestjs-prisma/index#nestjsPrismaAdd",
       "schema": "./nestjs-prisma/schema.json"
     }
   }

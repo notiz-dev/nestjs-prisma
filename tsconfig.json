@@ -20,5 +20,5 @@
     "types": ["jasmine", "node"]
   },
   "include": ["src/**/*"],
-  "exclude": ["src/*/files/**/*"]
+  "exclude": ["src/*/templates/**/*"]
 }

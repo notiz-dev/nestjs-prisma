@@ -1,8 +1,19 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "SchematicsNestEngineInstall",
-  "title": "Prisma support schema",
+  "id": "NestPrismaSchematics",
+  "title": "Prisma Support Schema",
   "type": "object",
   "description": "Add Prisma support to the NestJs application",
-  "properties": {}
+  "properties": {
+    "prismaVersion": {
+      "type": "string",
+      "description": "The Prisma version to be installed.",
+      "default": "2.4.0"
+    },
+    "skipInstall": {
+      "type": "boolean",
+      "description": "Skip installing dependency packages.",
+      "default": false
+    }
+  }
 }
