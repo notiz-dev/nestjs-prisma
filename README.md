@@ -11,6 +11,7 @@ nest add nestjs-prisma
 Example output
 
 ```bash
+▹▹▹▹▸ Package installation in progress... ☕
 ...
 UPDATE package.json  ...
 ```
@@ -66,9 +67,9 @@ npm run build:watch
 schematics .:nest-add
 
 # execute schematics
-schematics .:nest-add --debug=false
+schematics .:nest-add --debug false
 # or
-schematics .:nest-add --dry-run=false
+schematics .:nest-add --dry-run false
 ```
 
 ## Helpful
