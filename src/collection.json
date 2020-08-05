@@ -1,9 +1,10 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
-    "nestjs-prisma": {
-      "description": "A blank schematic.",
-      "factory": "./nestjs-prisma/index#nestjsPrisma"
+    "nest-add": {
+      "description": "Adds Prisma support to the NestJS application",
+      "factory": "./nestjs-prisma/index#nestjsPrisma",
+      "schema": "./nestjs-prisma/schema.json"
     }
   }
 }
