@@ -1,6 +1,6 @@
 {
   "name": "nestjs-prisma",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "description": "Schematics to add Prisma support to a NestJS application",
   "scripts": {
     "build": "tsc -p tsconfig.json",
