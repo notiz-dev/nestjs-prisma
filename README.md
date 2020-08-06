@@ -6,6 +6,9 @@ Add [Prisma](https://github.com/prisma/prisma) support to your [NestJS](https://
 
 ```bash
 nest add nestjs-prisma
+
+# initialize prisma
+npx prisma init
 ```
 
 Example output
