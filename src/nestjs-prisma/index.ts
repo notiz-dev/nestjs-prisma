@@ -15,10 +15,7 @@ import {
   addPackageJsonDependency,
   NodeDependencyType,
 } from '@schematics/angular/utility/dependencies';
-import { exec } from 'child_process';
-import { promisify } from 'util';
 import { strings } from '@angular-devkit/core';
-const asyncExec = promisify(exec);
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
@@ -33,7 +30,6 @@ export function nestjsPrismaAdd(_options: Schema): Rule {
       addNpmScripts(_options),
       addPrismaService(_options),
       addDocker(_options),
-      initPrisma(_options),
     ]);
   };
 }
@@ -100,17 +96,5 @@ function addDocker(_options: Schema): Rule {
     }
 
     return _tree;
-  };
-}
-
-function initPrisma(_options: Schema): Rule {
-  return async () => {
-    if (!_options.skipPrismaInit) {
-      try {
-        await asyncExec(`npx prisma init`);
-      } catch (e) {
-        console.error(e);
-      }
-    }
   };
 }
