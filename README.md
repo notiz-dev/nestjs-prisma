@@ -15,9 +15,10 @@ Example output
 
 ```bash
 ▹▹▹▹▸ Package installation in progress... ☕
+Starting library setup...
 CREATE src/prisma/prisma.service.spec.ts (460 bytes)
 CREATE src/prisma/prisma.service.ts (387 bytes)
-UPDATE package.json (1108 bytes)
+UPDATE package.json (2260 bytes)
 ✔ Packages installed successfully.
 ```
 
