@@ -27,7 +27,7 @@ UPDATE package.json (2260 bytes)
 You can pass additional flags to customize the schematic. For example, if you want to install a different version for **Prisma** use `--prismaVersion` flag:
 
 ```bash
-nest add nestjs-prisma --prismaVersion 2.2.0
+nest add nestjs-prisma --prismaVersion 2.4.1
 ```
 
 If you want to skip installing dependencies use `--skipInstall` flag:
