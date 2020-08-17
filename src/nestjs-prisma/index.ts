@@ -10,7 +10,10 @@ import {
   template,
   mergeWith,
 } from '@angular-devkit/schematics';
-import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
+import {
+  NodePackageInstallTask,
+  RunSchematicTask,
+} from '@angular-devkit/schematics/tasks';
 import {
   addPackageJsonDependency,
   NodeDependencyType,
@@ -30,6 +33,7 @@ export function nestjsPrismaAdd(_options: Schema): Rule {
       addNpmScripts(_options),
       addPrismaService(_options),
       addDocker(_options),
+      prismaInit(_options),
     ]);
   };
 }
@@ -95,6 +99,18 @@ function addDocker(_options: Schema): Rule {
       return mergeWith(sourceParametrizedTemplates);
     }
 
+    return _tree;
+  };
+}
+
+function prismaInit(_options: Schema): Rule {
+  return (_tree: Tree, context: SchematicContext) => {
+    if (!_options.skipPrismaInit) {
+      const packageInstall = context.addTask(new NodePackageInstallTask());
+      context.addTask(new RunSchematicTask('prisma-init', {}), [
+        packageInstall,
+      ]);
+    }
     return _tree;
   };
 }

@@ -5,6 +5,10 @@
       "description": "Adds Prisma support to the NestJS application",
       "factory": "./nestjs-prisma/index#nestjsPrismaAdd",
       "schema": "./nestjs-prisma/schema.json"
+    },
+    "prisma-init": {
+      "description": "Run Prisma init",
+      "factory": "./prisma-init/index#prismaInit"
     }
   }
 }
