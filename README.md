@@ -1,5 +1,7 @@
 # NestJS Prisma Schematics
 
+[![npm version](https://badge.fury.io/js/nestjs-prisma.svg)](https://www.npmjs.com/package/nestjs-prisma)
+
 Add [Prisma](https://github.com/prisma/prisma) support to your [NestJS](https://github.com/nestjs/nest) application.
 
 ## Installation
