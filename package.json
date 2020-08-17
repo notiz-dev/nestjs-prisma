@@ -7,7 +7,7 @@
     "build:watch": "tsc -p tsconfig.json --watch",
     "test": "npm run build && jasmine src/**/*_spec.js",
     "version": "conventional-changelog -p angular -i ./CHANGELOG.md -s",
-    "publish": "npm run build && npm publish"
+    "rocket": "npm run build && npm publish"
   },
   "keywords": [
     "schematics",
