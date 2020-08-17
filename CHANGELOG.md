@@ -1,3 +1,13 @@
+# [0.3.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.1.1...v0.3.0) (2020-08-17)
+
+
+### Features
+
+* **prisma:** add $ for top level methods ([b566c8f](https://github.com/marcjulian/nestjs-prisma/commit/b566c8f61426e5011f9e3f2e9783618739325207))
+* **prisma:** add npx prisma init command ([f88d36d](https://github.com/marcjulian/nestjs-prisma/commit/f88d36da5c3d633f176728560afed8d62f449d8c))
+
+
+
 # [0.2.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.1.1...v0.2.0) (2020-08-07)
 
 

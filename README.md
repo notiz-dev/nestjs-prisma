@@ -6,9 +6,6 @@ Add [Prisma](https://github.com/prisma/prisma) support to your [NestJS](https://
 
 ```bash
 nest add nestjs-prisma
-
-# initialize prisma
-npx prisma init
 ```
 
 Example output
@@ -20,6 +17,8 @@ CREATE src/prisma/prisma.service.spec.ts (460 bytes)
 CREATE src/prisma/prisma.service.ts (387 bytes)
 UPDATE package.json (2260 bytes)
 ✔ Packages installed successfully.
+✔ Packages installed successfully.
+    Initialized Prisma
 ```
 
 ## Additional options
