@@ -28,7 +28,7 @@ Add `PrismaModule` to the `imports` section in your `AppModule` or other modules
 
 ```ts
 import { Module } from '@nestjs/common';
-import { PrismaModule } from '.prisma/prisma.module';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [PrismaModule],
