@@ -20,6 +20,13 @@
   "nest-add": {
     "save": "devDependencies"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marcjulian/nestjs-prisma.git"
+  },
+  "bugs": {
+    "url": "https://github.com/marcjulian/nestjs-prisma/issues"
+  },
   "dependencies": {
     "@angular-devkit/core": "^10.0.5",
     "@angular-devkit/schematics": "^10.0.5",
