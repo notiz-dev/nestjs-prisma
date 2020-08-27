@@ -23,7 +23,7 @@
     "prismaVersion": {
       "type": "string",
       "description": "The Prisma version to be installed.",
-      "default": "2.4.0"
+      "default": "latest"
     },
     "skipInstall": {
       "type": "boolean",
