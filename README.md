@@ -15,12 +15,25 @@ Example output
 ```bash
 ▹▹▹▹▸ Package installation in progress... ☕
 Starting library setup...
+CREATE src/prisma/prisma.module.ts (192 bytes)
 CREATE src/prisma/prisma.service.spec.ts (460 bytes)
-CREATE src/prisma/prisma.service.ts (387 bytes)
+CREATE src/prisma/prisma.service.ts (389 bytes)
 UPDATE package.json (2260 bytes)
 ✔ Packages installed successfully.
 ✔ Packages installed successfully.
     Initialized Prisma
+```
+
+Add `PrismaModule` to the `imports` section in your `AppModule` or other modules to gain access to `PrismaService`.
+
+```ts
+import { Module } from '@nestjs/common';
+import { PrismaModule } from '.prisma/prisma.module';
+
+@Module({
+  imports: [PrismaModule],
+})
+export class AppModule {}
 ```
 
 ## Additional options
