@@ -38,6 +38,17 @@ export class AppModule {}
 
 ## Additional options
 
+All available flags:
+
+| Flag                      |  Description                                                            | Type      |  Default |
+| ------------------------- | ----------------------------------------------------------------------- | --------- | -------- |
+|  `addDocker`              | Create a Dockerfile and docker-compose.yaml.                            | `boolean` | `false`  |
+|  `dockerNodeImageVersion` | Node version for the builder and runner image.                          | `string`  | `12`     |
+|  `name`                   | The name for the Prisma service extending the Prisma Client and module. | `string`  | `Prisma` |
+|  `prismaVersion`          | The Prisma version to be installed.                                     | `string`  | `latest` |
+|  `skipInstall`            | Skip installing dependency packages.                                    | `boolean` | `false`  |
+|  `skipPrismaInit`         | Skip initializing Prisma.                                               | `boolean` | `false`  |
+
 You can pass additional flags to customize the schematic. For example, if you want to install a different version for **Prisma** use `--prismaVersion` flag:
 
 ```bash
@@ -57,17 +68,6 @@ Add `Dockerfile` and `docker-compose.yaml`, you can even use a different `node` 
 ```bash
 nest add nestjs-prisma --addDocker --dockerNodeImageVersion 12-alpine
 ```
-
-All available flags:
-
-| Flag                      |  Description                                                            | Type      |  Default |
-| ------------------------- | ----------------------------------------------------------------------- | --------- | -------- |
-|  `addDocker`              | Create a Dockerfile and docker-compose.yaml.                            | `boolean` | `false`  |
-|  `dockerNodeImageVersion` | Node version for the builder and runner image.                          | `string`  | `12`     |
-|  `name`                   | The name for the Prisma service extending the Prisma Client and module. | `string`  | `Prisma` |
-|  `prismaVersion`          | The Prisma version to be installed.                                     | `string`  | `latest` |
-|  `skipInstall`            | Skip installing dependency packages.                                    | `boolean` | `false`  |
-|  `skipPrismaInit`         | Skip initializing Prisma.                                               | `boolean` | `false`  |
 
 ## Developing
 
