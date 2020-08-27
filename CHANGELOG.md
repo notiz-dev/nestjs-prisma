@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.4.0...v0.5.0) (2020-08-27)
+
+
+### Features
+
+* **prisma:** add prisma module ([449203a](https://github.com/marcjulian/nestjs-prisma/commit/449203a1d6a407834bec186ab0b04026a373d6fd))
+
+
+
 # [0.4.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.3.0...v0.4.0) (2020-08-27)
 
 
