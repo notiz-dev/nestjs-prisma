@@ -1,3 +1,13 @@
+# [0.4.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.3.0...v0.4.0) (2020-08-27)
+
+
+### Features
+
+* **prisma:** change prismaVersion to `latest` ([301813b](https://github.com/marcjulian/nestjs-prisma/commit/301813b04e8a40d9b0569c9aaffcb0e678a0e64f))
+* **schematics:** save to devDeps ([1215f21](https://github.com/marcjulian/nestjs-prisma/commit/1215f21f3fa165da9b037bd5ebe1d6b43bef5f74))
+
+
+
 # [0.3.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.1.1...v0.3.0) (2020-08-17)
 
 

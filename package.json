@@ -1,12 +1,12 @@
 {
   "name": "nestjs-prisma",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Schematics to add Prisma support to a NestJS application",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -p tsconfig.json --watch",
     "test": "npm run build && jasmine src/**/*_spec.js",
-    "version": "conventional-changelog -p angular -i ./CHANGELOG.md -s",
+    "changelog": "conventional-changelog -p angular -i ./CHANGELOG.md -s",
     "rocket": "npm run build && npm publish"
   },
   "keywords": [
