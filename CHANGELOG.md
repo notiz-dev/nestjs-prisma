@@ -1,3 +1,7 @@
+# [0.6.0-dev.2](https://github.com/marcjulian/nestjs-prisma/compare/v0.6.0-dev.1...v0.6.0-dev.2) (2020-09-01)
+
+
+
 # [0.6.0-dev.1](https://github.com/marcjulian/nestjs-prisma/compare/v0.5.0...v0.6.0-dev.1) (2020-09-01)
 
 
