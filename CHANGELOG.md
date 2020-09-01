@@ -1,3 +1,14 @@
+# [0.6.0-dev.1](https://github.com/marcjulian/nestjs-prisma/compare/v0.5.0...v0.6.0-dev.1) (2020-09-01)
+
+
+### Features
+
+* **lib:** add prisma service and module as lib, closes [#2](https://github.com/marcjulian/nestjs-prisma/issues/2) ([3cc71d0](https://github.com/marcjulian/nestjs-prisma/commit/3cc71d054e0546cdd913a0358e977c6dc05a19fc))
+* **lib:** add repo link and bug link for npm ([fd09f7e](https://github.com/marcjulian/nestjs-prisma/commit/fd09f7e546da3905b0120705235f555965184948))
+* **schematics:** prompt user to generate prisma service ([2e4e72a](https://github.com/marcjulian/nestjs-prisma/commit/2e4e72a7269b6aff45a25930b921ea7e1e40ef25))
+
+
+
 ## [0.5.1](https://github.com/marcjulian/nestjs-prisma/compare/v0.5.0...v0.5.1) (2020-08-27)
 
 
