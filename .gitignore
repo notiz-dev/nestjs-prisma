@@ -1,4 +1,7 @@
-# Outputs
+# lib
+dist
+
+# Schematics
 schematics/**/*.js
 schematics/**/*.js.map
 schematics/**/*.d.ts
@@ -16,3 +19,5 @@ yarn-error.log*
 # Mac OSX Finder files.
 **/.DS_Store
 .DS_Store
+
+

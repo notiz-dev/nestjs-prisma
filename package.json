@@ -3,6 +3,8 @@
   "version": "0.5.1",
   "description": "Schematics to add Prisma support to a NestJS application",
   "scripts": {
+    "build": "npm run build:lib && npm run build:schematics",
+    "build:lib": "tsc -p tsconfig.lib.json",
     "build:schematics": "tsc -p tsconfig.schematics.json",
     "dev:schematics": "tsc -p tsconfig.schematics.json --watch",
     "test": "npm run build && jasmine src/**/*_spec.js",
@@ -10,12 +12,13 @@
     "rocket": "npm run build && npm publish"
   },
   "keywords": [
-    "schematics",
     "nestjs",
-    "prisma"
+    "prisma",
+    "schematics"
   ],
   "author": "Marc Stammerjohann",
   "license": "MIT",
+  "main": "./dist/index.js",
   "schematics": "./schematics/collection.json",
   "repository": {
     "type": "git",
@@ -24,16 +27,23 @@
   "bugs": {
     "url": "https://github.com/marcjulian/nestjs-prisma/issues"
   },
-  "dependencies": {
-    "@angular-devkit/core": "^10.0.5",
-    "@angular-devkit/schematics": "^10.0.5",
-    "@schematics/angular": "~10.0.5",
-    "typescript": "~3.9.7"
+  "peerDependencies": {
+    "@nestjs/common": "^7.0.0",
+    "@prisma/client": "^2.4.0",
+    "@prisma/cli": "^2.4.0"
   },
   "devDependencies": {
-    "@types/jasmine": "~3.5.0",
+    "@angular-devkit/core": "^10.0.8",
+    "@angular-devkit/schematics": "^10.0.8",
+    "@nestjs/common": "^7.4.4",
+    "@nestjs/core": "7.4.4",
+    "@prisma/client": "2.5.1",
+    "@prisma/cli": "2.5.1",
+    "@schematics/angular": "~10.0.8",
+    "@types/jasmine": "~3.5.14",
     "@types/node": "^12.11.1",
-    "jasmine": "^3.5.0",
-    "prettier": "~2.0.5"
+    "jasmine": "^3.6.1",
+    "prettier": "~2.1.1",
+    "typescript": "~3.9.7"
   }
 }
