@@ -42,6 +42,7 @@ All available flags:
 
 | Flag                      |  Description                                                            | Type      |  Default |
 | ------------------------- | ----------------------------------------------------------------------- | --------- | -------- |
+|  `addPrismaService`       | Create a Prisma service extending the Prisma Client and module.         | `boolean` | Prompted |
 |  `addDocker`              | Create a Dockerfile and docker-compose.yaml.                            | `boolean` | `false`  |
 |  `dockerNodeImageVersion` | Node version for the builder and runner image.                          | `string`  | `12`     |
 |  `name`                   | The name for the Prisma service extending the Prisma Client and module. | `string`  | `Prisma` |

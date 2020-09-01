@@ -1,6 +1,6 @@
 {
   "name": "nestjs-prisma",
-  "version": "0.5.1",
+  "version": "0.6.0-dev.1",
   "description": "Schematics to add Prisma support to a NestJS application",
   "scripts": {
     "build": "npm run build:lib && npm run build:schematics",

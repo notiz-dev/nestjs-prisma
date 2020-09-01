@@ -1,5 +1,10 @@
 export interface Schema {
   /**
+   * Create a Prisma service extending the Prisma Client and module.
+   */
+  addPrismaService?: boolean;
+
+  /**
    * Create a Dockerfile and docker-compose.yaml.
    */
   addDocker?: boolean;
