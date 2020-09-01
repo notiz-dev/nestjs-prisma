@@ -6,6 +6,7 @@ lib
 package-lock.json
 .prettierrc
 prisma/
+.vscode/
 
 # misc
 .DS_Store
