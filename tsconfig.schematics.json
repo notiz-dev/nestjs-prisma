@@ -11,7 +11,7 @@
     "noImplicitThis": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "rootDir": "src/",
+    "rootDir": "schematics/",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": true,
@@ -19,6 +19,6 @@
     "target": "es6",
     "types": ["jasmine", "node"]
   },
-  "include": ["src/**/*"],
-  "exclude": ["src/*/templates/**/*"]
+  "include": ["schematics/**/*"],
+  "exclude": ["schematics/*/templates/**/*"]
 }

@@ -80,9 +80,9 @@ npm i -g @angular-devkit/schematics-cli
 Now build the schematics and run the schematic.
 
 ```bash
-npm run build
+npm run build:schematics
 # or
-npm run build:watch
+npm run dev:schematics
 
 # dry-run
 schematics .:nest-add
