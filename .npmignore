@@ -1,2 +1,12 @@
 # Ignores TypeScript files, but keeps definitions.
 !*.d.ts
+
+# source
+lib
+package-lock.json
+.prettierrc
+prisma/
+.vscode/
+
+# misc
+.DS_Store

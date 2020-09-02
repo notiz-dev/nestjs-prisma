@@ -79,12 +79,15 @@ function addNpmScripts(_options: Schema): Rule {
 
 function addPrismaService(_options: Schema): Rule {
   return (_tree: Tree) => {
-    const sourceTemplates = url('./templates/services');
+    if (_options.addPrismaService) {
+      const sourceTemplates = url('./templates/services');
 
-    const sourceParametrizedTemplates = apply(sourceTemplates, [
-      template({ ..._options, ...strings }),
-    ]);
-    return mergeWith(sourceParametrizedTemplates);
+      const sourceParametrizedTemplates = apply(sourceTemplates, [
+        template({ ..._options, ...strings }),
+      ]);
+      return mergeWith(sourceParametrizedTemplates);
+    }
+    return _tree;
   };
 }
 
