@@ -1,3 +1,12 @@
+## [0.6.1](https://github.com/marcjulian/nestjs-prisma/compare/v0.6.0...v0.6.1) (2020-09-08)
+
+
+### Bug Fixes
+
+* **prisma:** remove user model, popullated in the lib ([eccdaa9](https://github.com/marcjulian/nestjs-prisma/commit/eccdaa9cfa6dd93f38629ec4786a7f1f01ab5e67))
+
+
+
 # [0.6.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.6.0-dev.2...v0.6.0) (2020-09-08)
 
 
