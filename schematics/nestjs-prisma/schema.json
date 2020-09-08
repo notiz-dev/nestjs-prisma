@@ -13,7 +13,7 @@
     "addDocker": {
       "type": "boolean",
       "description": "Create a Dockerfile and docker-compose.yaml.",
-      "default": false
+      "x-prompt": "Do you like to Dockerize your application?"
     },
     "dockerNodeImageVersion": {
       "type": "string",
