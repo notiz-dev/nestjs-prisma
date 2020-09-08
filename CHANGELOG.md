@@ -1,3 +1,12 @@
+# [0.6.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.6.0-dev.2...v0.6.0) (2020-09-08)
+
+
+### Features
+
+* **schematics:** prompt to dockerize app ([#4](https://github.com/marcjulian/nestjs-prisma/issues/4)) ([f79f933](https://github.com/marcjulian/nestjs-prisma/commit/f79f933f3406a6f3e1157551246dc2dc6253350b))
+
+
+
 # [0.6.0-dev.2](https://github.com/marcjulian/nestjs-prisma/compare/v0.5.0...v0.6.0-dev.2) (2020-09-01)
 
 
