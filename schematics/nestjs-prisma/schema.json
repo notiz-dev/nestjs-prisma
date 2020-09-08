@@ -8,7 +8,7 @@
     "addPrismaService": {
       "type": "boolean",
       "description": "Create a Prisma service extending the Prisma Client and module.",
-      "x-prompt": "Do you like to generate a Prisma Service extending the Prisma Client?"
+      "x-prompt": "Do you like to generate your own PrismaService for customization?"
     },
     "addDocker": {
       "type": "boolean",

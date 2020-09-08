@@ -24,7 +24,23 @@ UPDATE package.json (2260 bytes)
     Initialized Prisma
 ```
 
-Add `PrismaModule` to the `imports` section in your `AppModule` or other modules to gain access to `PrismaService`.
+1. Use `PrismaService` and `PrismaModule` provided by **nestjs-prisma**
+
+Answer the **first** question with **no** if you like to use the provided `PrismaService` and `PrismaModule`. Add `PrismaModule` to the `imports` section in your `AppModule` or other modules to gain access to `PrismaService`.
+
+```ts
+import { Module } from '@nestjs/common';
+import { PrismaModule } from 'nestjs-prisma';
+
+@Module({
+  imports: [PrismaModule],
+})
+export class AppModule {}
+```
+
+2. Generate your **own** `PrismaService` and `PrismaModule`
+
+Answer the **first** question with **yes** if you like to generate your own `PrismaService` and `PrismaModule` for further customizations. Add `PrismaModule` to the `imports` section in your `AppModule` or other modules to gain access to `PrismaService`.
 
 ```ts
 import { Module } from '@nestjs/common';
@@ -35,6 +51,8 @@ import { PrismaModule } from './prisma/prisma.module';
 })
 export class AppModule {}
 ```
+
+> **Note**: It is safe to remove `nestjs-prisma` as dependency otherwise you have two import suggestions for `PrismaService` and `PrismaModule`.
 
 ## Additional options
 
