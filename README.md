@@ -76,7 +76,7 @@ All available flags:
 You can pass additional flags to customize the schematic. For example, if you want to install a different version for **Prisma** use `--prismaVersion` flag:
 
 ```bash
-nest add nestjs-prisma --prismaVersion 2.5.1
+nest add nestjs-prisma --prismaVersion 2.7.1
 ```
 
 If you want to skip installing dependencies use `--skipInstall` flag:
