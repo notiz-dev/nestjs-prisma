@@ -69,7 +69,7 @@ function addNpmScripts(_options: Schema): Rule {
     pkg.scripts['prisma:generate'] = 'npx prisma generate';
     pkg.scripts['prisma:generate:watch'] = 'npx prisma generate --watch';
     pkg.scripts['prisma:save'] = 'npx prisma migrate save --experimental';
-    pkg.scripts['prisma:studio'] = 'npx prisma studio --experimental';
+    pkg.scripts['prisma:studio'] = 'npx prisma studio';
     pkg.scripts['prisma:up'] = 'npx prisma migrate up --experimental';
 
     tree.overwrite(pkgPath, JSON.stringify(pkg, null, 2));
