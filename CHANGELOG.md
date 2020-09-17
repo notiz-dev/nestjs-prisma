@@ -1,3 +1,17 @@
+# [0.7.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.6.1...v0.7.0) (2020-09-17)
+
+
+### Bug Fixes
+
+* **docker:** env file for postgres ([5cec264](https://github.com/marcjulian/nestjs-prisma/commit/5cec26460fb1ee2cdbbc801bf518e4c9f611b31b))
+
+
+### Features
+
+* **prisma-studio:** remove --experimental in 2.7.0 ([13b19a1](https://github.com/marcjulian/nestjs-prisma/commit/13b19a1311b1488eff2441ebd8566a1bae039be7))
+
+
+
 ## [0.6.1](https://github.com/marcjulian/nestjs-prisma/compare/v0.6.0...v0.6.1) (2020-09-08)
 
 
