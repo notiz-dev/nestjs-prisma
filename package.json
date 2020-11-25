@@ -33,15 +33,15 @@
     "@prisma/cli": "^2.4.0"
   },
   "devDependencies": {
-    "@nestjs/common": "^7.4.4",
-    "@nestjs/core": "7.4.4",
-    "@prisma/cli": "2.7.1",
-    "@prisma/client": "2.7.1",
-    "@types/jasmine": "~3.5.14",
-    "@types/node": "^12.11.1",
-    "jasmine": "^3.6.1",
-    "prettier": "~2.1.2",
-    "reflect-metadata": "~0.1.13"
+    "@nestjs/common": "7.5.5",
+    "@nestjs/core": "7.5.5",
+    "@prisma/cli": "2.12.0",
+    "@prisma/client": "2.12.0",
+    "@types/jasmine": "3.6.2",
+    "@types/node": "^12.19.7",
+    "jasmine": "^3.6.3",
+    "prettier": "2.2.0",
+    "reflect-metadata": "0.1.13"
   },
   "dependencies": {
     "@angular-devkit/core": "^10.1.2",
