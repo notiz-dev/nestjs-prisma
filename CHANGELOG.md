@@ -1,3 +1,13 @@
+# [0.8.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.7.0...v0.8.0) (2020-12-13)
+
+
+### Features
+
+* **migrate:** update to new prisma migrate commands ([94c6aae](https://github.com/marcjulian/nestjs-prisma/commit/94c6aaef878899f017abda6a14f000ac41c9c5be))
+* **prisma:** bump prisma peerDeps to prisma@2.13 ([863fa7e](https://github.com/marcjulian/nestjs-prisma/commit/863fa7e6694cd8e4154b664e22657ba534d782f3))
+
+
+
 # [0.7.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.6.1...v0.7.0) (2020-09-17)
 
 
