@@ -29,8 +29,8 @@
   },
   "peerDependencies": {
     "@nestjs/common": "^7.0.0",
-    "@prisma/client": "^2.4.0",
-    "@prisma/cli": "^2.4.0"
+    "@prisma/client": "^2.13.0",
+    "@prisma/cli": "^2.13.0"
   },
   "devDependencies": {
     "@nestjs/common": "7.6.1",
