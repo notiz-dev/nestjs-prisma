@@ -66,11 +66,17 @@ function addNpmScripts(_options: Schema): Rule {
 
     const pkg = JSON.parse(buffer.toString());
 
+    pkg.scripts['migrate:dev'] = 'prisma migrate dev --preview-feature';
+    pkg.scripts['migrate:dev:create'] =
+      'prisma migrate dev --create-only --preview-feature';
+    pkg.scripts['migrate:deploy'] =
+      'npx prisma migrate deploy --preview-feature';
+    pkg.scripts['migrate:reset'] = 'npx prisma migrate reset --preview-feature';
+    pkg.scripts['migrate:resolve'] =
+      'npx prisma migrate resolve --preview-feature';
     pkg.scripts['prisma:generate'] = 'npx prisma generate';
     pkg.scripts['prisma:generate:watch'] = 'npx prisma generate --watch';
-    pkg.scripts['prisma:save'] = 'npx prisma migrate save --experimental';
     pkg.scripts['prisma:studio'] = 'npx prisma studio';
-    pkg.scripts['prisma:up'] = 'npx prisma migrate up --experimental';
 
     tree.overwrite(pkgPath, JSON.stringify(pkg, null, 2));
     return tree;
