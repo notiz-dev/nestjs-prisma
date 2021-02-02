@@ -29,14 +29,14 @@
   },
   "peerDependencies": {
     "@nestjs/common": "^7.0.0",
-    "@prisma/client": "^2.13.0",
-    "@prisma/cli": "^2.13.0"
+    "@prisma/client": "^2.16.0",
+    "prisma": "^2.16.0"
   },
   "devDependencies": {
-    "@nestjs/common": "7.6.1",
-    "@nestjs/core": "7.6.1",
-    "@prisma/cli": "2.13.0",
-    "@prisma/client": "2.13.0",
+    "@nestjs/common": "7.6.9",
+    "@nestjs/core": "7.6.9",
+    "prisma": "2.16.0",
+    "@prisma/client": "2.16.0",
     "@types/jasmine": "3.6.2",
     "@types/node": "^12.19.7",
     "jasmine": "^3.6.3",

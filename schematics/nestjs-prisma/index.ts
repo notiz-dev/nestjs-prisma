@@ -42,7 +42,7 @@ function addDependencies(_options: Schema): Rule {
   return (tree: Tree) => {
     addPackageJsonDependency(tree, {
       type: NodeDependencyType.Dev,
-      name: '@prisma/cli',
+      name: 'prisma',
       version: _options.prismaVersion,
     });
 
