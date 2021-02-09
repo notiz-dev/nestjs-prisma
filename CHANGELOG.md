@@ -1,3 +1,13 @@
+# [0.9.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.8.0...v0.9.0) (2021-02-09)
+
+
+### Features
+
+* **docker:** update postgres to v13 ([abdb99a](https://github.com/marcjulian/nestjs-prisma/commit/abdb99af14f0c554f7299631780769f62fbfb3f2))
+* **prisma:** replace @prisma/cli with prisma ([de1b106](https://github.com/marcjulian/nestjs-prisma/commit/de1b10619dd06362f4752490ed141a71bc0ed1ba))
+
+
+
 # [0.8.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.7.0...v0.8.0) (2020-12-13)
 
 
