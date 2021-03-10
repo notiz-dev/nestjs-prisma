@@ -68,7 +68,7 @@ All available flags:
 | ------------------------- | ----------------------------------------------------------------------- | --------- | -------- |
 |  `addPrismaService`       | Create a Prisma service extending the Prisma Client and module.         | `boolean` | Prompted |
 |  `addDocker`              | Create a Dockerfile and docker-compose.yaml.                            | `boolean` | `false`  |
-|  `dockerNodeImageVersion` | Node version for the builder and runner image.                          | `string`  | `12`     |
+|  `dockerNodeImageVersion` | Node version for the builder and runner image.                          | `string`  | `14`     |
 |  `name`                   | The name for the Prisma service extending the Prisma Client and module. | `string`  | `Prisma` |
 |  `prismaVersion`          | The Prisma version to be installed.                                     | `string`  | `latest` |
 |  `skipInstall`            | Skip installing dependency packages.                                    | `boolean` | `false`  |
