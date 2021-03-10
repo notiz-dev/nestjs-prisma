@@ -1,1 +1,2 @@
 schematics/*/templates/*
+schematics/*/*.d.ts
