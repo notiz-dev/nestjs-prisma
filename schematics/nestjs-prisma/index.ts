@@ -33,6 +33,7 @@ export function nestjsPrismaAdd(_options: Schema): Rule {
       addNpmScripts(_options),
       addPrismaService(_options),
       addDocker(_options),
+      excludePrismaFromBuild(),
       prismaInit(_options),
     ]);
   };
@@ -61,19 +62,16 @@ function addNpmScripts(_options: Schema): Rule {
     const buffer = tree.read(pkgPath);
 
     if (buffer === null) {
-      throw new SchematicsException('Could not find package.json');
+      throw new SchematicsException(`Could not find ${pkgPath}.`);
     }
 
     const pkg = JSON.parse(buffer.toString());
 
     pkg.scripts['migrate:dev'] = 'prisma migrate dev';
-    pkg.scripts['migrate:dev:create'] =
-      'prisma migrate dev --create-only';
-    pkg.scripts['migrate:deploy'] =
-      'npx prisma migrate deploy';
+    pkg.scripts['migrate:dev:create'] = 'prisma migrate dev --create-only';
+    pkg.scripts['migrate:deploy'] = 'npx prisma migrate deploy';
     pkg.scripts['migrate:reset'] = 'npx prisma migrate reset';
-    pkg.scripts['migrate:resolve'] =
-      'npx prisma migrate resolve';
+    pkg.scripts['migrate:resolve'] = 'npx prisma migrate resolve';
     pkg.scripts['prisma:generate'] = 'npx prisma generate';
     pkg.scripts['prisma:generate:watch'] = 'npx prisma generate --watch';
     pkg.scripts['prisma:studio'] = 'npx prisma studio';
@@ -109,6 +107,24 @@ function addDocker(_options: Schema): Rule {
     }
 
     return _tree;
+  };
+}
+
+function excludePrismaFromBuild(): Rule {
+  return (tree: Tree) => {
+    const tsconfigBuildPath = 'tsconfig.build.json';
+
+    const buffer = tree.read(tsconfigBuildPath);
+
+    if (buffer === null) {
+      throw new SchematicsException(`Could not find ${tsconfigBuildPath}.`);
+    }
+
+    const tsconfig = JSON.parse(buffer.toString());
+
+    tsconfig.exclude = [...tsconfig.exclude, 'prisma'];
+    tree.overwrite(tsconfigBuildPath, JSON.stringify(tsconfig, null, 2));
+    return tree;
   };
 }
 
