@@ -1,3 +1,12 @@
+# [0.11.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.10.0...v0.11.0) (2021-04-06)
+
+
+### Features
+
+* **tsconfig:** exclude prisma folder from build ([ee6735c](https://github.com/marcjulian/nestjs-prisma/commit/ee6735c3e4bb99f17866b2e69331efa5eb7036a0))
+
+
+
 # [0.10.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.8.0...v0.10.0) (2021-04-06)
 
 
