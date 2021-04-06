@@ -1,3 +1,15 @@
+# [0.10.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.8.0...v0.10.0) (2021-04-06)
+
+
+### Features
+
+* **docker:** set node image version to 14 ([f188a57](https://github.com/marcjulian/nestjs-prisma/commit/f188a576e4e2061cb9599edba0ae60617e8c2388))
+* **docker:** update postgres to v13 ([abdb99a](https://github.com/marcjulian/nestjs-prisma/commit/abdb99af14f0c554f7299631780769f62fbfb3f2))
+* **migrate:** remove preview-feature flag from migrate ([7d139ee](https://github.com/marcjulian/nestjs-prisma/commit/7d139ee288d657830c6e8934947f251dc1593468))
+* **prisma:** replace @prisma/cli with prisma ([de1b106](https://github.com/marcjulian/nestjs-prisma/commit/de1b10619dd06362f4752490ed141a71bc0ed1ba))
+
+
+
 # [0.9.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.8.0...v0.9.0) (2021-02-09)
 
 
