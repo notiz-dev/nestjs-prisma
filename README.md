@@ -77,7 +77,7 @@ All available flags:
 You can pass additional flags to customize the schematic. For example, if you want to install a different version for **Prisma** use `--prismaVersion` flag:
 
 ```bash
-nest add nestjs-prisma --prismaVersion 2.7.1
+nest add nestjs-prisma --prismaVersion 2.20.1
 ```
 
 If you want to skip installing dependencies use `--skipInstall` flag:
@@ -86,12 +86,12 @@ If you want to skip installing dependencies use `--skipInstall` flag:
 nest add nestjs-prisma --skipInstall
 ```
 
-Add `Dockerfile` and `docker-compose.yaml`, you can even use a different `node` version (`12-alpine` or `14`).
+Add `Dockerfile` and `docker-compose.yaml`, you can even use a different `node` version (`14-alpine` or `15`).
 
 > Currently uses to **PostgreSQL** as a default database in `docker-compose.yaml`.
 
 ```bash
-nest add nestjs-prisma --addDocker --dockerNodeImageVersion 12-alpine
+nest add nestjs-prisma --addDocker --dockerNodeImageVersion 14-alpine
 ```
 
 ## Developing
