@@ -9,8 +9,6 @@ COPY prisma ./prisma/
 
 # Install app dependencies
 RUN npm install
-# Generate prisma client, leave out if generating in `postinstall` script
-# RUN npx prisma generate
 
 COPY . .
 
