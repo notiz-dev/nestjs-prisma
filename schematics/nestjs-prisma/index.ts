@@ -16,9 +16,11 @@ import {
 } from '@angular-devkit/schematics/tasks';
 import {
   addPackageJsonDependency,
-  NodeDependencyType,
+  NodeDependency,
 } from '@schematics/angular/utility/dependencies';
 import { strings } from '@angular-devkit/core';
+import { getLatestDependencyVersion } from './utils/get-latest-dependency-version';
+import { dependencies, Dependency } from './dependencies';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.
@@ -29,7 +31,7 @@ export function nestjsPrismaAdd(_options: Schema): Rule {
     }
 
     return chain([
-      addDependencies(_options),
+      addDependencies(dependencies),
       addNpmScripts(_options),
       addPrismaService(_options),
       addDocker(_options),
@@ -39,25 +41,28 @@ export function nestjsPrismaAdd(_options: Schema): Rule {
   };
 }
 
-function addDependencies(_options: Schema): Rule {
-  return (tree: Tree) => {
-    addPackageJsonDependency(tree, {
-      type: NodeDependencyType.Dev,
-      name: 'prisma',
-      version: _options.prismaVersion,
-    });
-
-    addPackageJsonDependency(tree, {
-      type: NodeDependencyType.Default,
-      name: '@prisma/client',
-      version: _options.prismaVersion,
-    });
-    return tree;
+function addDependencies(dependencies: Dependency[]): Rule {
+  return (tree, context) => {
+    return Promise.all(
+      dependencies.map((dependency) =>
+        getLatestDependencyVersion(dependency.name).then(
+          ({ name, version }) => {
+            context.logger.info(`✅️ Added ${name}@${version}`);
+            const nodeDependency: NodeDependency = {
+              name,
+              version,
+              type: dependency.type,
+            };
+            addPackageJsonDependency(tree, nodeDependency);
+          },
+        ),
+      ),
+    ).then(() => tree) as ReturnType<Rule>;
   };
 }
 
 function addNpmScripts(_options: Schema): Rule {
-  return (tree: Tree) => {
+  return (tree: Tree, context) => {
     const pkgPath = 'package.json';
     const buffer = tree.read(pkgPath);
 
