@@ -10,6 +10,11 @@ export interface Schema {
   addDocker?: boolean;
 
   /**
+   * Select a datasource provider to pass to `prisma init`.
+   */
+  datasourceProvider: DatasourceProvider;
+
+  /**
    * Node version for the builder and runner image.
    */
   dockerNodeImageVersion: string;
@@ -34,3 +39,9 @@ export interface Schema {
    */
   skipPrismaInit?: boolean;
 }
+
+export type DatasourceProvider =
+  | 'postgresql'
+  | 'mysql'
+  | 'sqlite'
+  | ' sqlserver';

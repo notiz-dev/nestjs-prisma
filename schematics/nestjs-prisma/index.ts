@@ -1,3 +1,4 @@
+import { npmScripts } from './npm-scripts';
 import { Schema } from './schema';
 import {
   Rule,
@@ -72,14 +73,11 @@ function addNpmScripts(_options: Schema): Rule {
 
     const pkg = JSON.parse(buffer.toString());
 
-    pkg.scripts['migrate:dev'] = 'prisma migrate dev';
-    pkg.scripts['migrate:dev:create'] = 'prisma migrate dev --create-only';
-    pkg.scripts['migrate:deploy'] = 'npx prisma migrate deploy';
-    pkg.scripts['migrate:reset'] = 'npx prisma migrate reset';
-    pkg.scripts['migrate:resolve'] = 'npx prisma migrate resolve';
-    pkg.scripts['prisma:generate'] = 'npx prisma generate';
-    pkg.scripts['prisma:generate:watch'] = 'npx prisma generate --watch';
-    pkg.scripts['prisma:studio'] = 'npx prisma studio';
+    context.logger.info(`✅️ Added Prisma scripts [${npmScripts.length}]`);
+
+    npmScripts.map(
+      (npmScript) => (pkg.scripts[npmScript.name] = npmScript.command),
+    );
 
     tree.overwrite(pkgPath, JSON.stringify(pkg, null, 2));
     return tree;
@@ -87,8 +85,10 @@ function addNpmScripts(_options: Schema): Rule {
 }
 
 function addPrismaService(_options: Schema): Rule {
-  return (_tree: Tree) => {
+  return (_tree: Tree, context) => {
     if (_options.addPrismaService) {
+      context.logger.info(`✅️ Added custom PrismaModule and PrismaService`);
+
       const sourceTemplates = url('./templates/services');
 
       const sourceParametrizedTemplates = apply(sourceTemplates, [
@@ -101,8 +101,10 @@ function addPrismaService(_options: Schema): Rule {
 }
 
 function addDocker(_options: Schema): Rule {
-  return (_tree: Tree) => {
+  return (_tree: Tree, context) => {
     if (_options.addDocker) {
+      context.logger.info(`✅️ Added Docker files`);
+
       const sourceTemplates = url('./templates/docker');
 
       const sourceParametrizedTemplates = apply(sourceTemplates, [
@@ -116,7 +118,7 @@ function addDocker(_options: Schema): Rule {
 }
 
 function excludePrismaFromBuild(): Rule {
-  return (tree: Tree) => {
+  return (tree: Tree, context) => {
     const tsconfigBuildPath = 'tsconfig.build.json';
 
     const buffer = tree.read(tsconfigBuildPath);
@@ -124,6 +126,8 @@ function excludePrismaFromBuild(): Rule {
     if (buffer === null) {
       throw new SchematicsException(`Could not find ${tsconfigBuildPath}.`);
     }
+
+    context.logger.info(`✅️ Add "prisma" directory to "excludes" in ${tsconfigBuildPath}`);
 
     const tsconfig = JSON.parse(buffer.toString());
 
@@ -137,9 +141,12 @@ function prismaInit(_options: Schema): Rule {
   return (_tree: Tree, context: SchematicContext) => {
     if (!_options.skipPrismaInit) {
       const packageInstall = context.addTask(new NodePackageInstallTask());
-      context.addTask(new RunSchematicTask('prisma-init', {}), [
-        packageInstall,
-      ]);
+      context.addTask(
+        new RunSchematicTask('prisma-init', {
+          datasource: _options.datasourceProvider,
+        }),
+        [packageInstall],
+      );
     }
     return _tree;
   };
