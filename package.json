@@ -9,7 +9,7 @@
     "dev:schematics": "tsc -p tsconfig.schematics.json --watch",
     "test": "npm run build && jasmine src/**/*_spec.js",
     "changelog": "npx conventional-changelog-cli conventional-changelog -p angular -i ./CHANGELOG.md -s",
-    "rocket": "npm run build && npm publish --tag dev",
+    "rocket": "npm run build && npm publish",
     "format": "prettier --write \"lib/**/*.ts\" \"schematics/**/*.ts\""
   },
   "keywords": [
