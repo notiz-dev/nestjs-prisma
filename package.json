@@ -1,6 +1,6 @@
 {
   "name": "nestjs-prisma",
-  "version": "0.11.0",
+  "version": "0.12.0-dev.1",
   "description": "Schematics to add Prisma support to a NestJS application",
   "scripts": {
     "build": "npm run build:lib && npm run build:schematics",
@@ -9,8 +9,8 @@
     "dev:schematics": "tsc -p tsconfig.schematics.json --watch",
     "test": "npm run build && jasmine src/**/*_spec.js",
     "changelog": "conventional-changelog -p angular -i ./CHANGELOG.md -s",
-    "rocket": "npm run build && npm publish",
-    "format": "prettier --write \"schematics/**/*.ts\""
+    "rocket": "npm run build && npm publish --tag dev",
+    "format": "prettier --write \"lib/**/*.ts\" \"schematics/**/*.ts\""
   },
   "keywords": [
     "nestjs",
@@ -36,18 +36,18 @@
   "devDependencies": {
     "@nestjs/common": "7.6.9",
     "@nestjs/core": "7.6.9",
-    "@prisma/client": "2.19.0",
+    "@prisma/client": "2.26.0",
     "@types/jasmine": "3.6.2",
     "@types/node": "^12.19.7",
     "jasmine": "^3.6.3",
-    "prettier": "2.2.1",
-    "prisma": "2.19.0",
+    "prettier": "2.3.2",
+    "prisma": "2.26.0",
     "reflect-metadata": "0.1.13"
   },
   "dependencies": {
-    "@angular-devkit/core": "^11.0.4",
-    "@angular-devkit/schematics": "^11.0.4",
-    "@schematics/angular": "~11.0.4",
+    "@angular-devkit/core": "^12.1.0",
+    "@angular-devkit/schematics": "^12.1.0",
+    "@schematics/angular": "~12.1.0",
     "typescript": "~4.3.5"
   }
 }
