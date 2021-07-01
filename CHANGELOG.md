@@ -1,3 +1,21 @@
+# [0.12.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.11.0...v0.12.0) (2021-07-01)
+
+
+### Bug Fixes
+
+* **prisma-service:** init options as empty object ([ec4d097](https://github.com/marcjulian/nestjs-prisma/commit/ec4d0978796ac52fadce404433acdcd62e5257ae))
+
+
+### Features
+
+* **datasource:** pass datasource to prisma init ([9cdd23e](https://github.com/marcjulian/nestjs-prisma/commit/9cdd23e7f8a66a66e212f0e99d9f27b19c81bad0))
+* **deps:** fetch deps version before installing ([a92c7b2](https://github.com/marcjulian/nestjs-prisma/commit/a92c7b27eceb61089eb67992fbd6e2d9428318b2))
+* **docker-compose:** add restart policy to nest service ([99b74b7](https://github.com/marcjulian/nestjs-prisma/commit/99b74b7ba5a44cdce875b1334e109e5437b8b12c))
+* **prisma:** pass options directly to prisma client ([ffe0526](https://github.com/marcjulian/nestjs-prisma/commit/ffe0526d87e7d0b6048fe35f4352c5c65bde14c5))
+* **schematics:** add .dockerignore ([a827348](https://github.com/marcjulian/nestjs-prisma/commit/a827348362a2f64fa0ad2b3a0562175d29a53e51))
+
+
+
 # [0.11.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.10.0...v0.11.0) (2021-04-06)
 
 
