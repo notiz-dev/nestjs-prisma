@@ -48,6 +48,6 @@
     "@angular-devkit/core": "^11.0.4",
     "@angular-devkit/schematics": "^11.0.4",
     "@schematics/angular": "~11.0.4",
-    "typescript": "~4.0.5"
+    "typescript": "~4.3.5"
   }
 }
