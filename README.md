@@ -14,20 +14,25 @@ nest add nestjs-prisma
 Example output
 
 ```bash
-▹▹▹▹▸ Package installation in progress... ☕
+✔ Package installation in progress... ☕
 Starting library setup...
-? Do you like to generate your own PrismaService for customizations? Yes
+? Do you like to generate your own PrismaService for customizations? No
 ? Do you like to Dockerize your application? Yes
-CREATE src/prisma/prisma.module.ts (192 bytes)
-CREATE src/prisma/prisma.service.spec.ts (460 bytes)
-CREATE src/prisma/prisma.service.ts (389 bytes)
-CREATE .env (165 bytes)
-CREATE Dockerfile (555 bytes)
-CREATE docker-compose.yml (454 bytes)
-UPDATE package.json (2260 bytes)
+? Which datasource provider do you want to use for `prisma init`? sqlite
+    ✅️ Added prisma@2.26.0
+    ✅️ Added @prisma/client@2.26.0
+    ✅️ Added Prisma scripts [6]
+    ✅️ Added Docker files
+    ✅️ Add "prisma" directory to "excludes" in tsconfig.build.json
+CREATE .dockerignore (42 bytes)
+CREATE .env (192 bytes)
+CREATE Dockerfile (455 bytes)
+CREATE docker-compose.yml (474 bytes)
+UPDATE package.json (2380 bytes)
+UPDATE tsconfig.build.json (130 bytes)
 ✔ Packages installed successfully.
 ✔ Packages installed successfully.
-    Initialized Prisma
+    ✅️ Initialized Prisma - Datasource sqlite
 ```
 
 1. Use `PrismaService` and `PrismaModule` provided by **nestjs-prisma**
