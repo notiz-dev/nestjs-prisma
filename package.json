@@ -29,20 +29,21 @@
     "url": "https://github.com/marcjulian/nestjs-prisma/issues"
   },
   "peerDependencies": {
-    "@nestjs/common": "^7.0.0",
+    "@nestjs/common": "^7.0.0 || ^8.0.0",
     "@prisma/client": "^2.19.0",
     "prisma": "^2.19.0"
   },
   "devDependencies": {
-    "@nestjs/common": "7.6.9",
-    "@nestjs/core": "7.6.9",
+    "@nestjs/common": "8.0.0",
+    "@nestjs/core": "8.0.0",
     "@prisma/client": "2.26.0",
     "@types/jasmine": "3.6.2",
     "@types/node": "^12.19.7",
     "jasmine": "^3.6.3",
     "prettier": "2.3.2",
     "prisma": "2.26.0",
-    "reflect-metadata": "0.1.13"
+    "reflect-metadata": "0.1.13",
+    "rxjs": "^7.2.0"
   },
   "dependencies": {
     "@angular-devkit/core": "^12.1.0",
