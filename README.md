@@ -184,6 +184,52 @@ export class AppModule {}
 
 > **Note**: It is safe to remove `nestjs-prisma` as dependency otherwise you have two import suggestions for `PrismaService` and `PrismaModule`.
 
+## PrismaClientExceptionFilter
+
+`nestjs-prisma` provides an `PrismaClientExceptionFilter` to catch unhandled [PrismaClientKnownRequestError](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine) and returning different status codes instead of `500 Internal server error`.
+
+To use the filter you have the following two options.
+
+1. Instantiate the filter in your `main.ts` and pass the `HttpAdapterHost`
+
+
+```ts
+//src/main.ts
+import { ValidationPipe } from '@nestjs/common';
+import { HttpAdapterHost, NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { PrismaClientExceptionFilter } from 'nestjs-prisma';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  const { httpAdapter } = app.get(HttpAdapterHost);
+  app.useGlobalFilters(new PrismaClientExceptionFilter(httpAdapter));
+
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+2. Use `APP_FILTER` token in any module
+
+```ts
+//src/app.module.ts
+import { Module } from '@nestjs/common';
+import { APP_FILTER } from '@nestjs/core';
+import { PrismaClientExceptionFilter } from 'nestjs-prisma';
+
+@Module({
+  providers: [
+    {
+      provide: APP_FILTER,
+      useClass: PrismaClientExceptionFilter,
+    },
+  ],
+})
+export class AppModule {}
+```
+
 ## Additional options
 
 All available flags:
