@@ -1,3 +1,18 @@
+# [0.13.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.12.0...v0.13.0) (2021-08-17)
+
+
+### Bug Fixes
+
+* change master to main ([a35d5e3](https://github.com/marcjulian/nestjs-prisma/commit/a35d5e33117cbdac852b7a2394620714a1742ec8))
+
+
+### Features
+
+* **nestjs**: adds support for nestjs 8.x.x ([96b0748](https://github.com/marcjulian/nestjs-prisma/commit/96b07481c2e8b12edf751b4d18222a14f310cc56))
+* **exception-filter:** new prisma client exception filter ([fbcef2d](https://github.com/marcjulian/nestjs-prisma/commit/fbcef2d3a2a1a7c8fda78bf92a9801144179a594))
+
+
+
 # [0.12.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.11.0...v0.12.0) (2021-07-01)
 
 
