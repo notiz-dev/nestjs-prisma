@@ -33,7 +33,7 @@ export function nestjsPrismaAdd(_options: Schema): Rule {
 
     return chain([
       addDependencies(dependencies),
-      addNpmScripts(_options),
+      addNpmScripts(),
       addPrismaService(_options),
       addDocker(_options),
       excludePrismaFromBuild(),
@@ -62,7 +62,7 @@ function addDependencies(dependencies: Dependency[]): Rule {
   };
 }
 
-function addNpmScripts(_options: Schema): Rule {
+function addNpmScripts(): Rule {
   return (tree: Tree, context) => {
     const pkgPath = 'package.json';
     const buffer = tree.read(pkgPath);
@@ -127,7 +127,9 @@ function excludePrismaFromBuild(): Rule {
       throw new SchematicsException(`Could not find ${tsconfigBuildPath}.`);
     }
 
-    context.logger.info(`✅️ Add "prisma" directory to "excludes" in ${tsconfigBuildPath}`);
+    context.logger.info(
+      `✅️ Add "prisma" directory to "excludes" in ${tsconfigBuildPath}`,
+    );
 
     const tsconfig = JSON.parse(buffer.toString());
 

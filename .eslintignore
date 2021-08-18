@@ -1,0 +1,2 @@
+schematics/**/*.d.ts
+schematics/nestjs-prisma/templates/**/*.ts
