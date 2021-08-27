@@ -18,7 +18,7 @@
     "datasourceProvider": {
       "type": "string",
       "default": "postgresql",
-      "enum": ["postgresql", "mysql", "sqlite", "sqlserver"],
+      "enum": ["postgresql", "mysql", "sqlite", "sqlserver", "mongodb"],
       "x-prompt": "Which datasource provider do you want to use for `prisma init`?"
     },
     "dockerNodeImageVersion": {
