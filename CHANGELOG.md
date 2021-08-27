@@ -1,3 +1,12 @@
+## [0.13.1](https://github.com/marcjulian/nestjs-prisma/compare/v0.13.0...v0.13.1) (2021-08-27)
+
+
+### Features
+
+* **schematics:** add mongodb as datasource provider ([bd31f4f](https://github.com/marcjulian/nestjs-prisma/commit/bd31f4fdbd59cb958c876c4db6e9ff26d402913b))
+
+
+
 # [0.13.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.12.0...v0.13.0) (2021-08-17)
 
 
