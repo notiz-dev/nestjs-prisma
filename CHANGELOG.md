@@ -1,3 +1,11 @@
+## [0.13.2](https://github.com/marcjulian/nestjs-prisma/compare/v0.13.1...v0.13.2) (2021-09-20)
+
+### Chore
+
+* **prisma**: add `prisma@^3.0.0` to peer dependencies
+
+
+
 ## [0.13.1](https://github.com/marcjulian/nestjs-prisma/compare/v0.13.0...v0.13.1) (2021-08-27)
 
 
