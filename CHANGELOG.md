@@ -1,3 +1,14 @@
+# [0.14.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.13.2...v0.14.0) (2021-10-08)
+
+
+### Features
+
+* **docker:** add mysql support, close [#11](https://github.com/marcjulian/nestjs-prisma/issues/11) ([b41785b](https://github.com/marcjulian/nestjs-prisma/commit/b41785b45a68db825de2cae4647d5bb53038c8f6))
+* **schematics:** prompt datasource provider then add docker during add ([68ee05a](https://github.com/marcjulian/nestjs-prisma/commit/68ee05a6535258ce9d470c745850966f7278fddb))
+* **seed:** add seed script to package.json, close [#10](https://github.com/marcjulian/nestjs-prisma/issues/10) ([98dc350](https://github.com/marcjulian/nestjs-prisma/commit/98dc350b18469402c3b9c08b06f80029445d326e))
+
+
+
 ## [0.13.2](https://github.com/marcjulian/nestjs-prisma/compare/v0.13.1...v0.13.2) (2021-09-20)
 
 ### Chore
