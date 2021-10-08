@@ -9,21 +9,21 @@ services:
     ports:
       - 3000:3000
     depends_on:
-      - postgres
+      - mysql
     env_file:
       - .env
 
-  postgres:
-    image: postgres:13
-    container_name: postgresprisma
+  nest-mysql:
+    image: mysql:8
+    container_name: nest-mysql
     restart: always
     ports:
-      - 5432:5432
+      - 3306:3306
     env_file:
       - .env
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - nest-mysql:/var/lib/mysql
 
 volumes:
-  postgres:
-    name: nest-db
+  nest-mysql:
+    name: nest-mysql-db

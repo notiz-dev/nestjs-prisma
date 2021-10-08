@@ -13,7 +13,7 @@
     "addDocker": {
       "type": "boolean",
       "description": "Create a Dockerfile and docker-compose.yaml.",
-      "x-prompt": "Do you like to Dockerize your application?"
+      "x-prompt": "Do you like to Dockerize your application? (Supports postgresql and mysql)"
     },
     "datasourceProvider": {
       "type": "string",

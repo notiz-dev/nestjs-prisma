@@ -44,4 +44,5 @@ export type DatasourceProvider =
   | 'postgresql'
   | 'mysql'
   | 'sqlite'
-  | ' sqlserver';
+  | 'sqlserver'
+  | 'mongodb';

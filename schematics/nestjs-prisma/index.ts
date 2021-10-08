@@ -35,7 +35,8 @@ export function nestjsPrismaAdd(_options: Schema): Rule {
       addDependencies(dependencies),
       addNpmScripts(),
       addPrismaService(_options),
-      addDocker(_options),
+      addDockerFile(_options),
+      addDockerCompose(_options),
       excludePrismaFromBuild(),
       prismaInit(_options),
     ]);
@@ -100,17 +101,43 @@ function addPrismaService(_options: Schema): Rule {
   };
 }
 
-function addDocker(_options: Schema): Rule {
+function addDockerFile(_options: Schema): Rule {
   return (_tree: Tree, context) => {
     if (_options.addDocker) {
-      context.logger.info(`✅️ Added Docker files`);
+      context.logger.info(`✅️ Added Docker file`);
 
-      const sourceTemplates = url('./templates/docker');
+      const sourceTemplates = url('./templates/docker/common');
 
       const sourceParametrizedTemplates = apply(sourceTemplates, [
         template({ ..._options, ...strings }),
       ]);
       return mergeWith(sourceParametrizedTemplates);
+    }
+
+    return _tree;
+  };
+}
+
+function addDockerCompose(_options: Schema): Rule {
+  return (_tree: Tree, context) => {
+    if (_options.addDocker) {
+      context.logger.info(`✅️ Added Docker Compose and .env`);
+
+      if (
+        _options.datasourceProvider === 'mysql' ||
+        _options.datasourceProvider === 'postgresql'
+      ) {
+        _options.datasourceProvider;
+
+        const sourceTemplates = url(
+          `./templates/docker/${_options.datasourceProvider}`,
+        );
+
+        const sourceParametrizedTemplates = apply(sourceTemplates, [
+          template({ ..._options, ...strings }),
+        ]);
+        return mergeWith(sourceParametrizedTemplates);
+      }
     }
 
     return _tree;
@@ -123,18 +150,16 @@ function excludePrismaFromBuild(): Rule {
 
     const buffer = tree.read(tsconfigBuildPath);
 
-    if (buffer === null) {
-      throw new SchematicsException(`Could not find ${tsconfigBuildPath}.`);
+    if (buffer !== null) {
+      context.logger.info(
+        `✅️ Add "prisma" directory to "excludes" in ${tsconfigBuildPath}`,
+      );
+
+      const tsconfig = JSON.parse(buffer.toString());
+
+      tsconfig.exclude = [...tsconfig.exclude, 'prisma'];
+      tree.overwrite(tsconfigBuildPath, JSON.stringify(tsconfig, null, 2));
     }
-
-    context.logger.info(
-      `✅️ Add "prisma" directory to "excludes" in ${tsconfigBuildPath}`,
-    );
-
-    const tsconfig = JSON.parse(buffer.toString());
-
-    tsconfig.exclude = [...tsconfig.exclude, 'prisma'];
-    tree.overwrite(tsconfigBuildPath, JSON.stringify(tsconfig, null, 2));
     return tree;
   };
 }
