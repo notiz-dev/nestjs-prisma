@@ -34,6 +34,7 @@ export function nestjsPrismaAdd(_options: Schema): Rule {
     return chain([
       addDependencies(dependencies),
       addNpmScripts(),
+      addSeedScript(),
       addPrismaService(_options),
       addDockerFile(_options),
       addDockerCompose(_options),
@@ -80,6 +81,26 @@ function addNpmScripts(): Rule {
       (npmScript) => (pkg.scripts[npmScript.name] = npmScript.command),
     );
 
+    tree.overwrite(pkgPath, JSON.stringify(pkg, null, 2));
+    return tree;
+  };
+}
+
+function addSeedScript(): Rule {
+  return (tree: Tree, context) => {
+    const pkgPath = 'package.json';
+    const buffer = tree.read(pkgPath);
+
+    if (buffer === null) {
+      throw new SchematicsException(`Could not find ${pkgPath}.`);
+    }
+
+    const pkg = JSON.parse(buffer.toString());
+
+    context.logger.info(`✅️ Added Prisma Seed script`);
+
+    pkg['prisma'] = { seed: 'ts-node prisma/seed.ts' };
+    
     tree.overwrite(pkgPath, JSON.stringify(pkg, null, 2));
     return tree;
   };
