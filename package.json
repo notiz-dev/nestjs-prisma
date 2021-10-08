@@ -30,6 +30,7 @@
   "bugs": {
     "url": "https://github.com/marcjulian/nestjs-prisma/issues"
   },
+  "homepage": "https://marcjulian/nestjs-prisma#readme",
   "peerDependencies": {
     "@nestjs/common": "^7.0.0 || ^8.0.0",
     "@nestjs/platform-express": "^7.0.0 || ^8.0.0",
