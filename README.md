@@ -16,23 +16,24 @@ Example output
 ```bash
 ✔ Package installation in progress... ☕
 Starting library setup...
-? Do you like to generate your own PrismaService for customizations? No
-? Do you like to Dockerize your application? Yes
-? Which datasource provider do you want to use for `prisma init`? sqlite
-    ✅️ Added prisma@2.26.0
-    ✅️ Added @prisma/client@2.26.0
+? Which datasource provider do you want to use for `prisma init`? postgresql
+? Do you like to Dockerize your application? (Supports postgresql and mysql) Yes
+    ✅️ Added prisma@latest
+    ✅️ Added @prisma/client@latest
     ✅️ Added Prisma scripts [6]
-    ✅️ Added Docker files
+    ✅️ Added Prisma Seed script
+    ✅️ Added Docker file
+    ✅️ Added Docker Compose and .env
     ✅️ Add "prisma" directory to "excludes" in tsconfig.build.json
 CREATE .dockerignore (42 bytes)
-CREATE .env (192 bytes)
 CREATE Dockerfile (455 bytes)
-CREATE docker-compose.yml (474 bytes)
-UPDATE package.json (2380 bytes)
+CREATE .env (642 bytes)
+CREATE docker-compose.yml (497 bytes)
+UPDATE package.json (2754 bytes)
 UPDATE tsconfig.build.json (130 bytes)
 ✔ Packages installed successfully.
 ✔ Packages installed successfully.
-    ✅️ Initialized Prisma - Datasource sqlite
+    ✅️ Initialized Prisma - Datasource postgresql
 ```
 
 1. Use `PrismaService` and `PrismaModule` provided by **nestjs-prisma**
