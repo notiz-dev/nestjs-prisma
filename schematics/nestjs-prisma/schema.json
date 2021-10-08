@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "NestPrismaSchematics",
+  "$id": "NestPrismaSchematics",
   "title": "Prisma Support Schema",
   "type": "object",
   "description": "Add Prisma support to the NestJs application",
