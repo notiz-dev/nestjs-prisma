@@ -192,7 +192,6 @@ To use the filter you have the following two options.
 
 1. Instantiate the filter in your `main.ts` and pass the `HttpAdapterHost`
 
-
 ```ts
 //src/main.ts
 import { ValidationPipe } from '@nestjs/common';
@@ -236,8 +235,9 @@ All available flags:
 
 | Flag                      |  Description                                                            | Type      |  Default |
 | ------------------------- | ----------------------------------------------------------------------- | --------- | -------- |
-|  `addPrismaService`       | Create a Prisma service extending the Prisma Client and module.         | `boolean` | Prompted |
-|  `addDocker`              | Create a Dockerfile and docker-compose.yaml.                            | `boolean` | `false`  |
+|  `datasourceProvider`     | Specifies the datasource provider for prisma init and docker.           | `boolean` | Prompted |
+|  `addDocker`              | Create a Dockerfile and docker-compose.yaml.                            | `boolean` | Prompted |
+|  `addPrismaService`       | Create a Prisma service extending the Prisma Client and module.         | `boolean` | `false`  |
 |  `dockerNodeImageVersion` | Node version for the builder and runner image.                          | `string`  | `14`     |
 |  `name`                   | The name for the Prisma service extending the Prisma Client and module. | `string`  | `Prisma` |
 |  `prismaVersion`          | The Prisma version to be installed.                                     | `string`  | `latest` |
@@ -247,7 +247,7 @@ All available flags:
 You can pass additional flags to customize the schematic. For example, if you want to install a different version for **Prisma** use `--prismaVersion` flag:
 
 ```bash
-nest add nestjs-prisma --prismaVersion 2.20.1
+nest add nestjs-prisma --prismaVersion 3.2.1
 ```
 
 If you want to skip installing dependencies use `--skipInstall` flag:
@@ -256,7 +256,7 @@ If you want to skip installing dependencies use `--skipInstall` flag:
 nest add nestjs-prisma --skipInstall
 ```
 
-Add `Dockerfile` and `docker-compose.yaml`, you can even use a different `node` version (`14-alpine` or `15`).
+Add `Dockerfile` and `docker-compose.yaml`, you can even use a different `node` version (`14-alpine` or `16`).
 
 > Currently uses to **PostgreSQL** as a default database in `docker-compose.yaml`.
 
