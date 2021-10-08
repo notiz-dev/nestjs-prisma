@@ -1,3 +1,12 @@
+## [0.14.1](https://github.com/marcjulian/nestjs-prisma/compare/v0.14.0...v0.14.1) (2021-10-08)
+
+
+### Bug Fixes
+
+* **schematics:** change id to $id ([aabcd12](https://github.com/marcjulian/nestjs-prisma/commit/aabcd124de6c42b7b8168e1e4c352da686c03532))
+
+
+
 # [0.14.0](https://github.com/marcjulian/nestjs-prisma/compare/v0.13.2...v0.14.0) (2021-10-08)
 
 
