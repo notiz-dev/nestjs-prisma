@@ -1,4 +1,4 @@
-# NestJS Prisma Schematics
+# NestJS Prisma Library and Schematics
 
 [![npm version](https://badge.fury.io/js/nestjs-prisma.svg)](https://www.npmjs.com/package/nestjs-prisma)
 ![Lib and Schematics CI](https://github.com/marcjulian/nestjs-prisma/workflows/Node.js%20CI/badge.svg)
@@ -36,9 +36,9 @@ UPDATE tsconfig.build.json (130 bytes)
     ✅️ Initialized Prisma - Datasource postgresql
 ```
 
-1. Use `PrismaService` and `PrismaModule` provided by **nestjs-prisma**
+### Use `PrismaService` and `PrismaModule` provided by **nestjs-prisma**
 
-Answer the **first** question with **no** if you like to use the provided `PrismaService` and `PrismaModule`. Add `PrismaModule` to the `imports` section in your `AppModule` or other modules to gain access to `PrismaService`.
+Add `PrismaModule` to the `imports` section in your `AppModule` or other modules to gain access to `PrismaService`.
 
 ```ts
 import { Module } from '@nestjs/common';
@@ -169,9 +169,13 @@ export class PrismaConfigService implements PrismaOptionsFactory {
 }
 ```
 
-2. Generate your **own** `PrismaService` and `PrismaModule`
+### Generate **custom** `PrismaService` and `PrismaModule`
 
-Answer the **first** question with **yes** if you like to generate your own `PrismaService` and `PrismaModule` for further customizations. Add `PrismaModule` to the `imports` section in your `AppModule` or other modules to gain access to `PrismaService`.
+```bash
+nest add nestjs-prisma --addPrismaService
+```
+
+Add the flag `--addPrismaService` if you like to generate your own `PrismaService` and `PrismaModule` for further customizations. Add `PrismaModule` to the `imports` section in your `AppModule` or other modules to gain access to `PrismaService`.
 
 ```ts
 import { Module } from '@nestjs/common';
