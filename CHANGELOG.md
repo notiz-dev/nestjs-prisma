@@ -1,3 +1,10 @@
+## [0.14.2](https://github.com/marcjulian/nestjs-prisma/compare/v0.14.1...v0.14.2) (2021-10-21)
+
+### Bug Fixes
+
+* **docker-compose:** fix depends on for postgres ([#12](https://github.com/marcjulian/nestjs-prisma/pull/12)) and mysql db ([365a832](https://github.com/marcjulian/nestjs-prisma/commit/365a832fcfdb642977a40f519347353ff8fae3e7))
+
+
 ## [0.14.1](https://github.com/marcjulian/nestjs-prisma/compare/v0.14.0...v0.14.1) (2021-10-08)
 
 
