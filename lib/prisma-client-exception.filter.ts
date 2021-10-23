@@ -10,7 +10,7 @@ import { Response } from 'express';
  * Error codes definition for Prisma Client (Query Engine)
  * https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine
  */
-@Catch(Prisma.PrismaClientKnownRequestError)
+@Catch(Prisma?.PrismaClientKnownRequestError)
 export class PrismaClientExceptionFilter extends BaseExceptionFilter {
   catch(exception: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
