@@ -1,3 +1,9 @@
+## [0.14.3](https://github.com/marcjulian/nestjs-prisma/compare/v0.14.2...v0.14.3) (2021-11-02)
+
+### Bug Fixes
+
+* **exception-filter:** unmask prisma client not generated error ([#13](https://github.com/marcjulian/nestjs-prisma/pull/13))
+
 ## [0.14.2](https://github.com/marcjulian/nestjs-prisma/compare/v0.14.1...v0.14.2) (2021-10-21)
 
 ### Bug Fixes
