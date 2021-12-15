@@ -1,7 +1,7 @@
 # NestJS Prisma Library and Schematics
 
 [![npm version](https://badge.fury.io/js/nestjs-prisma.svg)](https://www.npmjs.com/package/nestjs-prisma)
-![Lib and Schematics CI](https://github.com/marcjulian/nestjs-prisma/workflows/Node.js%20CI/badge.svg)
+![Lib and Schematics CI](https://github.com/notiz-dev/nestjs-prisma/workflows/Node.js%20CI/badge.svg)
 
 Add [Prisma](https://github.com/prisma/prisma) support to your [NestJS](https://github.com/nestjs/nest) application.
 
