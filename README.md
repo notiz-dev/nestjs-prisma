@@ -50,7 +50,30 @@ import { PrismaModule } from 'nestjs-prisma';
 export class AppModule {}
 ```
 
-`PrismaModule` allows to be used globally and to pass options to the `PrismaClient`.
+#### Shutdown Hook
+
+Handle Prisma [shutdown](https://docs.nestjs.com/recipes/prisma#issues-with-enableshutdownhooks) signal to shutdown your Nest application.
+
+```ts
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { PrismaService } from 'nestjs-prisma';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  // enable shutdown hook
+  const prismaService: PrismaService = app.get(PrismaService);
+  prismaService.enableShutdownHooks(app);
+
+  await app.listen(3000);
+}
+bootstrap();
+```
+
+#### `PrismaModule` configuration
+
+`PrismaModule` allows to be used [globally](https://docs.nestjs.com/modules#global-modules) and to pass options to the `PrismaClient`.
 
 ```ts
 import { Module } from '@nestjs/common';
@@ -238,16 +261,16 @@ export class AppModule {}
 
 All available flags:
 
-| Flag                      |  Description                                                            | Type      |  Default |
-| ------------------------- | ----------------------------------------------------------------------- | --------- | -------- |
-|  `datasourceProvider`     | Specifies the datasource provider for prisma init and docker.           | `boolean` | Prompted |
-|  `addDocker`              | Create a Dockerfile and docker-compose.yaml.                            | `boolean` | Prompted |
-|  `addPrismaService`       | Create a Prisma service extending the Prisma Client and module.         | `boolean` | `false`  |
-|  `dockerNodeImageVersion` | Node version for the builder and runner image.                          | `string`  | `14`     |
-|  `name`                   | The name for the Prisma service extending the Prisma Client and module. | `string`  | `Prisma` |
-|  `prismaVersion`          | The Prisma version to be installed.                                     | `string`  | `latest` |
-|  `skipInstall`            | Skip installing dependency packages.                                    | `boolean` | `false`  |
-|  `skipPrismaInit`         | Skip initializing Prisma.                                               | `boolean` | `false`  |
+| Flag                     | Description                                                             | Type      | Default  |
+| ------------------------ | ----------------------------------------------------------------------- | --------- | -------- |
+| `datasourceProvider`     | Specifies the datasource provider for prisma init and docker.           | `boolean` | Prompted |
+| `addDocker`              | Create a Dockerfile and docker-compose.yaml.                            | `boolean` | Prompted |
+| `addPrismaService`       | Create a Prisma service extending the Prisma Client and module.         | `boolean` | `false`  |
+| `dockerNodeImageVersion` | Node version for the builder and runner image.                          | `string`  | `14`     |
+| `name`                   | The name for the Prisma service extending the Prisma Client and module. | `string`  | `Prisma` |
+| `prismaVersion`          | The Prisma version to be installed.                                     | `string`  | `latest` |
+| `skipInstall`            | Skip installing dependency packages.                                    | `boolean` | `false`  |
+| `skipPrismaInit`         | Skip initializing Prisma.                                               | `boolean` | `false`  |
 
 You can pass additional flags to customize the schematic. For example, if you want to install a different version for **Prisma** use `--prismaVersion` flag:
 

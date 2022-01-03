@@ -32,10 +32,10 @@
   },
   "homepage": "https://github.com/notiz-dev/nestjs-prisma#readme",
   "peerDependencies": {
-    "@nestjs/common": "^7.0.0 || ^8.0.0",
-    "@nestjs/platform-express": "^7.0.0 || ^8.0.0",
-    "@prisma/client": "^2.0.0 || ^3.0.0",
-    "prisma": "^2.0.0 || ^3.0.0"
+    "@nestjs/common": "^7.0.0 || ^8.0.0",
+    "@nestjs/platform-express": "^7.0.0 || ^8.0.0",
+    "@prisma/client": "^2.0.0 || ^3.0.0",
+    "prisma": "^2.0.0 || ^3.0.0"
   },
   "devDependencies": {
     "@nestjs/common": "8.1.2",
