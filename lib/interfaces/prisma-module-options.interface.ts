@@ -25,6 +25,13 @@ export interface PrismaServiceOptions {
    * See: https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/connection-management
    */
   explicitConnect?: boolean;
+
+  /**
+   * Apply Prisma middlewares to perform actions before or after db queries.
+   *
+   * See: https://www.prisma.io/docs/concepts/components/prisma-client/middleware
+   */
+  middlewares?: Array<Prisma.Middleware>;
 }
 
 export interface PrismaOptionsFactory {
