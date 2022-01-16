@@ -38,9 +38,9 @@
     "prisma": "^2.0.0 || ^3.0.0"
   },
   "dependencies": {
-    "@angular-devkit/core": "^12.2.12",
-    "@angular-devkit/schematics": "^12.2.12",
-    "@schematics/angular": "~12.2.12"
+    "@angular-devkit/core": "^13.1.3",
+    "@angular-devkit/schematics": "^13.1.3",
+    "@schematics/angular": "~13.1.3"
   },
   "devDependencies": {
     "@nestjs/common": "8.2.5",
