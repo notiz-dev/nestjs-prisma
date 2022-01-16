@@ -100,7 +100,7 @@ function addSeedScript(): Rule {
     context.logger.info(`✅️ Added Prisma Seed script`);
 
     pkg['prisma'] = { seed: 'ts-node prisma/seed.ts' };
-    
+
     tree.overwrite(pkgPath, JSON.stringify(pkg, null, 2));
     return tree;
   };
