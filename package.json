@@ -1,6 +1,6 @@
 {
   "name": "nestjs-prisma",
-  "version": "0.15.0-dev.3",
+  "version": "0.15.0",
   "description": "Schematics to add Prisma support to a NestJS application",
   "scripts": {
     "prebuild": "rimraf dist",

@@ -1,3 +1,11 @@
+# [0.15.0](https://github.com/notiz-dev/nestjs-prisma/compare/v0.15.0-dev.2...v0.15.0) (2022-01-16)
+
+## Features
+
+- **lib**: add shutdown hook, close #16
+- **lib**: add middlewares option to prisma module, close #15
+
+
 ## [0.14.3](https://github.com/notiz-dev/nestjs-prisma/compare/v0.14.2...v0.14.3) (2021-11-02)
 
 ### Bug Fixes
