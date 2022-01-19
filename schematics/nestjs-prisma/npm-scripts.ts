@@ -26,6 +26,6 @@ export const npmScripts: NpmScript[] = [
   },
   {
     name: 'prisma:seed',
-    command: 'npx prisma db seed --preview-feature',
+    command: 'npx prisma db seed',
   },
 ];
