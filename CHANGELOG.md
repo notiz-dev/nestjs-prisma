@@ -1,3 +1,10 @@
+## [0.15.1](https://github.com/notiz-dev/nestjs-prisma/compare/v0.15.0...v0.15.1) (2022-01-19)
+
+### Bug Fixes
+
+- **schematics**: remove `--preview-feature` flag for `prisma migrate db seed` command
+
+
 # [0.15.0](https://github.com/notiz-dev/nestjs-prisma/compare/v0.15.0-dev.2...v0.15.0) (2022-01-16)
 
 ## Features
