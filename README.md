@@ -7,11 +7,23 @@ Add [Prisma](https://github.com/prisma/prisma) support to your [NestJS](https://
 
 ## Installation
 
+[Install](https://docs.nestjs.com/cli/usages#nest-add) the library by running its schematics:
+
 ```bash
 nest add nestjs-prisma
 ```
 
-Example output
+or us your package manager to install the library directly:
+
+```bash
+# npm
+npm install nestjs-prisma
+
+# yarn
+yarn add nestjs-prisma
+```
+
+Example output of the schematics:
 
 ```bash
 ✔ Package installation in progress... ☕
