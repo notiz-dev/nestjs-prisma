@@ -136,7 +136,7 @@ export function loggingMiddleware(): Prisma.Middleware {
 }
 ```
 
-Now import your your Middleware and add the function into the `middlewares` array.
+Now import your Middleware and add the function into the `middlewares` array.
 
 ```ts
 import { Module } from '@nestjs/common';
@@ -257,7 +257,7 @@ Create the `PrismaConfigService` and extend it with the `PrismaOptionsFactory`
 
 ```ts
 import { Injectable } from '@nestjs/common';
-import { PrismaOptionsFactory, PrismaServiceOptions } from '.nestjs-prisma';
+import { PrismaOptionsFactory, PrismaServiceOptions } from 'nestjs-prisma';
 
 @Injectable()
 export class PrismaConfigService implements PrismaOptionsFactory {
@@ -298,7 +298,7 @@ export class AppModule {}
 
 ## PrismaClientExceptionFilter
 
-`nestjs-prisma` provides an `PrismaClientExceptionFilter` to catch unhandled [PrismaClientKnownRequestError](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine) and returning different status codes instead of `500 Internal server error`.
+`nestjs-prisma` provides a `PrismaClientExceptionFilter` to catch unhandled [PrismaClientKnownRequestError](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine) and returns different status codes instead of `500 Internal server error`.
 
 To use the filter you have the following two options.
 
@@ -370,7 +370,7 @@ nest add nestjs-prisma --skipInstall
 
 Add `Dockerfile` and `docker-compose.yaml`, you can even use a different `node` version (`14-alpine` or `16`).
 
-> Currently uses to **PostgreSQL** as a default database in `docker-compose.yaml`.
+> Currently uses **PostgreSQL** as a default database in `docker-compose.yaml`.
 
 ```bash
 nest add nestjs-prisma --addDocker --dockerNodeImageVersion 14-alpine
