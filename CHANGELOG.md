@@ -1,3 +1,16 @@
+# [0.16.0](https://github.com/notiz-dev/nestjs-prisma/compare/v0.15.1...v0.16.0) (2022-06-08)
+
+### Features
+
+* exception filter: custom error code mapping ([#21](https://github.com/notiz-dev/nestjs-prisma/issues/21)) ([6b36d6b](https://github.com/notiz-dev/nestjs-prisma/commit/6b36d6b8815c3fa959989f9ca423abe60f743a1d))
+
+### Bug Fixes
+
+* exception filter: compatible with FastifyAdapter ([#21](https://github.com/notiz-dev/nestjs-prisma/issues/21)) ([6b36d6b](https://github.com/notiz-dev/nestjs-prisma/commit/6b36d6b8815c3fa959989f9ca423abe60f743a1d))
+* readme typos ([#19](https://github.com/notiz-dev/nestjs-prisma/issues/19)) ([d7fab47](https://github.com/notiz-dev/nestjs-prisma/commit/d7fab4756ece32bdad20dd4674bd57f33ef1c834))
+
+
+
 ## [0.15.1](https://github.com/notiz-dev/nestjs-prisma/compare/v0.15.0...v0.15.1) (2022-01-19)
 
 ### Bug Fixes
