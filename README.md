@@ -90,7 +90,6 @@ Apply [Prisma Middlewares](https://www.prisma.io/docs/concepts/components/prisma
 ```ts
 import { Module } from '@nestjs/common';
 import { PrismaModule } from 'nestjs-prisma';
-import { loggingMiddleware } from './logging-middleware';
 
 @Module({
   imports: [
