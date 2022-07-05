@@ -35,7 +35,7 @@
     "@nestjs/common": "^7.0.0 || ^8.0.0",
     "@nestjs/platform-express": "^7.0.0 || ^8.0.0",
     "@prisma/client": "^2.0.0 || ^3.0.0",
-    "prisma": "^2.0.0 || ^3.0.0"
+    "prisma": "^2.0.0 || ^3.0.0 || ^4.0.0"
   },
   "dependencies": {
     "@angular-devkit/core": "^13.3.0",
@@ -56,7 +56,7 @@
     "eslint-plugin-prettier": "4.0.0",
     "jasmine": "^3.6.3",
     "prettier": "2.6.0",
-    "prisma": "3.11.0",
+    "prisma": "^4.0.0",
     "reflect-metadata": "0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.5.5",
