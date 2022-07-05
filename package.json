@@ -34,7 +34,7 @@
   "peerDependencies": {
     "@nestjs/common": "^7.0.0 || ^8.0.0",
     "@nestjs/platform-express": "^7.0.0 || ^8.0.0",
-    "@prisma/client": "^2.0.0 || ^3.0.0",
+    "@prisma/client": "^2.0.0 || ^3.0.0 || ^4.0.0",
     "prisma": "^2.0.0 || ^3.0.0 || ^4.0.0"
   },
   "dependencies": {
@@ -46,7 +46,7 @@
     "@nestjs/common": "8.4.1",
     "@nestjs/core": "8.4.1",
     "@nestjs/platform-express": "8.4.1",
-    "@prisma/client": "3.11.0",
+    "@prisma/client": "^4.0.0",
     "@types/jasmine": "3.8.2",
     "@types/node": "^16.11.1",
     "@typescript-eslint/eslint-plugin": "5.15.0",
