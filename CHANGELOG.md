@@ -1,3 +1,10 @@
+# [0.17.0](https://github.com/notiz-dev/nestjs-prisma/compare/v0.16.0...v0.17.0) (2022-07-26)
+
+### Added
+
+- add support for prisma v4
+- add support for nest v9
+
 # [0.16.0](https://github.com/notiz-dev/nestjs-prisma/compare/v0.15.1...v0.16.0) (2022-06-08)
 
 ### Features
