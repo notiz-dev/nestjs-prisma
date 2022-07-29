@@ -440,6 +440,34 @@ The customized log messages are looking as follows.
 [Nest] 51348  - 29/07/2022, 10:09:13     LOG [PrismaMiddleware] [Prisma Query] Product.findMany - 9ms
 ```
 
+Change the log level from your `.env` file using the [@nestjs/config](https://docs.nestjs.com/techniques/configuration) module. Add `PRISMA_QUERY_LOG_LEVEL` to your `.env` file with one of the log levels (`log`, `debug`, `warn`, `error`).
+
+```ts
+import { Module } from '@nestjs/common';
+import { PrismaModule, loggingMiddleware, QueryInfo } from 'nestjs-prisma';
+
+@Module({
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    PrismaModule.forRootAsync({
+      useFactory: (config: ConfigService) => {
+        return {
+          middlewares: [
+            loggingMiddleware({
+              logger: new Logger('PrismaMiddleware'),
+              logLevel: config.get('PRISMA_QUERY_LOG_LEVEL'),
+            }),
+          ],
+          prismaOptions: { log: ['warn', 'error'] },
+        };
+      },
+      inject: [ConfigService],
+    }),
+  ],
+})
+export class AppModule {}
+```
+
 ## Additional options
 
 All available flags:
