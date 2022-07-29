@@ -297,7 +297,7 @@ export class AppModule {}
 
 ## PrismaClientExceptionFilter
 
-`nestjs-prisma` provides a `PrismaClientExceptionFilter` to catch unhandled [PrismaClientKnownRequestError](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine) and returns different HttpStatus codes instead of `500 Internal server error`.
+`nestjs-prisma` provides a `PrismaClientExceptionFilter` to catch unhandled [PrismaClientKnownRequestError](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine) and returns different HttpStatus codes instead of `500 Internal server error`. The exception filter supports REST (Express/Fasitfy) and GraphQL.
 
 To use the filter you have the following two options.
 
@@ -338,7 +338,7 @@ async function bootstrap() {
     new PrismaClientExceptionFilter(httpAdapter, {
       // Prisma Error Code: Http Status Response
       P2000: HttpStatus.BAD_REQUEST,
-      P2002: HttpStatus.CONFLICT, 
+      P2002: HttpStatus.CONFLICT,
       P2025: HttpStatus.NOT_FOUND,
     }),
   );
