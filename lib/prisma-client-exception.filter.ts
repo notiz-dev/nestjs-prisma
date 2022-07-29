@@ -1,8 +1,16 @@
-import { ArgumentsHost, Catch, HttpException, HttpServer, HttpStatus } from '@nestjs/common';
+import {
+  ArgumentsHost,
+  Catch,
+  ContextType,
+  HttpException,
+  HttpServer,
+  HttpStatus,
+} from '@nestjs/common';
 import { BaseExceptionFilter } from '@nestjs/core';
-import { GqlContextType } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
 import { Response } from 'express';
+
+export declare type GqlContextType = 'graphql' | ContextType;
 
 export type ErrorCodesStatusMapping = {
   [key: string]: number;
@@ -60,28 +68,28 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
   catch(exception: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost) {
     const statusCode = this.errorCodesStatusMapping[exception.code];
     const message =
-    `[${exception.code}]: ` + this.exceptionShortMessage(exception.message);
-    if (host.getType() == 'http') {
-      // For HTTP requests (REST)
+      `[${exception.code}]: ` + this.exceptionShortMessage(exception.message);
+    if (host.getType() === 'http') {
+      // for http requests (REST)
       const ctx = host.switchToHttp();
       const response = ctx.getResponse<Response>();
 
       if (!Object.keys(this.errorCodesStatusMapping).includes(exception.code)) {
         return super.catch(exception, host);
       }
-  
+
       response.status(statusCode).send(
         JSON.stringify({
           statusCode,
           message,
-      }),
-    );
-    } else if(host.getType<GqlContextType>() === 'graphql'){
-      // For Graphql Requests
-       if (!Object.keys(this.errorCodesStatusMapping).includes(exception.code)) {
-        return exception
+        }),
+      );
+    } else if (host.getType<GqlContextType>() === 'graphql') {
+      // for graphql requests
+      if (!Object.keys(this.errorCodesStatusMapping).includes(exception.code)) {
+        return exception;
       }
-      
+
       return new HttpException({ statusCode, message }, statusCode);
     }
   }
