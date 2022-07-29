@@ -1,3 +1,13 @@
+# Not released
+
+### Added
+
+- add logging middleware
+
+### Changed
+
+- support graphql with the exception filter
+
 # [0.17.0](https://github.com/notiz-dev/nestjs-prisma/compare/v0.16.0...v0.17.0) (2022-07-26)
 
 ### Added
