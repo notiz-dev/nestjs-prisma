@@ -3,7 +3,7 @@
   "$id": "NestPrismaSchematics",
   "title": "Prisma Support Schema",
   "type": "object",
-  "description": "Add Prisma support to the NestJs application",
+  "description": "Add Prisma support to the NestJS application",
   "properties": {
     "datasourceProvider": {
       "type": "string",
