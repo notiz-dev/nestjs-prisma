@@ -1,14 +1,22 @@
 <h1 align="center">nestjs-prisma</h1>
 
 <p align="center">
-    Easy <a href="https://github.com/prisma/prisma">Prisma</a> support for your <a href="https://github.com/nestjs/nest">NestJS</a> application.
+    Easy <a href="https://github.com/prisma/prisma" target="_blank" rel="noopener">Prisma</a> support for your <a href="https://github.com/nestjs/nest" target="_blank" rel="noopener">NestJS</a> application.
 </p>
 
 <p align="center">
-    <a href=""><img src="https://github.com/notiz-dev/nestjs-prisma/workflows/Node.js%20CI/badge.svg" alt="Build Status"</a>
-    <a href="https://www.npmjs.com/package/nestjs-prisma"><img src="https://img.shields.io/npm/dt/nestjs-prisma.svg" alt="Total Downloads"></a>
-    <a href="https://www.npmjs.com/package/nestjs-prisma"><img src="https://img.shields.io/npm/v/nestjs-prisma.svg" alt=""/></a>
-    <a href="https://github.com/notiz-dev/nestjs-prisma/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/nestjs-prisma.svg" alt="License"></a>
+  <a href="https://github.com/notiz-dev/nestjs-prisma/actions/workflows/node.js.yml" target="_blank" rel="noopener">
+    <img src="https://github.com/notiz-dev/nestjs-prisma/actions/workflows/node.js.yml/badge.svg?branch=main"alt="Build Status"/>
+  </a>
+  <a href="https://www.npmjs.com/package/nestjs-prisma" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/npm/dt/nestjs-prisma.svg" alt="Total Downloads" />
+  </a>
+  <a href="https://www.npmjs.com/package/nestjs-prisma" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/npm/v/nestjs-prisma.svg" alt="npm package"/>
+  </a>
+  <a href="https://github.com/notiz-dev/nestjs-prisma/blob/main/LICENSE" target="_blank" rel="noopener">
+    <img src="https://img.shields.io/npm/l/nestjs-prisma.svg" alt="License">
+  </a>
 </p>
 
 ## Installation
