@@ -1,9 +1,15 @@
-# NestJS Prisma Library and Schematics
+<h1 align="center">nestjs-prisma</h1>
 
-[![npm version](https://badge.fury.io/js/nestjs-prisma.svg)](https://www.npmjs.com/package/nestjs-prisma)
-![Lib and Schematics CI](https://github.com/notiz-dev/nestjs-prisma/workflows/Node.js%20CI/badge.svg)
+<p align="center">
+    Easy <a href="https://github.com/prisma/prisma">Prisma</a> support for your <a href="https://github.com/nestjs/nest">NestJS</a> application.
+</p>
 
-Add [Prisma](https://github.com/prisma/prisma) support to your [NestJS](https://github.com/nestjs/nest) application.
+<p align="center">
+    <a href=""><img src="https://github.com/notiz-dev/nestjs-prisma/workflows/Node.js%20CI/badge.svg" alt="Build Status"</a>
+    <a href="https://www.npmjs.com/package/nestjs-prisma"><img src="https://img.shields.io/npm/dt/nestjs-prisma.svg" alt="Total Downloads"></a>
+    <a href="https://www.npmjs.com/package/nestjs-prisma"><img src="https://img.shields.io/npm/v/nestjs-prisma.svg" alt=""/></a>
+    <a href="https://github.com/notiz-dev/nestjs-prisma/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/nestjs-prisma.svg" alt="License"></a>
+</p>
 
 ## Installation
 
