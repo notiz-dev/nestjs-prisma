@@ -21,13 +21,7 @@
 
 ## Installation
 
-[Install](https://docs.nestjs.com/cli/usages#nest-add) the library by running its schematics:
-
-```bash
-nest add nestjs-prisma
-```
-
-or us your package manager to install the library directly:
+Install the library:
 
 ```bash
 # npm
@@ -37,32 +31,15 @@ npm install nestjs-prisma
 yarn add nestjs-prisma
 ```
 
-Example output of the schematics:
+or install it automatically using the [schematics command](https://docs.nestjs.com/cli/usages#nest-add):
 
 ```bash
-✔ Package installation in progress... ☕
-Starting library setup...
-? Which datasource provider do you want to use for `prisma init`? postgresql
-? Do you like to Dockerize your application? (Supports postgresql and mysql) Yes
-    ✅️ Added prisma@latest
-    ✅️ Added @prisma/client@latest
-    ✅️ Added Prisma scripts [6]
-    ✅️ Added Prisma Seed script
-    ✅️ Added Docker file
-    ✅️ Added Docker Compose and .env
-    ✅️ Add "prisma" directory to "excludes" in tsconfig.build.json
-CREATE .dockerignore (42 bytes)
-CREATE Dockerfile (455 bytes)
-CREATE .env (642 bytes)
-CREATE docker-compose.yml (497 bytes)
-UPDATE package.json (2754 bytes)
-UPDATE tsconfig.build.json (130 bytes)
-✔ Packages installed successfully.
-✔ Packages installed successfully.
-    ✅️ Initialized Prisma - Datasource postgresql
+nest add nestjs-prisma
 ```
 
-### Use `PrismaService` and `PrismaModule` provided by **nestjs-prisma**
+Besides installing the library, the [schematics](#schematics) allows to configure Prisma, Docker and even a custom `PrismaService`.
+
+## Basic usage
 
 Add `PrismaModule` to the `imports` section in your `AppModule` or other modules to gain access to `PrismaService`.
 
@@ -76,7 +53,31 @@ import { PrismaModule } from 'nestjs-prisma';
 export class AppModule {}
 ```
 
-#### Shutdown Hook
+Use the `PrismaService` via dependency injection in your controller, resolver, services, guards and more: 
+
+```ts
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'nestjs-prisma';
+
+@Injectable()
+export class AppService {
+  constructor(private prisma: PrismaService) {}
+
+  users() {
+    return this.prisma.user.findMany();
+  }
+
+  user(userId: string) {
+    return this.prisma.user.findUnique({
+      where: { id: userId },
+    });
+  }
+}
+```
+
+You have access to all exposed methods and arguments of the generated `PrismaClient` through `PrismaService`.
+
+### Shutdown Hook
 
 Handle Prisma [shutdown](https://docs.nestjs.com/recipes/prisma#issues-with-enableshutdownhooks) signal to shutdown your Nest application.
 
@@ -97,7 +98,7 @@ async function bootstrap() {
 bootstrap();
 ```
 
-#### Prisma Middleware
+### Prisma Middleware
 
 Apply [Prisma Middlewares](https://www.prisma.io/docs/concepts/components/prisma-client/middleware) with `PrismaModule`
 
@@ -170,7 +171,7 @@ export class AppModule {}
 
 Try out the built in [Logging Middleware](#logging-middleware).
 
-#### `PrismaModule` configuration
+## Configure `PrismaModule`
 
 `PrismaModule` allows to be used [globally](https://docs.nestjs.com/modules#global-modules) and to pass options to the `PrismaClient`.
 
@@ -290,26 +291,6 @@ export class PrismaConfigService implements PrismaOptionsFactory {
   }
 }
 ```
-
-### Generate **custom** `PrismaService` and `PrismaModule`
-
-```bash
-nest add nestjs-prisma --addPrismaService
-```
-
-Add the flag `--addPrismaService` if you like to generate your own `PrismaService` and `PrismaModule` for further customizations. Add `PrismaModule` to the `imports` section in your `AppModule` or other modules to gain access to `PrismaService`.
-
-```ts
-import { Module } from '@nestjs/common';
-import { PrismaModule } from './prisma/prisma.module';
-
-@Module({
-  imports: [PrismaModule],
-})
-export class AppModule {}
-```
-
-> **Note**: It is safe to remove `nestjs-prisma` as dependency otherwise you have two import suggestions for `PrismaService` and `PrismaModule`.
 
 ## PrismaClientExceptionFilter
 
@@ -482,9 +463,66 @@ import { PrismaModule, loggingMiddleware, QueryInfo } from 'nestjs-prisma';
 export class AppModule {}
 ```
 
-## Additional options
+## Schematics
 
-All available flags:
+The schematics automatically performs [additional steps](https://github.com/notiz-dev/nestjs-prisma/blob/main/schematics/nestjs-prisma/index.ts#L35-L42) to configure Prisma and Docker in your project.
+
+- Initialize Prisma `npx prisma init --datasource-provider postgres|...`
+- Add Prisma npm scripts to your `package.json`
+- Add seed script for Prisma
+- Generate custom `PrismaService` and `PrismaModule` (optionally)
+- Add `Dockerfile` and `docker-compose.yml` (optionally)
+- Excludes `prisma` directory from build via `tsconfig.build.json`
+
+
+Example output of the schematics:
+
+```bash
+✔ Package installation in progress... ☕
+Starting library setup...
+? Which datasource provider do you want to use for `prisma init`? postgresql
+? Do you like to Dockerize your application? (Supports postgresql and mysql) Yes
+    ✅️ Added prisma@latest
+    ✅️ Added @prisma/client@latest
+    ✅️ Added Prisma scripts [6]
+    ✅️ Added Prisma Seed script
+    ✅️ Added Docker file
+    ✅️ Added Docker Compose and .env
+    ✅️ Add "prisma" directory to "excludes" in tsconfig.build.json
+CREATE .dockerignore (42 bytes)
+CREATE Dockerfile (455 bytes)
+CREATE .env (642 bytes)
+CREATE docker-compose.yml (497 bytes)
+UPDATE package.json (2754 bytes)
+UPDATE tsconfig.build.json (130 bytes)
+✔ Packages installed successfully.
+✔ Packages installed successfully.
+    ✅️ Initialized Prisma - Datasource postgresql
+```
+
+### Generate **custom** `PrismaService` and `PrismaModule`
+
+```bash
+nest add nestjs-prisma --addPrismaService
+```
+
+Add the flag `--addPrismaService` if you like to generate your own `PrismaService` and `PrismaModule` for further customizations. Add `PrismaModule` to the `imports` section in your `AppModule` or other modules to gain access to `PrismaService`.
+
+```ts
+import { Module } from '@nestjs/common';
+import { PrismaModule } from './prisma/prisma.module';
+
+@Module({
+  imports: [PrismaModule],
+})
+export class AppModule {}
+```
+
+> **Note**: It is safe to remove `nestjs-prisma` as dependency otherwise you have two import suggestions for `PrismaService` and `PrismaModule`.
+
+### Schematic options
+
+All available options to passe to the schematic command:
 
 | Flag                     | Description                                                             | Type      | Default  |
 | ------------------------ | ----------------------------------------------------------------------- | --------- | -------- |
@@ -517,7 +555,21 @@ Add `Dockerfile` and `docker-compose.yaml`, you can even use a different `node` 
 nest add nestjs-prisma --addDocker --dockerNodeImageVersion 14-alpine
 ```
 
-## Developing
+## Contributing
+
+You are welcome to contribute to this project.
+
+The code is split up into two directories:
+
+```
++-- lib
++-- schematics
+```
+
+The `lib` directory contains everything exposed by `nestjs-prisma` as a library.
+The `schematics` directory contains the blue prints for installing the library with the schematic command.
+
+Here are some tips if you like to make changes to the schematics.
 
 Install `@angular-devkit/schematics-cli` to be able to use `schematics` command
 
@@ -540,7 +592,5 @@ schematics .:nest-add --debug false
 # or
 schematics .:nest-add --dry-run false
 ```
-
-## Helpful
 
 Helpful article about [Custom Angular Schematics](https://medium.com/@tomastrajan/total-guide-to-custom-angular-schematics-5c50cf90cdb4) which also applies to Nest.
