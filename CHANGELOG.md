@@ -1,8 +1,13 @@
 # Not released
 
+Nothing yet!
+
+# [0.18.0](https://github.com/notiz-dev/nestjs-prisma/compare/v0.17.0...v0.18.0) (2022-08-18)
+
 ### Added
 
 - add logging middleware
+- extending prisma client for proper logging options
 
 ### Changed
 
