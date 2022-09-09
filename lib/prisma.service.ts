@@ -1,5 +1,6 @@
 import {
   INestApplication,
+  INestMicroservice,
   Inject,
   Injectable,
   OnModuleInit,
@@ -31,7 +32,7 @@ export class PrismaService extends PrismaClient<Prisma.PrismaClientOptions, 'que
     }
   }
 
-  async enableShutdownHooks(app: INestApplication) {
+  async enableShutdownHooks(app: INestApplication | INestMicroservice) {
     this.$on('beforeExit', async () => {
       await app.close();
     });
