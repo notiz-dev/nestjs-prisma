@@ -1,0 +1,50 @@
+---
+import Layout from './Layout.astro';
+import Navigation from '../components/Navigation.astro';
+
+import type { MarkdownHeading } from 'astro';
+import type * as CONFIG from '../config';
+import { navigation } from '../config';
+
+type Props = {
+  frontmatter: CONFIG.Frontmatter;
+  headings: MarkdownHeading[];
+};
+
+const { frontmatter, headings } = Astro.props as Props;
+
+const currentPage = Astro.url.pathname;
+const currentSection = navigation.find((section) =>
+  section.links.find((link) => link.link == currentPage)
+);
+---
+
+<Layout title={frontmatter.title}>
+  <div class="mx-auto max-w-7xl grid grid-cols-12">
+    <aside class="hidden md:block col-span-3 px-4 py-16">
+      <Navigation currentPage={currentPage} navigation={navigation} />
+    </aside>
+    <div class="min-w-0 max-w-2xl col-span-6 px-4 py-16">
+      <article>
+        <header class="space-y-2">
+          {
+            currentSection && (
+              <span class=" bg-gradient-to-r from-red-600 via-pink-600 to-violet-500 bg-clip-text text-sm font-medium text-transparent">
+                {currentSection.title}
+              </span>
+            )
+          }
+          <h1 class="text-3xl font-semibold">{frontmatter.title}</h1>
+        </header>
+
+        <div class="mt-6 prose">
+          <slot />
+        </div>
+      </article>
+
+      <aside>
+        {headings}
+      </aside>
+    </div>
+  </div>
+</Layout>

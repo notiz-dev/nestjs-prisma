@@ -1,0 +1,38 @@
+---
+import type { Navigation } from '../config';
+
+type Props = {
+  currentPage: string;
+  navigation: Navigation[];
+};
+
+const { currentPage, navigation } = Astro.props as Props;
+---
+
+<nav class="text-sm">
+  <ul role="list">
+    {
+      navigation.map((section) => (
+        <li>
+          <h5 class="font-semibold text-gray-900">{section.title}</h5>
+          <ul role="list" class="mt-2 space-y-2 border-l border-gray-100">
+            {section.links.map((link) => (
+              <li>
+                <a
+                  href={link.link}
+                  class={`border-l pl-3 ${
+                    currentPage === link.link
+                      ? 'border-current text-red-500'
+                      : 'border-transparent text-gray-700 hover:border-current hover:border-gray-500'
+                  }`}
+                >
+                  {link.title}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
