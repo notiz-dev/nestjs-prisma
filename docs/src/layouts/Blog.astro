@@ -1,6 +1,7 @@
 ---
 import Layout from './Layout.astro';
 import Navigation from '../components/Navigation.astro';
+import TableOfContents from '../components/TableOfContents.astro';
 
 import type { MarkdownHeading } from 'astro';
 import type * as CONFIG from '../config';
@@ -20,11 +21,11 @@ const currentSection = navigation.find((section) =>
 ---
 
 <Layout title={frontmatter.title}>
-  <div class="mx-auto max-w-7xl grid grid-cols-12">
-    <aside class="hidden md:block col-span-3 px-4 py-16">
+  <div class="mx-auto max-w-7xl grid gap-4 md:grid-cols-12">
+    <aside class="hidden md:block md:col-span-3 px-4 py-16">
       <Navigation currentPage={currentPage} navigation={navigation} />
     </aside>
-    <div class="min-w-0 max-w-2xl col-span-6 px-4 py-16">
+    <div class="min-w-0 max-w-2xl md:col-span-9 lg:col-span-6 px-4 py-16">
       <article>
         <header class="space-y-2">
           {
@@ -41,10 +42,9 @@ const currentSection = navigation.find((section) =>
           <slot />
         </div>
       </article>
-
-      <aside>
-        {headings}
-      </aside>
     </div>
+    <aside class="hidden lg:block lg:col-span-3 px-4 py-16">
+      {headings.length > 0 && <TableOfContents headings={headings} />}
+    </aside>
   </div>
 </Layout>

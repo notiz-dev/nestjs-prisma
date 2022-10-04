@@ -1,0 +1,26 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+export interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+---
+
+<div class="px-8">
+  <h5 class="text-sm font-semibold mb-4">On this page</h5>
+  <ul class="text-sm text-gray-600">
+    {
+      headings
+        .filter(({ depth }) => depth === 2)
+        .map((heading) => (
+          <li>
+            <a class="hover:text-gray-900" href={`#${heading.slug}`}>
+              {heading.text} {heading.depth}
+            </a>
+          </li>
+        ))
+    }
+  </ul>
+</div>
