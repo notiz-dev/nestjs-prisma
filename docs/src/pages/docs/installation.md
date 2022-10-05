@@ -1,6 +1,6 @@
 ---
 title: Installation
-layout: ../../layouts/Blog.astro
+layout: ../../layouts/Doc.astro
 ---
 
 ## nestjs-prisma library

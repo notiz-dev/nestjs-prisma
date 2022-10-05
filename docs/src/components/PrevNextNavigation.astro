@@ -1,0 +1,46 @@
+---
+import { navigation } from '../config';
+
+const currentPage = Astro.url.pathname;
+const currentPageMatch = currentPage.endsWith('/')
+  ? currentPage.slice(0, -1)
+  : currentPage.slice(0);
+const links = navigation.flatMap((section) => section.links);
+const linkIndex = links.findIndex((link) => link.link === currentPageMatch);
+const previousPage = links[linkIndex - 1];
+const nextPage = links[linkIndex + 1];
+---
+
+<div class="mt-12 flex border-t pt-4">
+  {
+    previousPage && (
+      <div>
+        <p class="text-sm font-medium">Previous</p>
+        <div class="mt-1">
+          <a
+            href={previousPage.link}
+            class="text-base font-semibold text-gray-500 hover:text-gray-600"
+          >
+            <span aria-hidden="true">&larr;</span> {previousPage.title}
+          </a>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    nextPage && (
+      <div class="ml-auto text-right">
+        <p class="text-sm font-medium">Next</p>
+        <div class="mt-1 ">
+          <a
+            href={nextPage.link}
+            class="text-base font-semibold text-gray-500 hover:text-gray-600"
+          >
+            {nextPage.title} <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    )
+  }
+</div>

@@ -1,6 +1,6 @@
 ---
 title: Configuration
-layout: ../../layouts/Blog.astro
+layout: ../../layouts/Doc.astro
 ---
 
 `PrismaModule` allows to be used [globally](https://docs.nestjs.com/modules#global-modules) and to pass options to the `PrismaClient`.

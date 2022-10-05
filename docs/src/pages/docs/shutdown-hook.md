@@ -1,6 +1,6 @@
 ---
 title: Shutdown Hook
-layout: ../../layouts/Blog.astro
+layout: ../../layouts/Doc.astro
 ---
 
 Handle Prisma [shutdown](https://docs.nestjs.com/recipes/prisma#issues-with-enableshutdownhooks) signal to shutdown your Nest application.

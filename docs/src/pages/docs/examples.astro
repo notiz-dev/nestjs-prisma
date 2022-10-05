@@ -1,0 +1,62 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navigation from '../../components/Navigation.astro';
+import PrevNextNavigation from '../../components/PrevNextNavigation.astro';
+import GitHub from '../../components/logos/GitHub.astro';
+import { navigation, examples } from '../../config';
+
+const title = 'Examples';
+
+const currentPage = Astro.url.pathname;
+const currentPageMatch = currentPage.endsWith('/')
+  ? currentPage.slice(0, -1)
+  : currentPage.slice(0);
+const currentSection = navigation.find((section) =>
+  section.links.find((link) => link.link == currentPageMatch)
+);
+---
+
+<Layout>
+  <div class="mx-auto max-w-7xl grid gap-4 md:grid-cols-12">
+    <aside class="hidden md:block md:col-span-3 px-4 py-16">
+      <Navigation currentPage={currentPage} navigation={navigation} />
+    </aside>
+    <div class="min-w-0 max-w-2xl md:col-span-9 lg:col-span-6 px-4 py-16">
+      <article>
+        <header class="space-y-2">
+          {
+            currentSection && (
+              <span class=" bg-gradient-to-r from-red-600 via-pink-600 to-violet-500 bg-clip-text text-sm font-medium text-transparent">
+                {currentSection.title}
+              </span>
+            )
+          }
+          <h1 class="text-3xl font-semibold">{title}</h1>
+        </header>
+
+        <ul class="mt-6 grid md:grid-cols-2 gap-6">
+          {
+            examples.map((example) => (
+              <li class="overflow-hidden rounded-md p-4 shadow-md">
+                <a href={example.link} class="inline-block">
+                  <span class="flex items-center ">
+                    <span class="inline-block text-lg font-semibold">
+                      {example.name}
+                    </span>
+                    <span class="ml-2">
+                      <GitHub />
+                    </span>
+                  </span>
+                  <span class="mt-1 inline-block text-sm text-gray-700">
+                    {example.description}
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </article>
+      <PrevNextNavigation />
+    </div>
+  </div>
+</Layout>

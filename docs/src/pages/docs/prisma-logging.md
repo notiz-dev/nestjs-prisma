@@ -1,6 +1,6 @@
 ---
 title: Prisma Event-based logging
-layout: ../../layouts/Blog.astro
+layout: ../../layouts/Doc.astro
 ---
 
 To use Prisma [event-based logging](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/logging#event-based-logging) first specify the log level in `prismaOptions` of your `PrismaModule`:

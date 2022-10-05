@@ -1,6 +1,6 @@
 ---
 title: Custom Prisma Service
-layout: ../../layouts/Blog.astro
+layout: ../../layouts/Doc.astro
 ---
 
 Add the flag `--addPrismaService` if you like to generate your own `PrismaService` and `PrismaModule` for further customizations.

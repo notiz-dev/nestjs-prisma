@@ -1,6 +1,6 @@
 ---
 title: Exception Filter
-layout: ../../layouts/Blog.astro
+layout: ../../layouts/Doc.astro
 ---
 
 Use `PrismaClientExceptionFilter` to catch unhandled [PrismaClientKnownRequestError](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine) and returns different HttpStatus codes instead of `500 Internal server error`. The exception filter supports REST (Express/Fasitfy) and GraphQL.

@@ -39,7 +39,6 @@ export const navigation: Navigation[] = [
       { title: 'Prisma Logging', link: '/docs/prisma-logging' },
     ],
   },
-  // {title: 'Prisma'}
   {
     title: 'Built-in Tools',
     links: [
@@ -53,5 +52,28 @@ export const navigation: Navigation[] = [
       { title: 'Schematics', link: '/docs/schematics' },
       { title: 'Custom Prisma Service', link: '/docs/custom-prisma-service' },
     ],
+  },
+  {
+    title: 'Demo',
+    links: [{ title: 'Examples', link: '/docs/examples' }],
+  },
+];
+
+export type Example = {
+  name: string;
+  description: string;
+  link: string;
+};
+
+export const examples: Example[] = [
+  {
+    name: 'Basics',
+    description: 'NestJS app with Express, Prisma and nestjs-prisma.',
+    link: 'https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/basics',
+  },
+  {
+    name: 'Fastify',
+    description: 'NestJS app with Fastify, Prisma and nestjs-prisma.',
+    link: 'https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/fastify',
   },
 ];

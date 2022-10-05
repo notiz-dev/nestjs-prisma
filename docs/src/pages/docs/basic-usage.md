@@ -1,6 +1,6 @@
 ---
 title: Basic Usage
-layout: ../../layouts/Blog.astro
+layout: ../../layouts/Doc.astro
 ---
 
 Add `PrismaModule` to the `imports` section in your `AppModule` or other modules to gain access to `PrismaService`.
