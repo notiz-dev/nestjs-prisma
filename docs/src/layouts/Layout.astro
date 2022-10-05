@@ -1,25 +1,28 @@
 ---
+import HeadCommon from '../components/HeadCommon.astro';
+import HeadSeo from '../components/HeadSeo.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+import { SITE, Frontmatter } from '../config';
+
 export interface Props {
-  title: string;
+  frontmatter?: Frontmatter;
 }
 
-const { title } = Astro.props;
+const { frontmatter } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <meta name="generator" content={Astro.generator} />
-    <title>
-      {title === 'nestjs-prisma' ? title : `${title} - nestjs-prisma`}
-    </title>
+    <HeadCommon />
+    <HeadSeo frontmatter={frontmatter} canonicalUrl={canonicalURL} />
 
-    <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
+    <title>
+      {frontmatter?.title ? `${frontmatter.title} - ${SITE.title}` : SITE.title}
+    </title>
 
     <style is:global>
       html {

@@ -1,3 +1,17 @@
+export const SITE = {
+  title: 'nestjs-prisma',
+  description: 'Easy Prisma support for your NestJS application.',
+  defaultLanguage: 'en_US',
+};
+
+export const OPEN_GRAPH = {
+  image: {
+    src: 'https://repository-images.githubusercontent.com/285317400/0b397000-9fa7-45a9-b90e-08e9060cfa2c',
+    alt: 'nestjs-prisma banner',
+  },
+  twitter: 'notiz_dev',
+};
+
 export type Frontmatter = {
   title: string;
   layout: string;
