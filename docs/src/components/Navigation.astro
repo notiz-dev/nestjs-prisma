@@ -7,6 +7,10 @@ type Props = {
 };
 
 const { currentPage, navigation } = Astro.props as Props;
+
+const currentPageMatch = currentPage.endsWith('/')
+  ? currentPage.slice(0, -1)
+  : currentPage.slice(0);
 ---
 
 <nav class="text-sm">
@@ -21,7 +25,7 @@ const { currentPage, navigation } = Astro.props as Props;
                 <a
                   href={link.link}
                   class={`border-l pl-3 ${
-                    currentPage === link.link
+                    currentPageMatch === link.link
                       ? 'border-current text-violet-500'
                       : 'border-transparent text-gray-700 hover:border-current hover:border-gray-500'
                   }`}
