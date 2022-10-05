@@ -1,28 +1,14 @@
-# Basics
-
-NestJS app with Express, Prisma and nestjs-prisma.
-
-```sh
-npm i
-
-npm run start:dev
-```
-
-Adjust `prisma/schema.prisma` and perform a migration:
-
-```sh
-npx prisma migrate dev
-```
-
-Use `PrismaService` to access the type-safe generated `PrismaClient`.
-
-```ts
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'nestjs-prisma';
+import { CreateUserDto } from './dto/create-user.dto';
 
 @Injectable()
 export class AppService {
   constructor(private prisma: PrismaService) {}
+
+  createUser(createUserDto: CreateUserDto) {
+    return this.prisma.user.create({ data: createUserDto });
+  }
 
   users() {
     return this.prisma.user.findMany();
@@ -34,4 +20,3 @@ export class AppService {
     });
   }
 }
-```

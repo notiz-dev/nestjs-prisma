@@ -1,6 +1,6 @@
-# Basics
+# Fastify
 
-NestJS app with Express, Prisma and nestjs-prisma.
+NestJS app with Fastify, Prisma and nestjs-prisma.
 
 ```sh
 npm i
