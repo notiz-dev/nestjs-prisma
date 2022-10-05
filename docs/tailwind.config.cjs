@@ -8,6 +8,30 @@ module.exports = {
       fontFamily: {
         sans: ['inter', ...defaultTheme.fontFamily.sans],
       },
+      typography: ({ theme }) => ({
+        DEFAULT: {
+          css: {
+            code: {
+              color: '#FFA657',
+              backgroundColor: '#0d1117',
+              padding: '0.125rem 0.25rem',
+              borderRadius: theme('borderRadius.md'),
+            },
+            'code::before': {
+              content: '',
+            },
+            'code::after': {
+              content: '',
+            },
+            'blockquote p:first-of-type::before': {
+              content: '',
+            },
+            'blockquote p:last-of-type::after': {
+              content: '',
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [require('@tailwindcss/typography')],

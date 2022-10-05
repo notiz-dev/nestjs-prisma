@@ -38,20 +38,3 @@ export class AppService {
 ```
 
 You have access to all exposed methods and arguments of the generated `PrismaClient` through `PrismaService`.
-
-```prisma
-datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
-}
-
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-}
-```
