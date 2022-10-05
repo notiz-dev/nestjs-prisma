@@ -79,6 +79,8 @@ You have access to all exposed methods and arguments of the generated `PrismaCli
 
 ## Documentation
 
+Visit our [official documentation](https://nestjs-prisma.dev/docs/installation).
+
 ## Contributing
 
 You are welcome to contribute to this project.
