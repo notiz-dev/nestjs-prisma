@@ -15,11 +15,14 @@ type Props = {
 const { frontmatter, headings } = Astro.props as Props;
 
 const currentPage = Astro.url.pathname;
+const currentPageMatch = currentPage.endsWith('/')
+  ? currentPage.slice(0, -1)
+  : currentPage.slice(0);
 const currentSection = navigation.find((section) =>
-  section.links.find((link) => link.link == currentPage)
+  section.links.find((link) => link.link == currentPageMatch)
 );
 const links = navigation.flatMap((section) => section.links);
-const linkIndex = links.findIndex((link) => link.link === currentPage);
+const linkIndex = links.findIndex((link) => link.link === currentPageMatch);
 const previousPage = links[linkIndex - 1];
 const nextPage = links[linkIndex + 1];
 ---
