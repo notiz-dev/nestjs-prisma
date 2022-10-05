@@ -11,5 +11,7 @@ prisma/
 # misc
 .DS_Store
 
+examples/
+
 # docs
 docs/
