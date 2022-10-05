@@ -12,6 +12,4 @@ prisma/
 .DS_Store
 
 # docs
-index.html
-robots.txt
-static/
+docs/
