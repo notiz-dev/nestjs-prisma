@@ -89,11 +89,14 @@ The code is split up into three directories:
 
 ```
 +-- docs
++-- examples
 +-- lib
 +-- schematics
 ```
 
 The `docs` directory contains an astro website and the [docs content](./docs/src/pages/docs) pages.
+
+The `examples` directory contains example applications.
 
 The `lib` directory contains everything exposed by `nestjs-prisma` as a library.
 
