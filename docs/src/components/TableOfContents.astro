@@ -10,13 +10,16 @@ const { headings } = Astro.props;
 
 <div class="px-8">
   <h5 class="text-sm font-semibold mb-4">On this page</h5>
-  <ul class="text-sm text-gray-600 space-y-2">
+  <ul class="text-sm text-gray-600 space-y-2 dark:text-gray-400">
     {
       headings
         .filter(({ depth }) => depth === 2)
         .map((heading) => (
           <li>
-            <a class="hover:text-gray-900" href={`#${heading.slug}`}>
+            <a
+              class="hover:text-gray-900 dark:hover:text-gray-200"
+              href={`#${heading.slug}`}
+            >
               {heading.text}
             </a>
           </li>

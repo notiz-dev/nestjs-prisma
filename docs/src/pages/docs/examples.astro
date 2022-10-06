@@ -26,7 +26,7 @@ const currentSection = navigation.find((section) =>
         <header class="space-y-2">
           {
             currentSection && (
-              <span class=" bg-gradient-to-r from-red-600 via-pink-600 to-violet-500 bg-clip-text text-sm font-medium text-transparent">
+              <span class="bg-gradient-to-r from-red-600 via-pink-600 to-violet-500 bg-clip-text text-sm font-medium text-transparent">
                 {currentSection.title}
               </span>
             )
@@ -37,7 +37,7 @@ const currentSection = navigation.find((section) =>
         <ul class="mt-6 grid md:grid-cols-2 gap-6">
           {
             examples.map((example) => (
-              <li class="overflow-hidden rounded-md p-4 shadow-md">
+              <li class="overflow-hidden rounded-md p-4 shadow-md dark:bg-gray-800 dark:shadow-xl">
                 <a href={example.link} class="inline-block">
                   <span class="flex items-center ">
                     <span class="inline-block text-lg font-semibold">
@@ -47,7 +47,7 @@ const currentSection = navigation.find((section) =>
                       <GitHub />
                     </span>
                   </span>
-                  <span class="mt-1 inline-block text-sm text-gray-700">
+                  <span class="mt-1 inline-block text-sm text-gray-700 dark:text-gray-300">
                     {example.description}
                   </span>
                 </a>
