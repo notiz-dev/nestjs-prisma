@@ -1,8 +1,21 @@
 ---
 import GitHub from './logos/GitHub.astro';
+import Navigation from './Navigation.astro';
+import { navigation } from '../config';
+
+const currentPage = Astro.url.pathname;
+
+const isDocsPage = currentPage.startsWith('/docs');
 ---
 
+<style>
+  [x-cloak] {
+    display: none !important;
+  }
+</style>
+
 <header
+  x-data="{ mobileNavOpen: false }"
   class="max-w-screen-xl mx-auto sticky top-0 z-50 flex items-center justify-between bg-white px-4 py-5 sm:px-6 lg:px-8 dark:bg-gray-900"
 >
   <a
@@ -12,9 +25,69 @@ import GitHub from './logos/GitHub.astro';
   >
     nestjs-prisma
   </a>
-  <div>
+  <div class="flex items-center">
     <a aria-label="GitHub" href="https://github.com/notiz-dev/nestjs-prisma">
       <GitHub />
     </a>
+    {isDocsPage && (<button
+      class="ml-4 block md:hidden"
+      x-on:click="mobileNavOpen = ! mobileNavOpen"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="w-7 h-7"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+      </svg>
+    </button>
+
+    <div
+      x-cloak
+      x-show="mobileNavOpen"
+      x-transition
+      class="fixed inset-0 z-50 flex items-start justify-end overflow-y-auto bg-gray-900/30 backdrop-blur"
+    >
+      <div
+        x-on:click.outside="mobileNavOpen = false"
+        class="min-h-full w-full max-w-[18rem] bg-gray-900 p-5"
+      >
+        <div class="flex items-center justify-between space-x-4">
+          <a
+            href="/"
+            aria-label="Home page"
+            class="font-semibold text-lg bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-pink-600 to-violet-500"
+          >
+            nestjs-prisma
+          </a>
+
+          <button x-on:click="mobileNavOpen = ! mobileNavOpen">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        <div class="mt-5 px-2">
+          <Navigation currentPage={currentPage} navigation={navigation} />
+        </div>
+      </div>
+    </div>) }
+    
   </div>
 </header>
