@@ -5,7 +5,7 @@ layout: ../../layouts/Doc.astro
 
 ## Command
 
-The [schematics](https://docs.nestjs.com/cli/usages#nest-add) automatically performs [additional steps](https://github.com/notiz-dev/nestjs-prisma/blob/main/schematics/nestjs-prisma/index.ts#L35-L42) to configure Prisma and Docker in your project.
+The [schematics command](https://docs.nestjs.com/cli/usages#nest-add) automatically performs [additional steps](https://github.com/notiz-dev/nestjs-prisma/blob/main/schematics/nestjs-prisma/index.ts#L35-L42) to configure Prisma and Docker in your project.
 
 - Initialize Prisma `npx prisma init --datasource-provider postgres|...`
 - Add Prisma npm scripts to your `package.json`

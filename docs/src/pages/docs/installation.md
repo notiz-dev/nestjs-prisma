@@ -3,7 +3,15 @@ title: Installation
 layout: ../../layouts/Doc.astro
 ---
 
-## nestjs-prisma library
+## Automatic Install
+
+Use the [nest add](/docs/schematics) command to automatically setup the library, Prisma and Docker (optionally):
+
+```sh
+nest add nestjs-prisma
+```
+
+## Manual Install
 
 Add `nestjs-prisma` library to your [NestJS application](https://docs.nestjs.com/#installation):
 
@@ -22,12 +30,4 @@ npm i -D prisma
 npm install @prisma/client
 
 npx prisma init
-```
-
-## Automation
-
-Use the [schematics](/docs/schematics) command to automatically setup the library, Prisma and Docker (optionally):
-
-```sh
-nest add nestjs-prisma
 ```
