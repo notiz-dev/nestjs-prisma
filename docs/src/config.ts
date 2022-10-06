@@ -6,7 +6,7 @@ export const SITE = {
 
 export const OPEN_GRAPH = {
   image: {
-    src: 'https://repository-images.githubusercontent.com/285317400/0b397000-9fa7-45a9-b90e-08e9060cfa2c',
+    src: 'https://repository-images.githubusercontent.com/285317400/96d0c3d9-4b2b-461e-be5f-736d4b1b5a65',
     alt: 'nestjs-prisma banner',
   },
   twitter: 'notiz_dev',
