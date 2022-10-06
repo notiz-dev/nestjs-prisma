@@ -21,9 +21,19 @@
 
 ## Installation
 
-Install the library:
+### Automatic Install
 
-```bash
+Use the [nest add](https://nestjs-prisma.dev/docs/schematics) command to automatically setup the library, Prisma and Docker (optionally):
+
+```sh
+nest add nestjs-prisma
+```
+
+### Manual Install
+
+Add `nestjs-prisma` library to your [NestJS application](https://docs.nestjs.com/#installation):
+
+```sh
 # npm
 npm install nestjs-prisma
 
@@ -31,13 +41,14 @@ npm install nestjs-prisma
 yarn add nestjs-prisma
 ```
 
-or install it automatically using the [schematics command](https://docs.nestjs.com/cli/usages#nest-add):
+Furthermore, setup [Prisma](https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/relational-databases-typescript-postgres#set-up-prisma) in your NestJS application, if you haven't already.
 
-```bash
-nest add nestjs-prisma
+```sh
+npm i -D prisma
+npm install @prisma/client
+
+npx prisma init
 ```
-
-Besides installing the library, the [schematics](#schematics) allows to configure Prisma, Docker and even a custom `PrismaService`.
 
 ## Basic usage
 
