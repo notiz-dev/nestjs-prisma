@@ -54,7 +54,7 @@ async function bootstrap() {
 bootstrap();
 ```
 
-See the list of [Prisma CLient Errors](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine) in the Prisma docs.
+See the list of [Prisma Client Errors](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine) in the Prisma docs.
 
 This will override the default error code mapping:
 
