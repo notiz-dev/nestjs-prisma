@@ -17,9 +17,9 @@ export type ErrorCodesStatusMapping = {
 };
 
 /**
- * {@link PrismaClientExceptionFilter} handling {@link Prisma.PrismaClientKnownRequestError} exceptions.
+ * {@link PrismaClientExceptionFilter} catches {@link Prisma.PrismaClientKnownRequestError} and {@link Prisma.NotFoundError} exceptions.
  */
-@Catch(Prisma?.PrismaClientKnownRequestError)
+@Catch(Prisma?.PrismaClientKnownRequestError, Prisma?.NotFoundError)
 export class PrismaClientExceptionFilter extends BaseExceptionFilter {
   /**
    * default error codes mapping
@@ -65,7 +65,21 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
    * @param host
    * @returns
    */
-  catch(exception: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost) {
+  catch(
+    exception: Prisma.PrismaClientKnownRequestError | Prisma.NotFoundError,
+    host: ArgumentsHost,
+  ) {
+    if (exception instanceof Prisma.PrismaClientKnownRequestError) {
+      return this.catchClientKnownRequestError(exception, host);
+    } else if (exception instanceof Prisma.NotFoundError) {
+      return this.catchNotFoundError(exception, host);
+    }
+  }
+
+  private catchClientKnownRequestError(
+    exception: Prisma.PrismaClientKnownRequestError,
+    host: ArgumentsHost,
+  ) {
     const statusCode = this.errorCodesStatusMapping[exception.code];
     const message =
       `[${exception.code}]: ` + this.exceptionShortMessage(exception.message);
@@ -90,6 +104,28 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
         return exception;
       }
 
+      return new HttpException({ statusCode, message }, statusCode);
+    }
+  }
+
+  private catchNotFoundError(
+    { message }: Prisma.NotFoundError,
+    host: ArgumentsHost,
+  ) {
+    const statusCode = HttpStatus.NOT_FOUND;
+
+    if (host.getType() === 'http') {
+      // for http requests (REST)
+      const ctx = host.switchToHttp();
+      const response = ctx.getResponse<Response>();
+
+      response.status(statusCode).send(
+        JSON.stringify({
+          statusCode,
+          message,
+        }),
+      );
+    } else if (host.getType<GqlContextType>() === 'graphql') {
       return new HttpException({ statusCode, message }, statusCode);
     }
   }
