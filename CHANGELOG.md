@@ -2,6 +2,17 @@
 
 Nothing yet!
 
+# [0.19.0](https://github.com/notiz-dev/nestjs-prisma/compare/v0.18.0...v0.19.0) (2022-10-14)
+
+### Added
+
+- catch `Prisma.NotFoundError` of `findFirstOrThrow` and `findUniqueOrThrow` with `PrismaClientExceptionFilter`
+
+### Fixed
+
+- fix: shutdownHooks in microservice context ([#32](https://github.com/notiz-dev/nestjs-prisma/issues/32))
+
+
 # [0.18.0](https://github.com/notiz-dev/nestjs-prisma/compare/v0.17.0...v0.18.0) (2022-08-18)
 
 ### Added
