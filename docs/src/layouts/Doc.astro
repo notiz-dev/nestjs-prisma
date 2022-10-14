@@ -42,7 +42,9 @@ const currentSection = navigation.find((section) =>
           <h1 class="text-3xl font-semibold">{frontmatter?.title}</h1>
         </header>
 
-        <div class="mt-6 prose prose-lg prose-h2:scroll-mt-24 dark:prose-invert">
+        <div
+          class="mt-6 prose prose-lg prose-pre:scrollbar:w-1.5 prose-pre:scrollbar:h-1.5 prose-pre:scrollbar:bg-transparent prose-pre:scrollbar-track:bg-gray-800 prose-pre:scrollbar-track:rounded prose-pre:scrollbar-thumb:bg-gray-600 prose-pre:scrollbar-thumb:rounded prose-h2:scroll-mt-24 dark:prose-invert"
+        >
           <slot />
         </div>
       </article>

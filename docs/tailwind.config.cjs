@@ -1,3 +1,4 @@
+const plugin = require('tailwindcss/plugin');
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
@@ -34,5 +35,12 @@ module.exports = {
       }),
     },
   },
-  plugins: [require('@tailwindcss/typography')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    plugin(({ addVariant }) => {
+      addVariant('scrollbar', '&::-webkit-scrollbar');
+      addVariant('scrollbar-track', '&::-webkit-scrollbar-track');
+      addVariant('scrollbar-thumb', '&::-webkit-scrollbar-thumb');
+    }),
+  ],
 };
