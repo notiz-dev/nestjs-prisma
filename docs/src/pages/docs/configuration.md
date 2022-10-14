@@ -3,7 +3,13 @@ title: Configuration
 layout: ../../layouts/Doc.astro
 ---
 
-`PrismaModule` allows to be used [globally](https://docs.nestjs.com/modules#global-modules) and to pass options to the `PrismaClient`.
+`PrismaModule` provides a `forRoot(...)` and `forRootAsync(..)` method. They accept an option object of `PrismaModuleOptions` for the [PrismaService](#prismaservice-options) and [PrismaClient](#prismaclient-options).
+
+## PrismaService options
+
+### isGlobal
+
+If `true`, registers `PrismaModule` as a [global](https://docs.nestjs.com/modules#global-modules) module. `PrismaService`will be available everywhere.
 
 ```ts
 import { Module } from '@nestjs/common';
@@ -13,8 +19,26 @@ import { PrismaModule } from 'nestjs-prisma';
   imports: [
     PrismaModule.forRoot({
       isGlobal: true,
+    }),
+  ],
+})
+export class AppModule {}
+```
+
+### prismaServiceOptions.explicitConnect
+
+If `true`, `PrismaClient` explicitly creates a connection pool and your first query will respond instantly.
+
+For most use cases the [lazy connect](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/connection-management) behavior of `PrismaClient` will do. The first query of `PrismaClient` creates the connection pool.
+
+```ts
+import { Module } from '@nestjs/common';
+import { PrismaModule } from 'nestjs-prisma';
+
+@Module({
+  imports: [
+    PrismaModule.forRoot({
       prismaServiceOptions: {
-        prismaOptions: { log: ['info'] },
         explicitConnect: true,
       },
     }),
@@ -23,7 +47,23 @@ import { PrismaModule } from 'nestjs-prisma';
 export class AppModule {}
 ```
 
-Additionally, `PrismaModule` provides a `forRootAsync` to pass options asynchronously. One option is to use a factory function:
+## PrismaClient options
+
+### prismaServiceOptions.prismaOptions
+
+Pass `PrismaClientOptions` [options](https://www.prisma.io/docs/reference/api-reference/prisma-client-reference/#prismaclient) directly to the `PrismaClient`.
+
+### prismaServiceOptions.middlewares
+
+Apply Prisma [middlewares](/docs/prisma-middlewares) to perform actions before or after db queries.
+
+## Async configuration
+
+Additionally, `PrismaModule` provides a `forRootAsync` to pass options asynchronously.
+
+### useFactory
+
+One option is to use a factory function:
 
 ```ts
 import { Module } from '@nestjs/common';
@@ -78,6 +118,8 @@ import { PrismaModule } from 'nestjs-prisma';
 })
 export class AppModule {}
 ```
+
+### useClass
 
 Alternatively, you can use a class instead of a factory:
 

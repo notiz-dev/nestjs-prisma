@@ -10,12 +10,14 @@ import { Module } from '@nestjs/common';
 import { PrismaModule } from 'nestjs-prisma';
 
 @Module({
-  imports: [PrismaModule.forRoot()],
+  imports: [PrismaModule],
 })
 export class AppModule {}
 ```
 
-Use the `PrismaService` via dependency injection in your controller, resolver, services, guards and more:
+[Configure](/docs/configuration) your `PrismaModule` by using either `forRoot(...)` or `forRootAsync(...)`.
+
+Use the `PrismaService` via dependency injection in your controllers, resolvers, services, guards and more:
 
 ```ts
 import { Injectable } from '@nestjs/common';
