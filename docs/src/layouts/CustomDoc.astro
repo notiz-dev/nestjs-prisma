@@ -1,0 +1,45 @@
+---
+import Layout from './Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import { navigation } from '../config';
+import PrevNextNavigation from '../components/PrevNextNavigation.astro';
+
+type Props = {
+  title: string;
+};
+
+const { title } = Astro.props as Props;
+
+const currentPage = Astro.url.pathname;
+const currentPageMatch = currentPage.endsWith('/')
+  ? currentPage.slice(0, -1)
+  : currentPage.slice(0);
+const currentSection = navigation.find((section) =>
+  section.links.find((link) => link.link == currentPageMatch)
+);
+---
+
+<Layout>
+  <div class="mx-auto max-w-7xl grid gap-4 md:grid-cols-12">
+    <aside class="hidden md:block md:col-span-3 px-4 py-16">
+      <Navigation currentPage={currentPage} navigation={navigation} />
+    </aside>
+    <div class="min-w-0 max-w-2xl md:col-span-9 lg:col-span-6 px-4 py-16">
+      <article>
+        <header class="space-y-2">
+          {
+            currentSection && (
+              <span class="bg-gradient-to-r from-red-600 via-pink-600 to-violet-500 bg-clip-text text-sm font-medium text-transparent">
+                {currentSection.title}
+              </span>
+            )
+          }
+          <h1 class="text-3xl font-semibold">{title}</h1>
+        </header>
+
+        <slot />
+      </article>
+      <PrevNextNavigation />
+    </div>
+  </div>
+</Layout>

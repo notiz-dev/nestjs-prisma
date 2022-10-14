@@ -59,7 +59,7 @@ export const navigation: Navigation[] = [
     ],
   },
   {
-    title: 'Demo',
+    title: 'Resources',
     links: [{ title: 'Examples', link: '/docs/examples' }],
   },
 ];
