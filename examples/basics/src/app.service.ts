@@ -10,7 +10,7 @@ export class AppService {
   }
 
   user(userId: string) {
-    return this.prisma.user.findUnique({
+    return this.prisma.user.findFirstOrThrow({
       where: { id: userId },
     });
   }
