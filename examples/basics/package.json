@@ -25,7 +25,7 @@
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@prisma/client": "^4.4.0",
-    "nestjs-prisma": "^0.18.0",
+    "nestjs-prisma": "^0.19.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
