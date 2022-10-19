@@ -1,16 +1,12 @@
 import {
   ArgumentsHost,
   Catch,
-  ContextType,
   HttpException,
   HttpServer,
   HttpStatus,
 } from '@nestjs/common';
 import { BaseExceptionFilter } from '@nestjs/core';
 import { Prisma } from '@prisma/client';
-import { Response } from 'express';
-
-export declare type GqlContextType = 'graphql' | ContextType;
 
 export type ErrorCodesStatusMapping = {
   [key: string]: number;
@@ -71,7 +67,8 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
   ) {
     if (exception instanceof Prisma.PrismaClientKnownRequestError) {
       return this.catchClientKnownRequestError(exception, host);
-    } else if (exception instanceof Prisma.NotFoundError) {
+    }
+    if (exception instanceof Prisma.NotFoundError) {
       return this.catchNotFoundError(exception, host);
     }
   }
@@ -83,29 +80,12 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
     const statusCode = this.errorCodesStatusMapping[exception.code];
     const message =
       `[${exception.code}]: ` + this.exceptionShortMessage(exception.message);
-    if (host.getType() === 'http') {
-      // for http requests (REST)
-      const ctx = host.switchToHttp();
-      const response = ctx.getResponse<Response>();
 
-      if (!Object.keys(this.errorCodesStatusMapping).includes(exception.code)) {
-        return super.catch(exception, host);
-      }
-
-      response.status(statusCode).send(
-        JSON.stringify({
-          statusCode,
-          message,
-        }),
-      );
-    } else if (host.getType<GqlContextType>() === 'graphql') {
-      // for graphql requests
-      if (!Object.keys(this.errorCodesStatusMapping).includes(exception.code)) {
-        return exception;
-      }
-
-      return new HttpException({ statusCode, message }, statusCode);
+    if (!Object.keys(this.errorCodesStatusMapping).includes(exception.code)) {
+      throw exception;
     }
+
+    throw new HttpException({ statusCode, message }, statusCode);
   }
 
   private catchNotFoundError(
@@ -114,26 +94,9 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
   ) {
     const statusCode = HttpStatus.NOT_FOUND;
 
-    if (host.getType() === 'http') {
-      // for http requests (REST)
-      const ctx = host.switchToHttp();
-      const response = ctx.getResponse<Response>();
-
-      response.status(statusCode).send(
-        JSON.stringify({
-          statusCode,
-          message,
-        }),
-      );
-    } else if (host.getType<GqlContextType>() === 'graphql') {
-      return new HttpException({ statusCode, message }, statusCode);
-    }
+    throw new HttpException({ statusCode, message }, statusCode);
   }
 
-  /**
-   * @param exception
-   * @returns
-   */
   exceptionShortMessage(message: string): string {
     const shortMessage = message.substring(message.indexOf('→'));
     return shortMessage
