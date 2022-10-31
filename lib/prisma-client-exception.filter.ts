@@ -85,7 +85,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
       throw exception;
     }
 
-    throw new HttpException({ statusCode, message }, statusCode);
+    super.catch(new HttpException({ statusCode, message }, statusCode), host);
   }
 
   private catchNotFoundError(
@@ -94,7 +94,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
   ) {
     const statusCode = HttpStatus.NOT_FOUND;
 
-    throw new HttpException({ statusCode, message }, statusCode);
+    super.catch(new HttpException({ statusCode, message }, statusCode), host);
   }
 
   exceptionShortMessage(message: string): string {
