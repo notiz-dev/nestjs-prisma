@@ -82,7 +82,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
       `[${exception.code}]: ` + this.exceptionShortMessage(exception.message);
 
     if (!Object.keys(this.errorCodesStatusMapping).includes(exception.code)) {
-      throw exception;
+      return super.catch(exception, host);
     }
 
     super.catch(new HttpException({ statusCode, message }, statusCode), host);
