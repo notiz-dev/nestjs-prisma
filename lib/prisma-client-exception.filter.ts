@@ -97,7 +97,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
     super.catch(new HttpException({ statusCode, message }, statusCode), host);
   }
 
-  exceptionShortMessage(message: string): string {
+  private exceptionShortMessage(message: string): string {
     const shortMessage = message.substring(message.indexOf('→'));
     return shortMessage
       .substring(shortMessage.indexOf('\n'))
