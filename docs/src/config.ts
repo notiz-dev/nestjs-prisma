@@ -83,7 +83,14 @@ export const examples: Example[] = [
   },
   {
     name: 'nestjs-prisma-starter',
-    description: 'NestJS app with GraphQL, JWT authentication, REST API w/ Swagger and Docker',
+    description:
+      'NestJS app with GraphQL, JWT authentication, REST API w/ Swagger and Docker',
     link: 'https://github.com/notiz-dev/nestjs-prisma-starter',
   },
 ];
+
+export const ALGOLIA = {
+  appId: 'YAV0DZ0J6L',
+  apiKey: '4e8a1185fe7d7627de0cdc8ebfbaf569',
+  indexName: 'nestjs-prisma',
+};

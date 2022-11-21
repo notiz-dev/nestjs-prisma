@@ -1,0 +1,14 @@
+/** Style Algolia */
+/* TODO use tailwind css styles and consider dark/light */
+:root {
+  --docsearch-primary-color: theme(colors.violet.500);
+}
+
+/* ------------------------------------------------------------ *\
+	DocSearch (Algolia)
+\* ------------------------------------------------------------ */
+
+.DocSearch-Modal .DocSearch-Hit a {
+  box-shadow: none;
+  border: 1px solid var(--theme-accent);
+}
