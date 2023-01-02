@@ -1,5 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
@@ -13,6 +14,5 @@
     "importsNotUsedAsValues": "error",
     "jsx": "react-jsx",
     "jsxImportSource": "react"
-  },
-  "extends": "astro/tsconfigs/strict"
+  }
 }

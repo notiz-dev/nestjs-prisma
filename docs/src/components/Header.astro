@@ -2,7 +2,7 @@
 import GitHub from './logos/GitHub.astro';
 import Navigation from './Navigation.astro';
 import { navigation } from '../config';
-import Search from './Search';
+import { MobileSearch, Search } from './Search';
 
 const currentPage = Astro.url.pathname;
 
@@ -30,6 +30,7 @@ const isDocsPage = currentPage.startsWith('/docs');
   
   <div class="flex items-center">
     <Search client:idle />
+    <MobileSearch client:visible/>
     <a class="ml-4" aria-label="GitHub" href="https://github.com/notiz-dev/nestjs-prisma">
       <GitHub />
     </a>
