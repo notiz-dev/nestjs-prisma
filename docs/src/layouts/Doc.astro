@@ -1,5 +1,5 @@
 ---
-import Layout from './Layout.astro';
+import Layout from './Base.astro';
 import Navigation from '../components/Navigation.astro';
 import TableOfContents from '../components/TableOfContents.astro';
 import PrevNextNavigation from '../components/PrevNextNavigation.astro';
@@ -25,11 +25,13 @@ const currentSection = navigation.find((section) =>
 ---
 
 <Layout frontmatter={frontmatter}>
-  <div class="mx-auto max-w-7xl grid gap-4 md:grid-cols-12">
-    <aside class="hidden md:block md:col-span-3 px-4 py-16">
-      <Navigation currentPage={currentPage} navigation={navigation} />
-    </aside>
-    <div class="min-w-0 max-w-2xl md:col-span-9 lg:col-span-6 px-4 py-16">
+  <div class="mx-auto grid max-w-7xl gap-4 md:grid-cols-12">
+    <div class="hidden md:col-span-3 md:block">
+      <aside class="sticky top-20 px-4 py-16">
+        <Navigation currentPage={currentPage} navigation={navigation} />
+      </aside>
+    </div>
+    <div class="min-w-0 max-w-2xl px-4 py-16 md:col-span-9 lg:col-span-6">
       <article>
         <header class="space-y-2">
           {
@@ -43,15 +45,17 @@ const currentSection = navigation.find((section) =>
         </header>
 
         <div
-          class="mt-6 prose prose-lg prose-pre:scrollbar:w-1.5 prose-pre:scrollbar:h-1.5 prose-pre:scrollbar:bg-transparent prose-pre:scrollbar-track:bg-gray-800 prose-pre:scrollbar-track:rounded prose-pre:scrollbar-thumb:bg-gray-600 prose-pre:scrollbar-thumb:rounded prose-h2:scroll-mt-24 dark:prose-invert"
+          class="prose prose-lg prose-pre:scrollbar:w-1.5 prose-pre:scrollbar:h-1.5 prose-pre:scrollbar:bg-transparent prose-pre:scrollbar-track:bg-gray-800 prose-pre:scrollbar-track:rounded prose-pre:scrollbar-thumb:bg-gray-600 prose-pre:scrollbar-thumb:rounded prose-h2:scroll-mt-24 dark:prose-invert mt-6"
         >
           <slot />
         </div>
       </article>
       <PrevNextNavigation />
     </div>
-    <aside class="hidden lg:block lg:col-span-3 px-4 py-16">
-      {headings.length > 0 && <TableOfContents headings={headings} />}
-    </aside>
+    <div class="hidden lg:col-span-3 lg:block">
+      <aside class="sticky top-20 px-4 py-16">
+        {headings.length > 0 && <TableOfContents headings={headings} />}
+      </aside>
+    </div>
   </div>
 </Layout>
