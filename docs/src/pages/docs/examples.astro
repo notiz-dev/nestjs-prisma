@@ -1,7 +1,7 @@
 ---
 import CustomDoc from '../../layouts/CustomDoc.astro';
-import GitHub from '../../components/logos/GitHub.astro';
 import { examples } from '../../config';
+import { Icon } from 'astro-icon';
 ---
 
 <CustomDoc title="Examples">
@@ -15,7 +15,7 @@ import { examples } from '../../config';
                 {example.name}
               </span>
               <span class="ml-2">
-                <GitHub />
+                <Icon name="github" class="h-5 w-5" />
               </span>
             </span>
             <span class="mt-1 inline-block text-sm text-gray-700 dark:text-gray-300">
