@@ -29,18 +29,40 @@ export function SearchIcon(props: any) {
   );
 }
 
-export function Search() {
-  let [modifierKey, setModifierKey] = useState<string>('⌘');
-  const [isOpen, setIsOpen] = useState(false);
-  const searchButtonRef = useRef<HTMLButtonElement>(null);
-  const [initialQuery, setInitialQuery] = useState('');
+function useSearchProps() {
+  let [isOpen, setIsOpen] = useState(false);
+  let searchButtonRef = useRef<HTMLButtonElement>(null);
+  let [initialQuery, setInitialQuery] = useState('');
 
-  useEffect(() => {
-    setModifierKey(
-      /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform) ? '⌘' : 'Ctrl '
-    );
-  }, []);
+  return {
+    buttonProps: {
+      ref: searchButtonRef,
+      onClick() {
+        setIsOpen(true);
+      },
+    },
+    dialogProps: {
+      isOpen,
+      searchButtonRef,
+      setIsOpen(open: boolean) {
+        setIsOpen(open);
+      },
+      initialQuery,
+      setInitialQuery(query: string) {
+        setInitialQuery(query);
+      },
+    },
+  };
+}
 
+function SearchDialog({
+  isOpen,
+  setIsOpen,
+  initialQuery,
+  setInitialQuery,
+  searchButtonRef,
+  keyboardEvents,
+}: any) {
   const onOpen = useCallback(() => {
     setIsOpen(true);
   }, [setIsOpen]);
@@ -57,28 +79,18 @@ export function Search() {
     [setIsOpen, setInitialQuery]
   );
 
-  useDocSearchKeyboardEvents({
-    isOpen,
-    onOpen,
-    onClose,
-    onInput,
-    searchButtonRef,
-  });
+  if (keyboardEvents) {
+    useDocSearchKeyboardEvents({
+      isOpen,
+      onOpen,
+      onClose,
+      onInput,
+      searchButtonRef,
+    });
+  }
 
   return (
     <>
-      <button
-        type="button"
-        ref={searchButtonRef}
-        onClick={onOpen}
-        className="dark:highlight-white/5 hidden w-60 items-center gap-2 rounded-md py-1.5 pl-2 pr-3 text-sm leading-6 text-slate-400 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 md:flex"
-      >
-        <SearchIcon />
-        <span>Search docs...</span>
-
-        <span className="ml-auto">{modifierKey}K</span>
-      </button>
-
       {isOpen &&
         createPortal(
           <DocSearchModal
@@ -108,17 +120,46 @@ export function Search() {
   );
 }
 
+export function Search() {
+  let { buttonProps, dialogProps } = useSearchProps();
+  let [modifierKey, setModifierKey] = useState<string>('⌘');
+  useEffect(() => {
+    setModifierKey(
+      /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform) ? '⌘' : 'Ctrl '
+    );
+  }, []);
+
+  return (
+    <>
+      <button
+        type="button"
+        className="dark:highlight-white/5 hidden w-60 items-center gap-2 rounded-md py-1.5 pl-2 pr-3 text-sm leading-6 text-slate-400 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 md:flex"
+        {...buttonProps}
+      >
+        <SearchIcon />
+        <span>Search docs...</span>
+
+        <span className="ml-auto">{modifierKey}K</span>
+      </button>
+
+      <SearchDialog {...dialogProps} keyboardEvents={true} />
+    </>
+  );
+}
+
 export function MobileSearch() {
+  let { buttonProps, dialogProps } = useSearchProps();
   return (
     <div className="block md:hidden">
       <button
         type="button"
         className="flex h-6 w-6 items-center justify-center rounded-md"
         aria-label="Search docs..."
+        {...buttonProps}
       >
         <SearchIcon className="h-5 w-5" />
       </button>
-      {/* TODO search dialog */}
+      <SearchDialog {...dialogProps} keyboardEvents={false} />
     </div>
   );
 }
