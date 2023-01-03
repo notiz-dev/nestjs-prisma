@@ -1,8 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import NestJS from '../components/logos/NestJS.astro';
-import Prisma from '../components/logos/Prisma.astro';
-import GitHub from '../components/logos/GitHub.astro';
+import { Icon } from 'astro-icon';
 ---
 
 <Layout>
@@ -35,7 +33,7 @@ import GitHub from '../components/logos/GitHub.astro';
           target="_blank"
           rel="noreferrer"
         >
-          <GitHub />
+          <Icon name="github" class="w-5 h-5" />
           <p class="text-sm">Star on GitHub</p>
         </a>
       </div>
@@ -48,7 +46,7 @@ import GitHub from '../components/logos/GitHub.astro';
             rel="noreferrer"
             class="ease-in duration-200 hover:scale-105"
           >
-            <NestJS />
+            <Icon name="nestjs" class="h-12" />
             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">NestJS</p>
           </a>
         </div>
@@ -59,7 +57,7 @@ import GitHub from '../components/logos/GitHub.astro';
             rel="noreferrer"
             class="ease-in duration-200 hover:scale-105"
           >
-            <Prisma />
+            <Icon name="prisma" class="h-12" />
             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">Prisma</p>
           </a>
         </div>

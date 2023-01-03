@@ -1,7 +1,8 @@
 ---
-import GitHub from './logos/GitHub.astro';
+import { Icon } from 'astro-icon';
 import Navigation from './Navigation.astro';
 import { navigation } from '../config';
+import { MobileSearch, Search } from './Search';
 
 const currentPage = Astro.url.pathname;
 
@@ -25,9 +26,13 @@ const isDocsPage = currentPage.startsWith('/docs');
   >
     nestjs-prisma
   </a>
+
+  
   <div class="flex items-center">
-    <a aria-label="GitHub" href="https://github.com/notiz-dev/nestjs-prisma">
-      <GitHub />
+    <Search client:visible />
+    <MobileSearch client:visible/>
+    <a class="ml-4" aria-label="GitHub" href="https://github.com/notiz-dev/nestjs-prisma">
+      <Icon name="github" class="w-5 h-5" />
     </a>
     {isDocsPage && (<button
       class="ml-4 block md:hidden"
