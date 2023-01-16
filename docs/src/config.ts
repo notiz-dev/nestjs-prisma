@@ -45,6 +45,20 @@ export const navigation: Navigation[] = [
     ],
   },
   {
+    title: 'Advanced',
+    links: [
+      {
+        title: 'Custom Prisma Client Location',
+        link: '/docs/custom-prisma-client-location',
+      },
+      // { title: 'Multiple Prisma Clients', link: '' },
+      {
+        title: 'Prisma Client Extensions (Preview)',
+        link: '/docs/prisma-client-extensions',
+      },
+    ],
+  },
+  {
     title: 'Built-in Tools',
     links: [
       { title: 'Exception Filter', link: '/docs/exception-filter' },
