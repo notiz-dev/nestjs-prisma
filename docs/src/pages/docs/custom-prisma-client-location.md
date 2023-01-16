@@ -25,7 +25,7 @@ This can be useful if you want to just use a **different location** or want to u
 
 ## CustomPrismaModule and CustomPrismaService
 
-To use `nestjs-prisma` with custom output location for Prisma Client, you need to update to `nestjs-prisma@v0.20.0-dev.2` or later and use `CustomPrismaModule` and `CustomPrismaService`.
+To use `nestjs-prisma` with custom output location for Prisma Client, you need to update to `nestjs-prisma@v0.20.0` or later and use `CustomPrismaModule` and `CustomPrismaService`.
 
 Import `CustomPrismaModule` and provide a **unique** name and an **instance** of your `PrismaClient`. The unique name will be used to inject the `CustomPrismaService`. 
 
