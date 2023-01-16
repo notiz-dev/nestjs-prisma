@@ -5,6 +5,8 @@ layout: ../../layouts/Doc.astro
 
 To use the new [Prisma Client Extensions (Preview)](https://www.prisma.io/docs/concepts/components/prisma-client/client-extensions) you must update to Prisma Client [v4.7.0](https://github.com/prisma/prisma/releases/tag/4.7.0) or later and install `nestjs-prisma@v0.20.0-dev.2` or later.
 
+Follow this guide or checkout the [extensions example](https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/extensions).
+
 ## Enable preview feature
 
 Enable `clientExtensions` preview in your Prisma schema and generate Prisma Client again.
@@ -34,43 +36,43 @@ Create a file for your Prisma extension for example `prisma.extension.ts`
 ```ts
 import { PrismaClient } from '@prisma/client';
 
-/**
- * TS error: "Inferred type of this node exceeds the maximum length the compiler will serialize" with "declaration": true in tsconfig
- *
- * Change "declaration": false in `tsconfig.json`
- *
- * https://github.com/prisma/prisma/issues/16536#issuecomment-1332055501
- */
-export const prismaClient = new PrismaClient().$extends({
+export const extendedPrismaClient = new PrismaClient().$extends({
   model: {
     user: {
       findByEmail: async (email: string) => {
-        return prismaClient.user.findFirstOrThrow({ where: { email } });
+        return extendedPrismaClient.user.findFirstOrThrow({ where: { email } });
       },
     },
   },
 });
 
-export type prismaClient = typeof prismaClient;
+export type extendedPrismaClient = typeof extendedPrismaClient;
 ```
 
-Use `CustomPrismaModule.forRootAsync`
+Register your extended Prisma Client using `CustomPrismaModule.forRootAsync`.
 
 ```ts
 import { Module } from '@nestjs/common';
-import { CustomPrismaModule } from 'nestjs-prisma';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { prismaClient } from './prisma.extension';
+
+import { CustomPrismaModule } from 'nestjs-prisma';
+import { extendedPrismaClient } from './prisma.extension';
 
 @Module({
   imports: [
+    // ✅ use `forRootAsync` when using `PrismaClient().$extends({})`
     CustomPrismaModule.forRootAsync({
       name: 'PrismaService',
       useFactory: () => {
-        return prismaClient;
+        return extendedPrismaClient;
       },
     }),
+    // ❌ error: 'getOwnPropertyDescriptor' on proxy
+    // CustomPrismaModule.forRoot({
+    //   name: 'PrismaServiceAuth',
+    //   client: new PrismaClient().$extends({}),
+    // }),
   ],
   controllers: [AppController],
   providers: [AppService],
@@ -78,31 +80,33 @@ import { prismaClient } from './prisma.extension';
 export class AppModule {}
 ```
 
-Inject `CustomPrismaService` into your controller/service
+Inject `CustomPrismaService` into your controller/service and use the extended Prisma Client for type-safety.
 
 ```ts
 import { Inject, Injectable } from '@nestjs/common';
 import { CustomPrismaService } from 'nestjs-prisma';
-import { prismaClient } from './prisma.extension';
+import { extendedPrismaClient } from './prisma.extension';
 
 @Injectable()
 export class AppService {
   constructor(
     // ✅ use `prismaClient` from extension for correct type-safety
     @Inject('PrismaService')
-    private prismaService: CustomPrismaService<prismaClient>
+    private prismaService: CustomPrismaService<extendedPrismaClient>
   ) {}
 
   users() {
     return this.prismaService.client.user.findMany();
   }
 
-  user(userId: string) {
+  user(email: string) {
     // 🦾 use new `findByEmail`
-    return this.prismaService.client.user.findByEmail(userId);
+    return this.prismaService.client.user.findByEmail(email);
   }
 }
 ```
+
+Now you have access to your extensions `this.prismaService.client.user.findByEmail(email)`.
 
 ## Type issues with Prisma Client v4.7.0
 

@@ -96,6 +96,11 @@ export const examples: Example[] = [
     link: 'https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/fastify',
   },
   {
+    name: 'Extensions',
+    description: 'Using the Prisma Client extension (Preview) with nestjs-prisma',
+    link: 'https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/extensions',
+  },
+  {
     name: 'nestjs-prisma-starter',
     description:
       'NestJS app with GraphQL, JWT authentication, REST API w/ Swagger and Docker',

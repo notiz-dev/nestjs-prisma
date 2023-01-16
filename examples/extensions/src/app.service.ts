@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { CustomPrismaService, PrismaService } from 'nestjs-prisma';
+import { CustomPrismaService } from 'nestjs-prisma';
 import { extendedPrismaClient } from './prisma.extension';
 
 @Injectable()
@@ -14,11 +14,8 @@ export class AppService {
     return this.prismaService.client.user.findMany();
   }
 
-  user(userId: string) {
+  user(email: string) {
     // 🦾 use new `findByEmail`
-    return this.prismaService.client.user.findByEmail(userId);
-    // return this.prisma.user.findFirstOrThrow({
-    //   where: { id: userId },
-    // });
+    return this.prismaService.client.user.findByEmail(email);
   }
 }
