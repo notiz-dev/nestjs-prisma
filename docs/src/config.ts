@@ -45,6 +45,20 @@ export const navigation: Navigation[] = [
     ],
   },
   {
+    title: 'Advanced',
+    links: [
+      {
+        title: 'Custom Prisma Client Location',
+        link: '/docs/custom-prisma-client-location',
+      },
+      // { title: 'Multiple Prisma Clients', link: '' },
+      {
+        title: 'Prisma Client Extensions (Preview)',
+        link: '/docs/prisma-client-extensions',
+      },
+    ],
+  },
+  {
     title: 'Built-in Tools',
     links: [
       { title: 'Exception Filter', link: '/docs/exception-filter' },
@@ -80,6 +94,11 @@ export const examples: Example[] = [
     name: 'Fastify',
     description: 'NestJS app with Fastify, Prisma and nestjs-prisma.',
     link: 'https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/fastify',
+  },
+  {
+    name: 'Extensions',
+    description: 'Using the Prisma Client extension (Preview) with nestjs-prisma',
+    link: 'https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/extensions',
   },
   {
     name: 'nestjs-prisma-starter',

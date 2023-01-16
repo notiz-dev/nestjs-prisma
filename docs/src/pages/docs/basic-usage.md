@@ -3,6 +3,32 @@ title: Basic Usage
 layout: ../../layouts/Doc.astro
 ---
 
+## Prisma schema
+
+`nestjs-prisma` requires the Prisma Client to be generated to the default output location (`./node_modules/.prisma/client`). The client will be  imported from `@prisma/client`.
+
+```prisma
+// prisma/schema.prisma
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}
+```
+
+If you like to choose a **different** output location or want to use **multiple** Prisma Client, you can [customize the Prisma Client location](/docs/custom-prisma-client-location).
+
+## PrismaModule and PrismaService
+
 Add `PrismaModule` to the `imports` section in your `AppModule` or other modules to gain access to `PrismaService`.
 
 ```ts
