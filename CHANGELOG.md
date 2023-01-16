@@ -2,6 +2,13 @@
 
 Nothing yet!
 
+# [0.20.0](https://github.com/notiz-dev/nestjs-prisma/compare/v0.19.0...v0.20.0) (2023-01-16)
+
+### Added
+
+- simplify error handling flow ([#39](https://github.com/notiz-dev/nestjs-prisma/pull/39))
+- support custom location/multiple Prisma Clients and extensions preview
+
 # [0.19.0](https://github.com/notiz-dev/nestjs-prisma/compare/v0.18.0...v0.19.0) (2022-10-14)
 
 ### Added
