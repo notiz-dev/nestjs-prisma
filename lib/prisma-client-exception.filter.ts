@@ -5,7 +5,7 @@ import {
   HttpServer,
   HttpStatus,
 } from '@nestjs/common';
-import { BaseExceptionFilter } from '@nestjs/core';
+import { APP_FILTER, BaseExceptionFilter, HttpAdapterHost } from '@nestjs/core';
 import { Prisma } from '@prisma/client';
 
 export type ErrorCodesStatusMapping = {
@@ -104,4 +104,19 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
       .replace(/\n/g, '')
       .trim();
   }
+}
+
+export function createPrismaClientExceptionFilter(
+  errorCodesStatusMapping?: ErrorCodesStatusMapping,
+) {
+  return {
+    provide: APP_FILTER,
+    useFactory: ({ httpAdapter }: HttpAdapterHost) => {
+      return new PrismaClientExceptionFilter(
+        httpAdapter,
+        errorCodesStatusMapping,
+      );
+    },
+    inject: [HttpAdapterHost],
+  };
 }
