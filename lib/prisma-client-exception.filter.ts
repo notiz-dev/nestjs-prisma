@@ -106,7 +106,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
   }
 }
 
-export function createPrismaClientExceptionFilter(
+export function providePrismaClientExceptionFilter(
   errorCodesStatusMapping?: ErrorCodesStatusMapping,
 ) {
   return {

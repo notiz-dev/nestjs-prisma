@@ -3,11 +3,21 @@ title: Exception Filter
 layout: ../../layouts/Doc.astro
 ---
 
-Use `PrismaClientExceptionFilter` to catch unhandled [PrismaClientKnownRequestError](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine) and [NotFoundError](https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#finduniqueorthrow) and returns different HttpStatus codes instead of `500 Internal server error`. The exception filter supports REST (Express/Fasitfy) and GraphQL.
+Use `PrismaClientExceptionFilter` to catch unhandled [PrismaClientKnownRequestError](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine) and [NotFoundError](https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#finduniqueorthrow) and return different HttpStatus codes instead of `500 Internal server error`. The exception filter supports REST (Express/Fasitfy) and GraphQL.
 
-To use the filter you have the following two options.
+The exception filter has the following default error code mapping for [Prisma Client Errors](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine).
 
-1. Instantiate the filter in your `main.ts` and pass the `HttpAdapterHost`
+| Error Code                                                                                                        |  Http Status      |
+| ----------------------------------------------------------------------------------------------------------------- | ----------------- |
+| P2000 - "The provided value for the column is too long for the column's type. Column: {column_name}"              | Bad Request - 400 |
+| P2002 - "Unique constraint failed on the {constraint}"                                                            | Conflict - 409    |
+| P2025 - "An operation failed because it depends on one or more records that were required but not found. {cause}" | Not Found - 404   |
+
+## Binding filter
+
+### `useGlobalFilters()`
+
+Instantiate the filter in your `main.ts` and pass the `HttpAdapterHost`
 
 ```ts
 //src/main.ts
@@ -27,7 +37,49 @@ async function bootstrap() {
 bootstrap();
 ```
 
-Optionally, provide your own error code mapping via the constructor:
+### `APP_FILTER`
+
+Use `APP_FILTER` token in combination with `useFactory` to instantiate `PrismaClientExceptionFilter`
+
+```ts
+//src/app.module.ts
+import { Module } from '@nestjs/common';
+import { APP_FILTER, HttpAdapterHost } from '@nestjs/core';
+import { PrismaClientExceptionFilter } from 'nestjs-prisma';
+
+@Module({
+  providers: [
+    {
+      provide: APP_FILTER,
+      useFactory: ({ httpAdapter }: HttpAdapterHost) => {
+        return new PrismaClientExceptionFilter(httpAdapter);
+      },
+      inject: [HttpAdapterHost],
+    },
+  ],
+})
+export class AppModule {}
+```
+
+Or use `providePrismaClientExceptionFilter()` (available since `v0.21.0-dev.0`)
+
+```ts
+//src/app.module.ts
+import { Module } from '@nestjs/common';
+import { APP_FILTER, HttpAdapterHost } from '@nestjs/core';
+import { providePrismaClientExceptionFilter } from 'nestjs-prisma';
+
+@Module({
+  providers: [providePrismaClientExceptionFilter()],
+})
+export class AppModule {}
+```
+
+## Error code mapping
+
+Provide your own error code mapping, if you like to catch additional [Prisma Client Errors](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine) or when you need to change the `HttpStatus`.
+
+### `useGlobalFilters()`
 
 ```ts
 //src/main.ts
@@ -54,30 +106,35 @@ async function bootstrap() {
 bootstrap();
 ```
 
-See the list of [Prisma Client Errors](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine) in the Prisma docs.
-
-This will override the default error code mapping:
-
-| Error Code                                                                                                        |  Http Status      |
-| ----------------------------------------------------------------------------------------------------------------- | ----------------- |
-| P2000 - "The provided value for the column is too long for the column's type. Column: {column_name}"              | Bad Request - 400 |
-| P2002 - "Unique constraint failed on the {constraint}"                                                            | Conflict - 409    |
-| P2025 - "An operation failed because it depends on one or more records that were required but not found. {cause}" | Not Found - 404   |
-
-2. Use `APP_FILTER` token in any module
+### `APP_FILTER`
 
 ```ts
 //src/app.module.ts
 import { Module } from '@nestjs/common';
-import { APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, HttpAdapterHost } from '@nestjs/core';
 import { PrismaClientExceptionFilter } from 'nestjs-prisma';
 
 @Module({
   providers: [
     {
       provide: APP_FILTER,
-      useClass: PrismaClientExceptionFilter,
+      useFactory: ({ httpAdapter }: HttpAdapterHost) => {
+        return new PrismaClientExceptionFilter(httpAdapter, {
+          // Prisma Error Code: HTTP Status Response
+          P2000: HttpStatus.BAD_REQUEST,
+          P2002: HttpStatus.CONFLICT,
+          P2025: HttpStatus.NOT_FOUND,
+        });
+      },
+      inject: [HttpAdapterHost],
     },
+    // or
+    providePrismaClientExceptionFilter({
+      // Prisma Error Code: HTTP Status Response
+      P2000: HttpStatus.BAD_REQUEST,
+      P2002: HttpStatus.CONFLICT,
+      P2025: HttpStatus.NOT_FOUND,
+    }),
   ],
 })
 export class AppModule {}
