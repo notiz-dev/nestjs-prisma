@@ -1,6 +1,8 @@
 # Not released
 
-Nothing yet!
+### Added 
+
+- add `providePrismaClientExceptionFilter`, improve exception filter docs
 
 # [0.20.0](https://github.com/notiz-dev/nestjs-prisma/compare/v0.19.0...v0.20.0) (2023-01-16)
 
