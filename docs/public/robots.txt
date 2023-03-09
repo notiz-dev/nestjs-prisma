@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://nestjs-prisma.dev/sitemap-index.xml
