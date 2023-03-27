@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Base.astro';
+---
+
+<Layout>
+  <main class="grid min-h-full place-items-center py-24 px-6 sm:py-32 lg:px-8">
+    <div class="py-12 text-center sm:py-16 md:py-20 lg:py-24 xl:py-28">
+      <p
+        class="bg-gradient-to-r from-red-600 via-pink-600 to-violet-500 bg-clip-text text-base font-semibold text-transparent"
+      >
+        404
+      </p>
+      <h1
+        class="mt-4 text-3xl font-bold tracking-tight text-gray-700 dark:text-gray-300 sm:text-5xl"
+      >
+        Page not found
+      </h1>
+      <p class="mt-6 text-base leading-7 text-gray-600 dark:text-gray-400">
+        Sorry, we couldn't find the page you're looking for.
+      </p>
+      <div class="mt-10 flex items-center justify-center">
+        <a
+          href="/"
+          class="rounded-full border border-transparent bg-[#55b9f3] py-2 px-5 text-sm text-white transition-all hover:bg-[#55b9f3]/90"
+        >
+          Go back home
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>

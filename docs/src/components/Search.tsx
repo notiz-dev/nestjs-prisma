@@ -133,7 +133,7 @@ export function Search() {
     <>
       <button
         type="button"
-        className="dark:highlight-white/5 hidden w-60 items-center gap-2 rounded-md py-1.5 pl-2 pr-3 text-sm leading-6 text-slate-400 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 md:flex"
+        className="dark:highlight-white/5 hidden w-60 items-center gap-2 rounded-md py-1.5 pl-2 pr-3 text-sm leading-6 text-gray-400 shadow-sm ring-1 ring-gray-900/10 hover:ring-gray-300 dark:bg-gray-800 dark:hover:bg-gray-700 md:flex"
         {...buttonProps}
       >
         <SearchIcon />
