@@ -105,7 +105,7 @@ The code is split up into three directories:
 +-- schematics
 ```
 
-The `docs` directory contains an astro website and the [docs content](./docs/src/pages/docs) pages.
+The `docs` directory contains an astro website and the [docs content](./docs/src/content/docs).
 
 The `examples` directory contains example applications.
 
