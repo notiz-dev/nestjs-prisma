@@ -1,6 +1,5 @@
 ---
 title: Prisma Client Extensions (Preview)
-layout: ../../layouts/Doc.astro
 ---
 
 To use the new [Prisma Client Extensions (Preview)](https://www.prisma.io/docs/concepts/components/prisma-client/client-extensions) you must update to Prisma Client [v4.7.0](https://github.com/prisma/prisma/releases/tag/4.7.0) or later and install `nestjs-prisma@v0.20.0` or later.

@@ -1,6 +1,5 @@
 ---
 title: Shutdown Hook
-layout: ../../layouts/Doc.astro
 ---
 
 Handle [Prisma shutdown](https://docs.nestjs.com/recipes/prisma#issues-with-enableshutdownhooks) to gracefully close your Nest application. Add the `enableShutdownHooks` of your Prisma Service in the `main.ts` file.
@@ -74,5 +73,3 @@ import { extendedPrismaClient } from './prisma.extension';
 })
 export class AppModule {}
 ```
-
-

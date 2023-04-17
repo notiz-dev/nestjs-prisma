@@ -1,29 +1,55 @@
 ---
 import 'inter-ui/inter.css';
+import { SEO } from 'astro-seo';
 import HeadCommon from '../components/HeadCommon.astro';
 import HeadSeo from '../components/HeadSeo.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
-import { SITE, Frontmatter } from '../config';
+import { OPEN_GRAPH, SITE } from '../config';
 
 export interface Props {
-  frontmatter?: Frontmatter;
+  title?: string;
 }
 
-const { frontmatter } = Astro.props;
+const { title } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const formattedContentTitle = title ? `${title} - ${SITE.title}` : SITE.title;
 ---
 
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
   <head>
     <HeadCommon />
-    <HeadSeo frontmatter={frontmatter} canonicalUrl={canonicalURL} />
 
-    <title>
-      {frontmatter?.title ? `${frontmatter.title} - ${SITE.title}` : SITE.title}
-    </title>
+    <SEO
+      title={formattedContentTitle}
+      description={SITE.description}
+      openGraph={{
+        basic: {
+          title: formattedContentTitle,
+          type: 'article',
+          image: OPEN_GRAPH.image.src,
+        },
+        optional: {
+          siteName: SITE.title,
+          description: SITE.description,
+          locale: SITE.defaultLanguage,
+        },
+      }}
+      twitter={{
+        title: formattedContentTitle,
+        card: 'summary_large_image',
+        description: SITE.description,
+        site: OPEN_GRAPH.twitter,
+        image: OPEN_GRAPH.image.src,
+        imageAlt: OPEN_GRAPH.image.alt,
+      }}
+    />
+
+    <!-- Sitemap -->
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <style is:global>
       html {
@@ -31,9 +57,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       }
     </style>
   </head>
-  <body
-    class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100"
-  >
+  <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
     <Header />
     <slot />
     <Footer />

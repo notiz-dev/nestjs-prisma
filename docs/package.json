@@ -12,18 +12,19 @@
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.2.1",
-    "@astrojs/react": "^2.1.0",
-    "@astrojs/sitemap": "^1.2.1",
+    "@astrojs/react": "^2.1.1",
+    "@astrojs/sitemap": "^1.2.2",
     "@astrojs/tailwind": "^3.1.1",
     "@docsearch/react": "^3.3.3",
     "alpinejs": "^3.12.0",
-    "astro": "^2.1.7",
+    "astro": "^2.3.0",
     "astro-icon": "^0.8.0",
     "astro-robots-txt": "^0.4.1",
+    "astro-seo": "^0.7.2",
     "inter-ui": "^3.19.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tailwindcss": "^3.2.7"
+    "tailwindcss": "^3.3.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
@@ -32,6 +33,6 @@
     "@types/react-dom": "^18.0.11",
     "prettier": "^2.8.7",
     "prettier-plugin-astro": "^0.8.0",
-    "prettier-plugin-tailwindcss": "^0.2.5"
+    "prettier-plugin-tailwindcss": "^0.2.7"
   }
 }

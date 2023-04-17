@@ -5,15 +5,14 @@ import TableOfContents from '../components/TableOfContents.astro';
 import PrevNextNavigation from '../components/PrevNextNavigation.astro';
 
 import type { MarkdownHeading } from 'astro';
-import type * as CONFIG from '../config';
-import { navigation } from '../config';
+import { GITHUB_EDIT_URL, navigation } from '../config';
 
 type Props = {
-  frontmatter: CONFIG.Frontmatter;
+  title: string;
   headings: MarkdownHeading[];
 };
 
-const { frontmatter, headings } = Astro.props as Props;
+const { title, headings } = Astro.props as Props;
 
 const currentPage = Astro.url.pathname;
 const currentPageMatch = currentPage.endsWith('/')
@@ -22,9 +21,12 @@ const currentPageMatch = currentPage.endsWith('/')
 const currentSection = navigation.find((section) =>
   section.links.find((link) => link.link == currentPageMatch)
 );
+
+const currentFile = `src/content${currentPage.replace(/\/$/, '')}.md`;
+const githubEditUrl = `${GITHUB_EDIT_URL}/${currentFile}`;
 ---
 
-<Layout frontmatter={frontmatter}>
+<Layout title={title}>
   <div class="mx-auto grid max-w-7xl gap-4 md:grid-cols-12">
     <div class="hidden md:col-span-3 md:block">
       <aside class="sticky top-20 px-4 py-16">
@@ -41,7 +43,7 @@ const currentSection = navigation.find((section) =>
               </span>
             )
           }
-          <h1 class="text-4xl font-semibold">{frontmatter?.title}</h1>
+          <h1 class="text-4xl font-semibold">{title}</h1>
         </header>
 
         <div
@@ -51,6 +53,16 @@ const currentSection = navigation.find((section) =>
         </div>
       </article>
       <PrevNextNavigation />
+      <div
+        class="border-t border-gray-200 pb-20 pt-10 text-right dark:border-gray-800"
+      >
+        <a
+          href={githubEditUrl}
+          class="text-right text-sm dark:text-gray-500 dark:hover:text-gray-400"
+        >
+          Edit this page on GitHub
+        </a>
+      </div>
     </div>
     <div class="hidden lg:col-span-3 lg:block">
       <aside class="sticky top-20 px-4 py-16">

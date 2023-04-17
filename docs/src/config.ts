@@ -12,10 +12,7 @@ export const OPEN_GRAPH = {
   twitter: 'notiz_dev',
 };
 
-export type Frontmatter = {
-  title: string;
-  layout: string;
-};
+export const GITHUB_EDIT_URL = `https://github.com/notiz-dev/nestjs-prisma/tree/main/docs`;
 
 export type Link = {
   title: string;
@@ -97,7 +94,8 @@ export const examples: Example[] = [
   },
   {
     name: 'Extensions',
-    description: 'Using the Prisma Client extension (Preview) with nestjs-prisma',
+    description:
+      'Using the Prisma Client extension (Preview) with nestjs-prisma',
     link: 'https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/extensions',
   },
   {

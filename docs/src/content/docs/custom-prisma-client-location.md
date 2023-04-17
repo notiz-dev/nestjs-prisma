@@ -1,6 +1,5 @@
 ---
 title: Custom Prisma Client Location
-layout: ../../layouts/Doc.astro
 ---
 
 Prisma allows you to [customize the output location](https://www.prisma.io/docs/concepts/components/prisma-client/working-with-prismaclient/generating-prisma-client#the-location-of-prisma-client) of your Prisma Client.

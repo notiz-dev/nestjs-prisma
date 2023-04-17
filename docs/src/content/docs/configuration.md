@@ -1,6 +1,5 @@
 ---
 title: Configuration
-layout: ../../layouts/Doc.astro
 ---
 
 `PrismaModule` provides a `forRoot(...)` and `forRootAsync(..)` method. They accept an option object of `PrismaModuleOptions` for the [PrismaService](#prismaservice-options) and [PrismaClient](#prismaclient-options).
