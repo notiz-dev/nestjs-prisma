@@ -30,6 +30,9 @@ module.exports = {
             'blockquote p:last-of-type::after': {
               content: '',
             },
+            'blockquote code': {
+              color: '#FFA657',
+            }
           },
         },
       }),

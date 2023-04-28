@@ -2,7 +2,9 @@
 title: Exception Filter
 ---
 
-Use `PrismaClientExceptionFilter` to catch unhandled [PrismaClientKnownRequestError](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine) and [NotFoundError](https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#finduniqueorthrow) and return different HttpStatus codes instead of `500 Internal server error`. The exception filter supports REST (Express/Fasitfy) and GraphQL.
+Use `PrismaClientExceptionFilter` to catch unhandled [PrismaClientKnownRequestError](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine) and return different HttpStatus codes instead of `500 Internal server error`. The exception filter supports REST (Express/Fasitfy) and GraphQL.
+
+> [NotFoundError](https://www.prisma.io/docs/reference/api-reference/prisma-client-reference#finduniqueorthrow) has been deprecated and replaced with `PrismaClientKnownRequestError`. (changed in `v0.21.0-dev.1`)
 
 The exception filter has the following default error code mapping for [Prisma Client Errors](https://www.prisma.io/docs/reference/api-reference/error-reference#prisma-client-query-engine).
 
