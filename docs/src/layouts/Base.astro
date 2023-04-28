@@ -57,7 +57,9 @@ const formattedContentTitle = title ? `${title} - ${SITE.title}` : SITE.title;
   </head>
   <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
     <Header />
-    <slot />
+    <main>
+      <slot />
+    </main>
     <Footer />
   </body>
 </html>
