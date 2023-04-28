@@ -52,7 +52,7 @@ export function loggingMiddleware(
     if (logMessage) {
       logger[logLevel](
         logMessage({
-          model: params.model,
+          model: params.model!,
           action: params.action,
           before,
           after,

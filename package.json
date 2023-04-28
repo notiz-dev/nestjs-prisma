@@ -46,7 +46,7 @@
     "@nestjs/platform-express": "9.4.0",
     "@prisma/client": "^4.13.0",
     "@types/jasmine": "3.8.2",
-    "@types/node": "^16.11.1",
+    "@types/node": "^16.18.25",
     "@typescript-eslint/eslint-plugin": "5.38.1",
     "@typescript-eslint/parser": "5.38.1",
     "eslint": "8.24.0",
