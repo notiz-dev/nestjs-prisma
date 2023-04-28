@@ -3,7 +3,6 @@
   "version": "0.21.0-dev.0",
   "description": "Library and schematics to add Prisma integration to a NestJS application",
   "scripts": {
-    "prebuild": "rimraf dist",
     "build": "npm run build:lib && npm run build:schematics",
     "build:lib": "tsc -p tsconfig.lib.json",
     "build:schematics": "tsc -p tsconfig.schematics.json",
@@ -42,10 +41,10 @@
     "@schematics/angular": "~13.3.0"
   },
   "devDependencies": {
-    "@nestjs/common": "9.1.2",
-    "@nestjs/core": "9.1.2",
-    "@nestjs/platform-express": "9.1.2",
-    "@prisma/client": "^4.4.0",
+    "@nestjs/common": "9.4.0",
+    "@nestjs/core": "9.4.0",
+    "@nestjs/platform-express": "9.4.0",
+    "@prisma/client": "^4.13.0",
     "@types/jasmine": "3.8.2",
     "@types/node": "^16.11.1",
     "@typescript-eslint/eslint-plugin": "5.38.1",
@@ -54,11 +53,10 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.2.1",
     "jasmine": "^3.6.3",
-    "prettier": "2.7.1",
-    "prisma": "^4.4.0",
+    "prettier": "2.8.8",
+    "prisma": "^4.13.0",
     "reflect-metadata": "0.1.13",
-    "rimraf": "^3.0.2",
-    "rxjs": "^7.5.7",
-    "typescript": "~4.8.3"
+    "rxjs": "^7.8.1",
+    "typescript": "~4.9.5"
   }
 }
