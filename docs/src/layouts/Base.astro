@@ -12,7 +12,6 @@ export interface Props {
 }
 
 const { title } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const formattedContentTitle = title ? `${title} - ${SITE.title}` : SITE.title;
 ---
