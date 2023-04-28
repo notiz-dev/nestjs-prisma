@@ -13,9 +13,9 @@ export type ErrorCodesStatusMapping = {
 };
 
 /**
- * {@link PrismaClientExceptionFilter} catches {@link Prisma.PrismaClientKnownRequestError} and {@link Prisma.NotFoundError} exceptions.
+ * {@link PrismaClientExceptionFilter} catches {@link Prisma.PrismaClientKnownRequestError} exceptions.
  */
-@Catch(Prisma?.PrismaClientKnownRequestError, Prisma?.NotFoundError)
+@Catch(Prisma?.PrismaClientKnownRequestError)
 export class PrismaClientExceptionFilter extends BaseExceptionFilter {
   /**
    * default error codes mapping
@@ -35,7 +35,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
    */
   constructor(
     applicationRef?: HttpServer,
-    errorCodesStatusMapping: ErrorCodesStatusMapping = null,
+    errorCodesStatusMapping: ErrorCodesStatusMapping | null = null,
   ) {
     super(applicationRef);
 
@@ -61,16 +61,8 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
    * @param host
    * @returns
    */
-  catch(
-    exception: Prisma.PrismaClientKnownRequestError | Prisma.NotFoundError,
-    host: ArgumentsHost,
-  ) {
-    if (exception instanceof Prisma.PrismaClientKnownRequestError) {
-      return this.catchClientKnownRequestError(exception, host);
-    }
-    if (exception instanceof Prisma.NotFoundError) {
-      return this.catchNotFoundError(exception, host);
-    }
+  catch(exception: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost) {
+    return this.catchClientKnownRequestError(exception, host);
   }
 
   private catchClientKnownRequestError(
@@ -84,15 +76,6 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
     if (!Object.keys(this.errorCodesStatusMapping).includes(exception.code)) {
       return super.catch(exception, host);
     }
-
-    super.catch(new HttpException({ statusCode, message }, statusCode), host);
-  }
-
-  private catchNotFoundError(
-    { message }: Prisma.NotFoundError,
-    host: ArgumentsHost,
-  ) {
-    const statusCode = HttpStatus.NOT_FOUND;
 
     super.catch(new HttpException({ statusCode, message }, statusCode), host);
   }
