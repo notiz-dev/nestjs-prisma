@@ -4,21 +4,19 @@
   --docsearch-primary-color: theme(colors.violet.500);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --docsearch-modal-background: theme(colors.gray.900);
-    --docsearch-footer-background: theme(colors.gray.800);
-    --docsearch-modal-shadow: theme('boxShadow.lg');
-    --docsearch-footer-shadow: theme('boxShadow.lg');
+:root.dark {
+  --docsearch-modal-background: theme(colors.gray.900);
+  --docsearch-footer-background: theme(colors.gray.800);
+  --docsearch-modal-shadow: theme('boxShadow.lg');
+  --docsearch-footer-shadow: theme('boxShadow.lg');
 
-    /* search input */
-    --docsearch-searchbox-focus-background: theme(colors.gray.800);
-    --docsearch-text-color: theme(colors.gray.100);
+  /* search input */
+  --docsearch-searchbox-focus-background: theme(colors.gray.800);
+  --docsearch-text-color: theme(colors.gray.100);
 
-    /* search item */
-    --docsearch-hit-background: theme(colors.gray.800);
-    --docsearch-hit-color: theme(colors.gray.300);
-  }
+  /* search item */
+  --docsearch-hit-background: theme(colors.gray.800);
+  --docsearch-hit-color: theme(colors.gray.300);
 }
 
 /* ------------------------------------------------------------ *\
