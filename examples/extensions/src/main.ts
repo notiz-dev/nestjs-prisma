@@ -10,6 +10,8 @@ async function bootstrap() {
     app.get('PrismaService');
   await customPrismaService.enableShutdownHooks(app);
 
+  customPrismaService.client.$on('error', (e) => {});
+
   await app.listen(3000);
 }
 bootstrap();
