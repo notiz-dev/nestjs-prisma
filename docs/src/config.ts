@@ -99,6 +99,12 @@ export const examples: Example[] = [
     link: 'https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/extensions',
   },
   {
+    name: 'GraphQL',
+    description:
+      'NestJS app with GraphQL Apollo, Prisma and nestjs-prisma',
+    link: 'https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/graphql',
+  },
+  {
     name: 'nestjs-prisma-starter',
     description:
       'NestJS app with GraphQL, JWT authentication, REST API w/ Swagger and Docker',
