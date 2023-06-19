@@ -6,7 +6,7 @@ import {
   HttpServer,
   HttpStatus,
 } from '@nestjs/common';
-import { BaseExceptionFilter } from '@nestjs/core';
+import { APP_FILTER, BaseExceptionFilter, HttpAdapterHost } from '@nestjs/core';
 import { Prisma } from '@prisma/client';
 
 export declare type GqlContextType = 'graphql' | ContextType;
@@ -16,9 +16,9 @@ export type ErrorCodesStatusMapping = {
 };
 
 /**
- * {@link PrismaClientExceptionFilter} catches {@link Prisma.PrismaClientKnownRequestError} and {@link Prisma.NotFoundError} exceptions.
+ * {@link PrismaClientExceptionFilter} catches {@link Prisma.PrismaClientKnownRequestError} exceptions.
  */
-@Catch(Prisma?.PrismaClientKnownRequestError, Prisma?.NotFoundError)
+@Catch(Prisma?.PrismaClientKnownRequestError)
 export class PrismaClientExceptionFilter extends BaseExceptionFilter {
   /**
    * default error codes mapping
@@ -38,7 +38,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
    */
   constructor(
     applicationRef?: HttpServer,
-    errorCodesStatusMapping: ErrorCodesStatusMapping = null,
+    errorCodesStatusMapping: ErrorCodesStatusMapping | null = null,
   ) {
     super(applicationRef);
 
@@ -64,16 +64,8 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
    * @param host
    * @returns
    */
-  catch(
-    exception: Prisma.PrismaClientKnownRequestError | Prisma.NotFoundError,
-    host: ArgumentsHost,
-  ) {
-    if (exception instanceof Prisma.PrismaClientKnownRequestError) {
-      return this.catchClientKnownRequestError(exception, host);
-    }
-    if (exception instanceof Prisma.NotFoundError) {
-      return this.catchNotFoundError(exception, host);
-    }
+  catch(exception: Prisma.PrismaClientKnownRequestError, host: ArgumentsHost) {
+    return this.catchClientKnownRequestError(exception, host);
   }
 
   private catchClientKnownRequestError(
@@ -103,22 +95,6 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
     }
   }
 
-  private catchNotFoundError(
-    { message }: Prisma.NotFoundError,
-    host: ArgumentsHost,
-  ) {
-    const statusCode = HttpStatus.NOT_FOUND;
-
-    if (host.getType() === 'http') {
-      return super.catch(
-        new HttpException({ statusCode, message }, statusCode),
-        host,
-      );
-    } else if (host.getType<GqlContextType>() === 'graphql') {
-      return new HttpException({ statusCode, message }, statusCode);
-    }
-  }
-
   private exceptionShortMessage(message: string): string {
     const shortMessage = message.substring(message.indexOf('→'));
     return shortMessage
@@ -126,4 +102,19 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
       .replace(/\n/g, '')
       .trim();
   }
+}
+
+export function providePrismaClientExceptionFilter(
+  errorCodesStatusMapping?: ErrorCodesStatusMapping,
+) {
+  return {
+    provide: APP_FILTER,
+    useFactory: ({ httpAdapter }: HttpAdapterHost) => {
+      return new PrismaClientExceptionFilter(
+        httpAdapter,
+        errorCodesStatusMapping,
+      );
+    },
+    inject: [HttpAdapterHost],
+  };
 }

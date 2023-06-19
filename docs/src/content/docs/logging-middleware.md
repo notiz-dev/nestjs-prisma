@@ -1,6 +1,5 @@
 ---
 title: Logging Middleware
-layout: ../../layouts/Doc.astro
 ---
 
 ## Apply logging middleware

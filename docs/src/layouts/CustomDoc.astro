@@ -1,14 +1,15 @@
 ---
 import Layout from './Base.astro';
 import Navigation from '../components/Navigation.astro';
-import { navigation } from '../config';
+import { GITHUB_EDIT_URL, navigation } from '../config';
 import PrevNextNavigation from '../components/PrevNextNavigation.astro';
 
 type Props = {
   title: string;
+  githubEditUrl?: string;
 };
 
-const { title } = Astro.props as Props;
+const { title, githubEditUrl } = Astro.props as Props;
 
 const currentPage = Astro.url.pathname;
 const currentPageMatch = currentPage.endsWith('/')
@@ -42,6 +43,18 @@ const currentSection = navigation.find((section) =>
         <slot />
       </article>
       <PrevNextNavigation />
+      {
+        githubEditUrl && (
+          <div class="border-t border-gray-200 pb-20 pt-10 text-right dark:border-gray-800">
+            <a
+              href={githubEditUrl}
+              class="text-right text-sm dark:text-gray-500 dark:hover:text-gray-400"
+            >
+              Edit this page on GitHub
+            </a>
+          </div>
+        )
+      }
     </div>
   </div>
 </Layout>

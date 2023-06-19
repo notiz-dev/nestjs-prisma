@@ -3,6 +3,7 @@ import { Icon } from 'astro-icon';
 import Navigation from './Navigation.astro';
 import { navigation } from '../config';
 import { MobileSearch, Search } from './Search';
+import ThemeButton from './ThemeButton.astro';
 
 const currentPage = Astro.url.pathname;
 
@@ -17,82 +18,92 @@ const isDocsPage = currentPage.startsWith('/docs');
 
 <header
   x-data="{ mobileNavOpen: false }"
-  class="max-w-screen-xl mx-auto sticky top-0 z-50 flex items-center justify-between bg-white px-4 py-5 sm:px-6 lg:px-8 dark:bg-gray-900"
+  class="sticky top-0 z-50 mx-auto flex max-w-screen-xl items-center justify-between bg-white px-4 py-5 dark:bg-gray-900 sm:px-6 lg:px-8"
 >
   <a
     href="/"
     aria-label="Home page"
-    class="font-semibold text-xl bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-pink-600 to-violet-500"
+    class="bg-gradient-to-r from-red-600 via-pink-600 to-violet-500 bg-clip-text text-xl font-semibold text-transparent"
   >
     nestjs-prisma
   </a>
 
-  
   <div class="flex items-center">
     <Search client:visible />
-    <MobileSearch client:visible/>
-    <a class="ml-4" aria-label="GitHub" href="https://github.com/notiz-dev/nestjs-prisma">
-      <Icon name="github" class="w-5 h-5" />
+    <MobileSearch client:visible />
+    <a
+      class="ml-4"
+      aria-label="GitHub"
+      href="https://github.com/notiz-dev/nestjs-prisma"
+    >
+      <Icon name="github" class="h-5 w-5" />
     </a>
-    {isDocsPage && (<button
-      class="ml-4 block md:hidden"
-      x-on:click="mobileNavOpen = ! mobileNavOpen"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke-width="1.5"
-        stroke="currentColor"
-        class="w-7 h-7"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-      </svg>
-    </button>
-
-    <div
-      x-cloak
-      x-show="mobileNavOpen"
-      x-transition
-      class="fixed inset-0 z-50 flex items-start justify-end overflow-y-auto bg-gray-900/30 backdrop-blur"
-    >
-      <div
-        x-on:click.outside="mobileNavOpen = false"
-        class="min-h-full w-full max-w-[18rem] bg-gray-900 p-5"
-      >
-        <div class="flex items-center justify-between space-x-4">
-          <a
-            href="/"
-            aria-label="Home page"
-            class="font-semibold text-lg bg-clip-text text-transparent bg-gradient-to-r from-red-600 via-pink-600 to-violet-500"
+    <ThemeButton />
+    {
+      isDocsPage && (
+        <>
+          <button
+            class="ml-4 block md:hidden"
+            x-on:click="mobileNavOpen = ! mobileNavOpen"
           >
-            nestjs-prisma
-          </a>
-
-          <button x-on:click="mobileNavOpen = ! mobileNavOpen">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke-width="1.5"
               stroke="currentColor"
-              class="w-6 h-6"
+              class="h-7 w-7"
             >
               <path
                 stroke-linecap="round"
                 stroke-linejoin="round"
-                d="M6 18L18 6M6 6l12 12"></path>
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+              />
             </svg>
           </button>
-        </div>
-        <div class="mt-5 px-2">
-          <Navigation currentPage={currentPage} navigation={navigation} />
-        </div>
-      </div>
-    </div>) }
-    
+          <div
+            x-cloak
+            x-show="mobileNavOpen"
+            x-transition
+            class="fixed inset-0 z-50 flex items-start justify-end overflow-y-auto bg-gray-900/30 backdrop-blur"
+          >
+            <div
+              x-on:click.outside="mobileNavOpen = false"
+              class="min-h-full w-full max-w-[18rem] bg-white p-5 dark:bg-gray-900"
+            >
+              <div class="flex items-center justify-between space-x-4">
+                <a
+                  href="/"
+                  aria-label="Home page"
+                  class="bg-gradient-to-r from-red-600 via-pink-600 to-violet-500 bg-clip-text text-lg font-semibold text-transparent"
+                >
+                  nestjs-prisma
+                </a>
+
+                <button x-on:click="mobileNavOpen = ! mobileNavOpen">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="h-6 w-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div class="mt-5 px-2">
+                <Navigation currentPage={currentPage} navigation={navigation} />
+              </div>
+            </div>
+          </div>
+        </>
+      )
+    }
   </div>
 </header>

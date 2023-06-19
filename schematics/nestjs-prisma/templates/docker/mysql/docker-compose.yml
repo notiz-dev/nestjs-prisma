@@ -7,7 +7,7 @@ services:
     container_name: nest-api
     restart: always
     ports:
-      - 3000:3000
+      - '3000:3000'
     depends_on:
       - nest-mysql
     env_file:
@@ -18,7 +18,7 @@ services:
     container_name: nest-mysql
     restart: always
     ports:
-      - 3306:3306
+      - '3306:3306'
     env_file:
       - .env
     volumes:

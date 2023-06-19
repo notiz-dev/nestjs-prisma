@@ -1,6 +1,5 @@
 ---
 title: Schematics
-layout: ../../layouts/Doc.astro
 ---
 
 ## Command

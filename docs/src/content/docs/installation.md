@@ -1,6 +1,5 @@
 ---
 title: Installation
-layout: ../../layouts/Doc.astro
 ---
 
 ## Automatic Install

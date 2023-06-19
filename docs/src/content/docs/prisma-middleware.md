@@ -1,6 +1,5 @@
 ---
 title: Prisma Middleware
-layout: ../../layouts/Doc.astro
 ---
 
 Apply [Prisma Middlewares](https://www.prisma.io/docs/concepts/components/prisma-client/middleware) with `PrismaModule`

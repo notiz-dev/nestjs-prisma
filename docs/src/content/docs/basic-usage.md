@@ -1,6 +1,5 @@
 ---
 title: Basic Usage
-layout: ../../layouts/Doc.astro
 ---
 
 ## Prisma schema

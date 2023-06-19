@@ -4,8 +4,11 @@ import { examples } from '../../config';
 import { Icon } from 'astro-icon';
 ---
 
-<CustomDoc title="Examples">
-  <ul class="mt-6 grid md:grid-cols-2 gap-6">
+<CustomDoc
+  title="Examples"
+  githubEditUrl={'https://github.com/notiz-dev/nestjs-prisma/blob/main/docs/src/config.ts#L84-L107'}
+>
+  <ul class="mt-6 grid gap-6 md:grid-cols-2">
     {
       examples.map((example) => (
         <li class="overflow-hidden rounded-md p-4 shadow-md dark:bg-gray-800 dark:shadow-xl">
