@@ -89,7 +89,7 @@ import { extendedPrismaClient } from './prisma.extension';
 @Injectable()
 export class AppService {
   constructor(
-    // ✅ use `prismaClient` from extension for correct type-safety
+    // ✅ use `extendedPrismaClient` type for correct type-safety of your extended PrismaClient
     @Inject('PrismaService')
     private prismaService: CustomPrismaService<extendedPrismaClient>
   ) {}
