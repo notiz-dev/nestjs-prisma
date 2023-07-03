@@ -1,7 +1,6 @@
 import { ModuleMetadata, Type } from '@nestjs/common';
 
 export type PrismaClientLike = {
-  $on(eventType: string, callback: () => Promise<void>): void;
   /**
    * Connect with the database
    */
