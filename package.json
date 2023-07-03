@@ -44,7 +44,7 @@
     "@nestjs/common": "9.4.0",
     "@nestjs/core": "9.4.0",
     "@nestjs/platform-express": "9.4.0",
-    "@prisma/client": "^4.13.0",
+    "@prisma/client": "^4.16.2",
     "@types/jasmine": "3.8.2",
     "@types/node": "^16.18.25",
     "@typescript-eslint/eslint-plugin": "5.38.1",
@@ -54,7 +54,7 @@
     "eslint-plugin-prettier": "4.2.1",
     "jasmine": "^3.6.3",
     "prettier": "2.8.8",
-    "prisma": "^4.13.0",
+    "prisma": "^4.16.2",
     "reflect-metadata": "0.1.13",
     "rxjs": "^7.8.1",
     "typescript": "~4.9.5"
