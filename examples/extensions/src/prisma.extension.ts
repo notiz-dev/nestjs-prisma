@@ -10,15 +10,20 @@ export const extendedPrismaClient = new PrismaClient<
     { level: 'warn', emit: 'event' },
     { level: 'error', emit: 'event' },
   ],
-}).$extends({
-  model: {
-    user: {
-      findByEmail: async (email: string) => {
-        console.log('extension findByEmail');
-        return extendedPrismaClient.user.findFirstOrThrow({ where: { email } });
+})
+  // FIXME - `$on()` returns void
+  // .$on('error', (e) => {})
+  .$extends({
+    model: {
+      user: {
+        findByEmail: async (email: string) => {
+          console.log('extension findByEmail');
+          return extendedPrismaClient.user.findFirstOrThrow({
+            where: { email },
+          });
+        },
       },
     },
-  },
-});
+  });
 
 export type extendedPrismaClient = typeof extendedPrismaClient;
