@@ -94,7 +94,7 @@ export const examples: Example[] = [
   {
     name: 'Extensions',
     description:
-      'Using the Prisma Client extension (Preview) with nestjs-prisma',
+      'Using the Prisma Client extension with nestjs-prisma',
     link: 'https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/extensions',
   },
   {

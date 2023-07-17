@@ -1,32 +1,10 @@
 ---
-title: Prisma Client Extensions (Preview)
+title: Prisma Client Extensions
 ---
 
-To use the new [Prisma Client Extensions (Preview)](https://www.prisma.io/docs/concepts/components/prisma-client/client-extensions) you must update to Prisma Client [v4.7.0](https://github.com/prisma/prisma/releases/tag/4.7.0) or later and install `nestjs-prisma@v0.20.0` or later.
+To use the new [Prisma Client Extensions](https://www.prisma.io/docs/concepts/components/prisma-client/client-extensions) you must update to Prisma Client [v4.7.0](https://github.com/prisma/prisma/releases/tag/4.7.0) or later and install `nestjs-prisma@v0.20.0` or later.
 
 Follow this guide or checkout the [extensions example](https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/extensions).
-
-## Enable preview feature
-
-Enable `clientExtensions` preview in your Prisma schema and generate Prisma Client again.
-
-```prisma
-datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["clientExtensions"]
-}
-
-model User {
-  id    String  @id @default(cuid())
-  email String  @unique
-  name  String?
-}
-```
 
 ## Prisma Extension
 
@@ -106,6 +84,28 @@ export class AppService {
 ```
 
 Now you have access to your extensions `this.prismaService.client.user.findByEmail(email)`.
+
+## Enable preview feature (before version 4.16.0)
+
+Enable `clientExtensions` preview in your Prisma schema and generate Prisma Client again.
+
+```prisma
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["clientExtensions"]
+}
+
+model User {
+  id    String  @id @default(cuid())
+  email String  @unique
+  name  String?
+}
+```
 
 ## Type issues with Prisma Client v4.7.0
 
