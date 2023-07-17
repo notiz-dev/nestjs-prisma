@@ -37,10 +37,4 @@ export class PrismaService
       await this.$connect();
     }
   }
-
-  async enableShutdownHooks(app: INestApplication | INestMicroservice) {
-    this.$on('beforeExit', async () => {
-      await app.close();
-    });
-  }
 }

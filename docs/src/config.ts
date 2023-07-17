@@ -36,7 +36,6 @@ export const navigation: Navigation[] = [
   {
     title: 'Basics',
     links: [
-      { title: 'Shutdown Hook', link: '/docs/shutdown-hook' },
       { title: 'Prisma Middleware', link: '/docs/prisma-middleware' },
       { title: 'Prisma Logging', link: '/docs/prisma-logging' },
     ],
