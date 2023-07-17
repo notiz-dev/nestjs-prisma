@@ -49,7 +49,7 @@ export const navigation: Navigation[] = [
       },
       // { title: 'Multiple Prisma Clients', link: '' },
       {
-        title: 'Prisma Client Extensions (Preview)',
+        title: 'Prisma Client Extensions',
         link: '/docs/prisma-client-extensions',
       },
     ],
