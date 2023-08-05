@@ -112,7 +112,8 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
       this.defaultExceptionMessage(exception);
 
     if (host.getType() === 'http') {
-      if (!Object.keys(this.errorCodesStatusMapping).includes(exception.code)) {
+      // for general requests
+      if (this.shouldIgnore(exception)) {
         return super.catch(exception, host);
       }
 
@@ -122,12 +123,19 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
       );
     } else if (host.getType<GqlContextType>() === 'graphql') {
       // for graphql requests
-      if (!Object.keys(this.errorCodesStatusMapping).includes(exception.code)) {
+      if (this.shouldIgnore(exception)) {
         return exception;
       }
 
       return new HttpException({ statusCode, message }, statusCode);
     }
+  }
+
+  private shouldIgnore(
+    exception: Prisma.PrismaClientKnownRequestError,
+  ): boolean {
+    // Only status mappings are used for judging (message mappings are not used).
+    return !Object.keys(this.errorCodesStatusMapping).includes(exception.code);
   }
 
   private defaultExceptionMessage(
