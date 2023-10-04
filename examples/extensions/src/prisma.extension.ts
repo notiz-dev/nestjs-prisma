@@ -1,4 +1,6 @@
 import { Prisma, PrismaClient } from '@prisma/client';
+// used for Read Replicas example
+import { readReplicas } from '@prisma/extension-read-replicas';
 
 export const extendedPrismaClient = new PrismaClient<
   Prisma.PrismaClientOptions,
@@ -24,6 +26,13 @@ export const extendedPrismaClient = new PrismaClient<
         },
       },
     },
-  });
+  })
+  // Read Replicas example, change datasource prodiver (prisma/schema.prisma) to a supported database
+  // More details in the blog - https://www.prisma.io/blog/read-replicas-prisma-client-extension-f66prwk56wow
+  // .$extends(
+  //   readReplicas({
+  //     url: 'postgres://localhost:5432/prisma',
+  //   }),
+  // );
 
 export type extendedPrismaClient = typeof extendedPrismaClient;
