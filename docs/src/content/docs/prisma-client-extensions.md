@@ -8,6 +8,8 @@ Follow this guide or checkout the [extensions example](https://github.com/notiz-
 
 ## Prisma Extension
 
+### Create Prisma Extension
+
 Create a file for your Prisma extension for example `prisma.extension.ts`
 
 ```ts
@@ -25,6 +27,10 @@ export const extendedPrismaClient = new PrismaClient().$extends({
 
 export type extendedPrismaClient = typeof extendedPrismaClient;
 ```
+
+Export the type of your extended Prisma Client, this will be used for correct type-safety for your `CustomPrismaService`.
+
+### Register Extended Prisma Client
 
 Register your extended Prisma Client using `CustomPrismaModule.forRootAsync`.
 
@@ -84,6 +90,132 @@ export class AppService {
 ```
 
 Now you have access to your extensions `this.prismaService.client.user.findByEmail(email)`.
+
+## Extension Packages
+
+Follow these examples to use Prisma Extension packages in your NestJS application.
+
+### Pagination
+
+Add pagination meta information to all or some Prisma models with [Prisma Pagination Extension](https://github.com/deptyped/prisma-extension-pagination).
+
+Install the pagination extension package.
+
+```bash
+npm i prisma-extension-pagination
+```
+
+Now add the pagination extension to your Prisma Client for [all models](https://github.com/deptyped/prisma-extension-pagination#install-extension-to-all-models).
+
+```ts
+// prisma.extension.ts
+import { PrismaClient } from '@prisma/client';
+import pagination from 'prisma-extension-pagination';
+
+// pagination for all models
+export const extendedPrismaClient = new PrismaClient().$extends(pagination());
+
+export type extendedPrismaClient = typeof extendedPrismaClient;
+```
+
+Follow the docs to [add pagination to specific models](https://github.com/deptyped/prisma-extension-pagination#install-extension-on-some-models), if you don't want to add pagination to all models.
+
+[Register your extended Prisma Client](#register-extended-prisma-client) and use the new `paginate` function for your Prisma models.
+
+```ts
+import { Inject, Injectable } from '@nestjs/common';
+import { CustomPrismaService } from 'nestjs-prisma';
+import { extendedPrismaClient } from './prisma.extension';
+
+@Injectable()
+export class AppService {
+  constructor(
+    // ✅ use `extendedPrismaClient` from extension for correct type-safety
+    @Inject('PrismaService')
+    private prismaService: CustomPrismaService<extendedPrismaClient>
+  ) {}
+
+  async usersPage() {
+    // 🦾 use new `paginate` function
+    const [users, meta] = await this.prismaService.client.user
+      .paginate()
+      .withPages({
+        limit: 10,
+        page: 1,
+        includePageCount: true,
+      });
+
+    return {
+      users,
+      meta,
+    };
+  }
+}
+```
+
+### Read Replica
+
+Add [read replica](https://www.prisma.io/blog/read-replicas-prisma-client-extension-f66prwk56wow) support to your Prisma Client with [Prisma Read Replica Extension](https://github.com/prisma/extension-read-replicas).
+
+Install the read replica extension package.
+
+```bash
+npm i @prisma/extension-read-replicas
+```
+
+Now add the read replica extension to your Prisma Client.
+
+```ts
+// prisma.extension.ts
+import { PrismaClient } from '@prisma/client';
+import { readReplicas } from '@prisma/extension-read-replicas';
+
+// pagination for all models
+export const extendedPrismaClient = new PrismaClient().$extends(
+  // update url to your read replica url
+  readReplicas({ url: 'postgresql://replica.example.com:5432/db' })
+);
+
+export type extendedPrismaClient = typeof extendedPrismaClient;
+```
+
+[Register your extended Prisma Client](#register-extended-prisma-client) and while using `CustomPrismaService` all read operations, such as `findMany`, `findUnique` are forwarded to a database replica. All write operations, such as `create`, `update`, `delete` are forwarded to the primary database. To read from the primary database use `$primary()`, instead of accessing a read replica.
+
+```ts
+import { Inject, Injectable } from '@nestjs/common';
+import { CustomPrismaService } from 'nestjs-prisma';
+import { extendedPrismaClient } from './prisma.extension';
+
+@Injectable()
+export class AppService {
+  constructor(
+    // ✅ use `extendedPrismaClient` type for correct type-safety of your extended PrismaClient
+    @Inject('PrismaService')
+    private prismaService: CustomPrismaService<extendedPrismaClient>
+  ) {}
+
+  users() {
+    // uses database replica
+    return this.prismaService.client.user.findMany();
+  }
+
+  user(id: string) {
+    // bypasses database replica and uses primary database
+    return this.prismaService.client
+      .$primary()
+      .user.findUnique({ where: { id } });
+  }
+
+  add(email: string) {
+    // uses primary database
+    return this.prismaService.client.user.create({
+      data: {
+        email,
+      },
+    });
+  }
+}
+```
 
 ## Enable preview feature (before version 4.16.0)
 

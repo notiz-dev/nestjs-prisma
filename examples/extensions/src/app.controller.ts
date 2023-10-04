@@ -10,6 +10,11 @@ export class AppController {
     return this.appService.users();
   }
 
+  @Get('page')
+  usersPage() {
+    return this.appService.usersPage();
+  }
+
   /**
    *
    * http://localhost:3000/ham@burger.dev

@@ -14,6 +14,21 @@ export class AppService {
     return this.prismaService.client.user.findMany();
   }
 
+  async usersPage() {
+    const [users, meta] = await this.prismaService.client.user
+      .paginate()
+      .withPages({
+        limit: 10,
+        page: 1,
+        includePageCount: true,
+      });
+
+    return {
+      users,
+      meta,
+    };
+  }
+
   user(email: string) {
     // 🦾 use new `findByEmail`
     return this.prismaService.client.user.findByEmail(email);
