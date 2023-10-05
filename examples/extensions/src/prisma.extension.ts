@@ -37,4 +37,4 @@ export const extendedPrismaClient = new PrismaClient<
 //   }),
 // );
 
-export type extendedPrismaClient = typeof extendedPrismaClient;
+export type ExtendedPrismaClient = typeof extendedPrismaClient;

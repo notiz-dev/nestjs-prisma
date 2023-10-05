@@ -1,13 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { CustomPrismaService } from 'nestjs-prisma';
-import { extendedPrismaClient } from './prisma.extension';
+import { type ExtendedPrismaClient } from './prisma.extension';
 
 @Injectable()
 export class AppService {
   constructor(
-    // ✅ use `extendedPrismaClient` from extension for correct type-safety
+    // ✅ use `ExtendedPrismaClient` from extension for correct type-safety
     @Inject('PrismaService')
-    private prismaService: CustomPrismaService<extendedPrismaClient>,
+    private prismaService: CustomPrismaService<ExtendedPrismaClient>,
   ) {}
 
   users() {

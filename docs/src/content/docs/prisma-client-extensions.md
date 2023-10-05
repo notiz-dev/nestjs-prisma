@@ -25,7 +25,7 @@ export const extendedPrismaClient = new PrismaClient().$extends({
   },
 });
 
-export type extendedPrismaClient = typeof extendedPrismaClient;
+export type ExtendedPrismaClient = typeof extendedPrismaClient;
 ```
 
 Export the type of your extended Prisma Client, this will be used for correct type-safety for your `CustomPrismaService`.
@@ -94,17 +94,20 @@ Create the `ExtendedPrismaConfigService` and extend it with the `CustomPrismaCli
 ```ts
 import { Injectable } from '@nestjs/common';
 import { CustomPrismaClientFactory } from 'nestjs-prisma';
-import { extendedPrismaClient } from './prisma.extension';
+import {
+  type ExtendedPrismaClient,
+  extendedPrismaClient,
+} from './prisma.extension';
 
 @Injectable()
 export class ExtendedPrismaConfigService
-  implements CustomPrismaClientFactory<extendedPrismaClient>
+  implements CustomPrismaClientFactory<ExtendedPrismaClient>
 {
   constructor() {
     // TODO inject any other service here like the `ConfigService`
   }
 
-  createPrismaClient(): extendedPrismaClient {
+  createPrismaClient(): ExtendedPrismaClient {
     // you could pass options to your `PrismaClient` instance here
     return extendedPrismaClient;
   }
@@ -118,14 +121,14 @@ Inject `CustomPrismaService` into your controller/service and use the extended P
 ```ts
 import { Inject, Injectable } from '@nestjs/common';
 import { CustomPrismaService } from 'nestjs-prisma';
-import { extendedPrismaClient } from './prisma.extension';
+import { type ExtendedPrismaClient } from './prisma.extension';
 
 @Injectable()
 export class AppService {
   constructor(
-    // ✅ use `extendedPrismaClient` type for correct type-safety of your extended PrismaClient
+    // ✅ use `ExtendedPrismaClient` type for correct type-safety of your extended PrismaClient
     @Inject('PrismaService')
-    private prismaService: CustomPrismaService<extendedPrismaClient>
+    private prismaService: CustomPrismaService<ExtendedPrismaClient>
   ) {}
 
   users() {
@@ -165,7 +168,7 @@ import pagination from 'prisma-extension-pagination';
 // pagination for all models
 export const extendedPrismaClient = new PrismaClient().$extends(pagination());
 
-export type extendedPrismaClient = typeof extendedPrismaClient;
+export type ExtendedPrismaClient = typeof extendedPrismaClient;
 ```
 
 Follow the docs to [add pagination to specific models](https://github.com/deptyped/prisma-extension-pagination#install-extension-on-some-models), if you don't want to add pagination to all models.
@@ -175,14 +178,14 @@ Follow the docs to [add pagination to specific models](https://github.com/deptyp
 ```ts
 import { Inject, Injectable } from '@nestjs/common';
 import { CustomPrismaService } from 'nestjs-prisma';
-import { extendedPrismaClient } from './prisma.extension';
+import { type ExtendedPrismaClient } from './prisma.extension';
 
 @Injectable()
 export class AppService {
   constructor(
-    // ✅ use `extendedPrismaClient` from extension for correct type-safety
+    // ✅ use `ExtendedPrismaClient` from extension for correct type-safety
     @Inject('PrismaService')
-    private prismaService: CustomPrismaService<extendedPrismaClient>
+    private prismaService: CustomPrismaService<ExtendedPrismaClient>
   ) {}
 
   async usersPage() {
@@ -226,7 +229,7 @@ export const extendedPrismaClient = new PrismaClient().$extends(
   readReplicas({ url: 'postgresql://replica.example.com:5432/db' })
 );
 
-export type extendedPrismaClient = typeof extendedPrismaClient;
+export type ExtendedPrismaClient = typeof extendedPrismaClient;
 ```
 
 [Register your extended Prisma Client](#register-extended-prisma-client) and while using `CustomPrismaService` all read operations, such as `findMany`, `findUnique` are forwarded to a database replica. All write operations, such as `create`, `update`, `delete` are forwarded to the primary database. To read from the primary database use `$primary()`, instead of accessing a read replica.
@@ -234,14 +237,14 @@ export type extendedPrismaClient = typeof extendedPrismaClient;
 ```ts
 import { Inject, Injectable } from '@nestjs/common';
 import { CustomPrismaService } from 'nestjs-prisma';
-import { extendedPrismaClient } from './prisma.extension';
+import { type ExtendedPrismaClient } from './prisma.extension';
 
 @Injectable()
 export class AppService {
   constructor(
-    // ✅ use `extendedPrismaClient` type for correct type-safety of your extended PrismaClient
+    // ✅ use `ExtendedPrismaClient` type for correct type-safety of your extended PrismaClient
     @Inject('PrismaService')
-    private prismaService: CustomPrismaService<extendedPrismaClient>
+    private prismaService: CustomPrismaService<ExtendedPrismaClient>
   ) {}
 
   users() {
