@@ -34,6 +34,8 @@ Export the type of your extended Prisma Client, this will be used for correct ty
 
 Register your extended Prisma Client using `CustomPrismaModule.forRootAsync`.
 
+#### useFactory
+
 ```ts
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
@@ -62,6 +64,54 @@ import { extendedPrismaClient } from './prisma.extension';
 })
 export class AppModule {}
 ```
+
+#### useClass
+
+```ts
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+
+import { CustomPrismaModule } from 'nestjs-prisma';
+import { ExtendedPrismaConfigService } from './extended-prisma-config.service';
+
+@Module({
+  imports: [
+    // ✅ use `forRootAsync` when using `PrismaClient().$extends({})`
+    CustomPrismaModule.forRootAsync({
+      name: 'PrismaService',
+      useClass: ExtendedPrismaConfigService,
+    }),
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
+```
+
+Create the `ExtendedPrismaConfigService` and extend it with the `CustomPrismaClientFactory` and provide the type of your extended Prisma Client.
+
+```ts
+import { Injectable } from '@nestjs/common';
+import { CustomPrismaClientFactory } from 'nestjs-prisma';
+import { extendedPrismaClient } from './prisma.extension';
+
+@Injectable()
+export class ExtendedPrismaConfigService
+  implements CustomPrismaClientFactory<extendedPrismaClient>
+{
+  constructor() {
+    // TODO inject any other service here like the `ConfigService`
+  }
+
+  createPrismaClient(): extendedPrismaClient {
+    // you could pass options to your `PrismaClient` instance here
+    return extendedPrismaClient;
+  }
+}
+```
+
+### Use Extended Prisma Client
 
 Inject `CustomPrismaService` into your controller/service and use the extended Prisma Client for type-safety.
 
