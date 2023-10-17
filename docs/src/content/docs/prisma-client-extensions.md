@@ -223,7 +223,6 @@ Now add the read replica extension to your Prisma Client.
 import { PrismaClient } from '@prisma/client';
 import { readReplicas } from '@prisma/extension-read-replicas';
 
-// pagination for all models
 export const extendedPrismaClient = new PrismaClient().$extends(
   // update url to your read replica url
   readReplicas({ url: 'postgresql://replica.example.com:5432/db' })
