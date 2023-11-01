@@ -121,7 +121,7 @@ export class PrismaClientExceptionFilter extends BaseExceptionFilter {
   private defaultStatusCode(
     exception: Prisma.PrismaClientKnownRequestError,
   ): number | undefined {
-    return this.defaultMapping?.[exception.code];
+    return this.defaultMapping[exception.code];
   }
 
   private userDefinedExceptionMessage(
