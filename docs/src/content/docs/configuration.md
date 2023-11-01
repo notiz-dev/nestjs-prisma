@@ -54,7 +54,7 @@ Pass `PrismaClientOptions` [options](https://www.prisma.io/docs/reference/api-re
 
 ### prismaServiceOptions.middlewares
 
-Apply Prisma [middlewares](/docs/prisma-middlewares) to perform actions before or after db queries.
+Apply Prisma [middlewares](/docs/prisma-middleware) to perform actions before or after db queries.
 
 ## Async configuration
 
