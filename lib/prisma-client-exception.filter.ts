@@ -1,7 +1,6 @@
 import {
   ArgumentsHost,
   Catch,
-  ContextType,
   HttpException,
   HttpServer,
   HttpStatus,
@@ -9,7 +8,7 @@ import {
 import { APP_FILTER, BaseExceptionFilter, HttpAdapterHost } from '@nestjs/core';
 import { Prisma } from '@prisma/client';
 
-export declare type GqlContextType = 'graphql' | ContextType;
+export declare type GqlContextType = 'graphql';
 
 export type ErrorCodesStatusMapping = {
   [key: string]:
