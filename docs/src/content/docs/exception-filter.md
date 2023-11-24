@@ -127,7 +127,20 @@ import { PrismaClientExceptionFilter } from 'nestjs-prisma';
       },
       inject: [HttpAdapterHost],
     },
-    // or
+  ],
+})
+export class AppModule {}
+```
+
+Or use `providePrismaClientExceptionFilter()` (available since `v0.21.0-dev.0`)
+
+```ts
+//src/app.module.ts
+import { HttpStatus, Module } from '@nestjs/common';
+import { providePrismaClientExceptionFilter } from 'nestjs-prisma';
+
+@Module({
+  providers: [
     providePrismaClientExceptionFilter({
       // Prisma Error Code: HTTP Status Response
       P2000: HttpStatus.BAD_REQUEST,
