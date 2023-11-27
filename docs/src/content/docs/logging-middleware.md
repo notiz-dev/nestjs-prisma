@@ -69,6 +69,7 @@ Change the log level from your `.env` file using the [@nestjs/config](https://do
 
 ```ts
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PrismaModule, loggingMiddleware, QueryInfo } from 'nestjs-prisma';
 
 @Module({

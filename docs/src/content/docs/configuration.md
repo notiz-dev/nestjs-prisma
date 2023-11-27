@@ -124,6 +124,7 @@ Alternatively, you can use a class instead of a factory:
 
 ```ts
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from 'nestjs-prisma';
 
 @Module({

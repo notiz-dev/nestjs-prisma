@@ -22,7 +22,6 @@ Instantiate the filter in your `main.ts` and pass the `HttpAdapterHost`
 
 ```ts
 //src/main.ts
-import { ValidationPipe } from '@nestjs/common';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { PrismaClientExceptionFilter } from 'nestjs-prisma';
@@ -67,7 +66,6 @@ Or use `providePrismaClientExceptionFilter()` (available since `v0.21.0-dev.0`)
 ```ts
 //src/app.module.ts
 import { Module } from '@nestjs/common';
-import { APP_FILTER, HttpAdapterHost } from '@nestjs/core';
 import { providePrismaClientExceptionFilter } from 'nestjs-prisma';
 
 @Module({
@@ -84,7 +82,7 @@ Provide your own error code mapping, if you like to catch additional [Prisma Cli
 
 ```ts
 //src/main.ts
-import { ValidationPipe } from '@nestjs/common';
+import { HttpStatus } from '@nestjs/common';
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { PrismaClientExceptionFilter } from 'nestjs-prisma';
@@ -111,7 +109,7 @@ bootstrap();
 
 ```ts
 //src/app.module.ts
-import { Module } from '@nestjs/common';
+import { HttpStatus, Module } from '@nestjs/common';
 import { APP_FILTER, HttpAdapterHost } from '@nestjs/core';
 import { PrismaClientExceptionFilter } from 'nestjs-prisma';
 
@@ -129,7 +127,20 @@ import { PrismaClientExceptionFilter } from 'nestjs-prisma';
       },
       inject: [HttpAdapterHost],
     },
-    // or
+  ],
+})
+export class AppModule {}
+```
+
+Or use `providePrismaClientExceptionFilter()` (available since `v0.21.0-dev.0`)
+
+```ts
+//src/app.module.ts
+import { HttpStatus, Module } from '@nestjs/common';
+import { providePrismaClientExceptionFilter } from 'nestjs-prisma';
+
+@Module({
+  providers: [
     providePrismaClientExceptionFilter({
       // Prisma Error Code: HTTP Status Response
       P2000: HttpStatus.BAD_REQUEST,
