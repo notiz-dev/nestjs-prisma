@@ -1,7 +1,7 @@
-import { DatasourceProvider } from './../nestjs-prisma/schema';
 import { SchematicContext, Tree } from '@angular-devkit/schematics';
 import { exec } from 'child_process';
 import { Observable } from 'rxjs';
+import { DatasourceProvider } from './../nestjs-prisma/schema';
 
 interface InitOptions {
   datasource: DatasourceProvider;

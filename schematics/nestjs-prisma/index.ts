@@ -1,27 +1,27 @@
-import { npmScripts } from './npm-scripts';
-import { Schema } from './schema';
+import { strings } from '@angular-devkit/core';
 import {
   Rule,
   SchematicContext,
-  Tree,
-  chain,
   SchematicsException,
-  url,
+  Tree,
   apply,
-  template,
+  chain,
   mergeWith,
+  template,
+  url,
 } from '@angular-devkit/schematics';
 import {
   NodePackageInstallTask,
   RunSchematicTask,
 } from '@angular-devkit/schematics/tasks';
 import {
-  addPackageJsonDependency,
   NodeDependency,
+  addPackageJsonDependency,
 } from '@schematics/angular/utility/dependencies';
-import { strings } from '@angular-devkit/core';
+import { Dependency, dependencies } from './dependencies';
+import { npmScripts } from './npm-scripts';
+import { Schema } from './schema';
 import { getLatestDependencyVersion } from './utils/get-latest-dependency-version';
-import { dependencies, Dependency } from './dependencies';
 
 // You don't have to export the function as default. You can also have more than one rule factory
 // per file.

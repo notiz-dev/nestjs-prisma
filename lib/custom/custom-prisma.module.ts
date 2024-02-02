@@ -1,4 +1,4 @@
-import { DynamicModule, Module, Provider, Logger } from '@nestjs/common';
+import { DynamicModule, Logger, Module, Provider } from '@nestjs/common';
 import {
   CustomPrismaClientFactory,
   CustomPrismaModuleAsyncOptions,

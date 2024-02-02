@@ -1,5 +1,5 @@
-import { PrismaClientLike } from './custom-prisma-options';
 import { Inject, Injectable } from '@nestjs/common';
+import { PrismaClientLike } from './custom-prisma-options';
 import { CUSTOM_PRISMA_CLIENT } from './custom-prisma.constants';
 
 @Injectable()
