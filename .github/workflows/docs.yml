@@ -30,11 +30,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install, build, and upload your site
+      - name: Install, build, and upload your site output
         uses: withastro/action@v1
         with:
             path: ./docs
-            package-manager: npm
+            # package-manager: npm
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v3
