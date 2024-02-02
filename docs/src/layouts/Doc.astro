@@ -19,7 +19,7 @@ const currentPageMatch = currentPage.endsWith('/')
   ? currentPage.slice(0, -1)
   : currentPage.slice(0);
 const currentSection = navigation.find((section) =>
-  section.links.find((link) => link.link == currentPageMatch)
+  section.links.find((link) => link.link == currentPageMatch),
 );
 
 const currentFile = `src/content${currentPage.replace(/\/$/, '')}.md`;
@@ -47,7 +47,7 @@ const githubEditUrl = `${GITHUB_EDIT_URL}/${currentFile}`;
         </header>
 
         <div
-          class="prose prose-lg prose-pre:scrollbar:w-1.5 prose-pre:scrollbar:h-1.5 prose-pre:scrollbar:bg-transparent prose-pre:scrollbar-track:bg-gray-800 prose-pre:scrollbar-track:rounded prose-pre:scrollbar-thumb:bg-gray-600 prose-pre:scrollbar-thumb:rounded prose-h2:scroll-mt-24 prose-h3:scroll-mt-24 dark:prose-invert mt-6"
+          class="prose prose-lg mt-6 dark:prose-invert prose-h2:scroll-mt-24 prose-h3:scroll-mt-24 prose-pre:scrollbar:h-1.5 prose-pre:scrollbar:w-1.5 prose-pre:scrollbar:bg-transparent prose-pre:scrollbar-track:rounded prose-pre:scrollbar-track:bg-gray-800 prose-pre:scrollbar-thumb:rounded prose-pre:scrollbar-thumb:bg-gray-600"
         >
           <slot />
         </div>

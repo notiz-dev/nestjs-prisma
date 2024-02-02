@@ -93,14 +93,12 @@ export const examples: Example[] = [
   },
   {
     name: 'Extensions',
-    description:
-      'Using the Prisma Client extension with nestjs-prisma',
+    description: 'Using the Prisma Client extension with nestjs-prisma',
     link: 'https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/extensions',
   },
   {
     name: 'GraphQL',
-    description:
-      'NestJS app with GraphQL Apollo, Prisma and nestjs-prisma',
+    description: 'NestJS app with GraphQL Apollo, Prisma and nestjs-prisma',
     link: 'https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/graphql',
   },
   {

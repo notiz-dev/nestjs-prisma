@@ -128,7 +128,7 @@ export class AppService {
   constructor(
     // ✅ use `ExtendedPrismaClient` type for correct type-safety of your extended PrismaClient
     @Inject('PrismaService')
-    private prismaService: CustomPrismaService<ExtendedPrismaClient>
+    private prismaService: CustomPrismaService<ExtendedPrismaClient>,
   ) {}
 
   users() {
@@ -185,7 +185,7 @@ export class AppService {
   constructor(
     // ✅ use `ExtendedPrismaClient` from extension for correct type-safety
     @Inject('PrismaService')
-    private prismaService: CustomPrismaService<ExtendedPrismaClient>
+    private prismaService: CustomPrismaService<ExtendedPrismaClient>,
   ) {}
 
   async usersPage() {
@@ -225,7 +225,7 @@ import { readReplicas } from '@prisma/extension-read-replicas';
 
 export const extendedPrismaClient = new PrismaClient().$extends(
   // update url to your read replica url
-  readReplicas({ url: 'postgresql://replica.example.com:5432/db' })
+  readReplicas({ url: 'postgresql://replica.example.com:5432/db' }),
 );
 
 export type ExtendedPrismaClient = typeof extendedPrismaClient;
@@ -243,7 +243,7 @@ export class AppService {
   constructor(
     // ✅ use `ExtendedPrismaClient` type for correct type-safety of your extended PrismaClient
     @Inject('PrismaService')
-    private prismaService: CustomPrismaService<ExtendedPrismaClient>
+    private prismaService: CustomPrismaService<ExtendedPrismaClient>,
   ) {}
 
   users() {

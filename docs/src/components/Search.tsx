@@ -76,7 +76,7 @@ function SearchDialog({
       setIsOpen(true);
       setInitialQuery(e.key);
     },
-    [setIsOpen, setInitialQuery]
+    [setIsOpen, setInitialQuery],
   );
 
   if (keyboardEvents) {
@@ -114,7 +114,7 @@ function SearchDialog({
               });
             }}
           />,
-          document.body
+          document.body,
         )}
     </>
   );
@@ -125,7 +125,7 @@ export function Search() {
   let [modifierKey, setModifierKey] = useState<string>('⌘');
   useEffect(() => {
     setModifierKey(
-      /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform) ? '⌘' : 'Ctrl '
+      /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform) ? '⌘' : 'Ctrl ',
     );
   }, []);
 

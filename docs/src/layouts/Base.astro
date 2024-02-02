@@ -16,7 +16,7 @@ const { title } = Astro.props;
 const formattedContentTitle = title ? `${title} - ${SITE.title}` : SITE.title;
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <HeadCommon />
@@ -56,7 +56,7 @@ const formattedContentTitle = title ? `${title} - ${SITE.title}` : SITE.title;
     </style>
 
     <script is:inline>
-       if (
+      if (
         localStorage.theme === 'dark' ||
         (!('theme' in localStorage) &&
           window.matchMedia('(prefers-color-scheme: dark)').matches)

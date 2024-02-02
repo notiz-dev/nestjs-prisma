@@ -26,7 +26,7 @@ This can be useful if you want to just use a **different location** or want to u
 
 To use `nestjs-prisma` with custom output location for Prisma Client, you need to update to `nestjs-prisma@v0.20.0` or later and use `CustomPrismaModule` and `CustomPrismaService`.
 
-Import `CustomPrismaModule` and provide a **unique** name and an **instance** of your `PrismaClient`. The unique name will be used to inject the `CustomPrismaService`. 
+Import `CustomPrismaModule` and provide a **unique** name and an **instance** of your `PrismaClient`. The unique name will be used to inject the `CustomPrismaService`.
 
 ```ts
 import { Module } from '@nestjs/common';
@@ -63,7 +63,7 @@ import { PrismaClient } from '@notiz/prisma'; // 👈 update to your output dire
 export class AppService {
   constructor(
     @Inject('PrismaServiceAuth') // 👈 use unique name to reference
-    private prisma: CustomPrismaService<PrismaClient> // specify PrismaClient for type-safety & auto-completion
+    private prisma: CustomPrismaService<PrismaClient>, // specify PrismaClient for type-safety & auto-completion
   ) {}
 
   users() {
@@ -127,7 +127,7 @@ export class AppService {
     @Inject('PrismaServiceAuth') // 👈 use unique name to reference
     private prismaAuth: CustomPrismaService<PrismaAuth>,
     @Inject('PrismaServiceCms') // 👈 use unique name to reference
-    private prismaCms: CustomPrismaService<PrismaCms>
+    private prismaCms: CustomPrismaService<PrismaCms>,
   ) {}
 
   users() {

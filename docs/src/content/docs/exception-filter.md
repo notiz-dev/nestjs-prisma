@@ -97,7 +97,7 @@ async function bootstrap() {
       P2000: HttpStatus.BAD_REQUEST,
       P2002: HttpStatus.CONFLICT,
       P2025: HttpStatus.NOT_FOUND,
-    })
+    }),
   );
 
   await app.listen(3000);

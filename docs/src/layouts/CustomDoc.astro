@@ -16,7 +16,7 @@ const currentPageMatch = currentPage.endsWith('/')
   ? currentPage.slice(0, -1)
   : currentPage.slice(0);
 const currentSection = navigation.find((section) =>
-  section.links.find((link) => link.link == currentPageMatch)
+  section.links.find((link) => link.link == currentPageMatch),
 );
 ---
 

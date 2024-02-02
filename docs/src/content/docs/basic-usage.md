@@ -4,7 +4,7 @@ title: Basic Usage
 
 ## Prisma schema
 
-`nestjs-prisma` requires the Prisma Client to be generated to the default output location (`./node_modules/.prisma/client`). The client will be  imported from `@prisma/client`.
+`nestjs-prisma` requires the Prisma Client to be generated to the default output location (`./node_modules/.prisma/client`). The client will be imported from `@prisma/client`.
 
 ```prisma
 // prisma/schema.prisma
