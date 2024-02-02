@@ -5,7 +5,7 @@ title: Custom Prisma Service
 Add the flag `--addPrismaService` if you like to generate your own `PrismaService` and `PrismaModule` for further customizations.
 
 ```bash
-nest add nestjs-prisma --addPrismaService
+nest add nestjs-prisma -- --addPrismaService
 ```
 
 Add `PrismaModule` to the `imports` section in your `AppModule` or other modules to gain access to `PrismaService`.
