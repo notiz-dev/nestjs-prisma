@@ -41,9 +41,9 @@
     "@schematics/angular": "~13.3.0"
   },
   "devDependencies": {
-    "@nestjs/common": "10.2.7",
-    "@nestjs/core": "10.2.7",
-    "@nestjs/platform-express": "10.2.7",
+    "@nestjs/common": "10.3.7",
+    "@nestjs/core": "10.3.7",
+    "@nestjs/platform-express": "10.3.7",
     "@prisma/client": "^5.5.2",
     "@types/jasmine": "3.8.2",
     "@types/node": "^16.18.25",
