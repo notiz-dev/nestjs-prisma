@@ -25,6 +25,8 @@
     "@nestjs/platform-express": "^10.0.5",
     "@nestjs/platform-fastify": "^10.0.5",
     "@prisma/client": "^5.0.0",
+    "@sentry/node": "^8.0.0-rc.1",
+    "@sentry/types": "^8.0.0-rc.1",
     "nestjs-prisma": "^0.22.0-dev.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
