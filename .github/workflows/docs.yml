@@ -31,10 +31,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install, build, and upload your site output
-        uses: withastro/action@v1
+        uses: withastro/action@v3
         with:
             path: ./docs
             # package-manager: npm
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v3
+        uses: actions/deploy-pages@v4
