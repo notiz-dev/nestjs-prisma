@@ -2,6 +2,8 @@
 title: Logging Middleware
 ---
 
+> Prisma Middleware (`prisma.$use` method) has been deprecated with Prisma v4.16.0 and removed with Prisma v6.14.0. Prisma Middleware is removed in `nestjs-prisma@v0.26.0`. Use [Prisma Client Extension](/docs/prisma-client-extensions) instead.
+
 ## Apply logging middleware
 
 Use `loggingMiddleware` to log the query execution time.
