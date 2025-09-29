@@ -17,12 +17,6 @@ export class PrismaService
     private readonly prismaServiceOptions: PrismaServiceOptions = {},
   ) {
     super(prismaServiceOptions.prismaOptions);
-
-    if (this.prismaServiceOptions.middlewares) {
-      this.prismaServiceOptions.middlewares.forEach((middleware) =>
-        this.$use(middleware),
-      );
-    }
   }
 
   async onModuleInit() {

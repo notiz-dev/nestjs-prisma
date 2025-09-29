@@ -1,11 +1,21 @@
 import { Module } from '@nestjs/common';
 import { APP_FILTER, HttpAdapterHost } from '@nestjs/core';
-import { PrismaClientExceptionFilter, PrismaModule } from 'nestjs-prisma';
+import {
+  loggingMiddleware,
+  PrismaClientExceptionFilter,
+  PrismaModule,
+} from 'nestjs-prisma';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 @Module({
-  imports: [PrismaModule.forRoot()],
+  imports: [
+    PrismaModule.forRoot({
+      prismaServiceOptions: {
+        middlewares: [loggingMiddleware()],
+      },
+    }),
+  ],
   controllers: [AppController],
   providers: [
     AppService,
