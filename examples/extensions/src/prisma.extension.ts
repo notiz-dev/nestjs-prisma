@@ -2,6 +2,10 @@ import { Prisma, PrismaClient } from '@prisma/client';
 import pagination from 'prisma-extension-pagination';
 // used for Read Replicas example
 import { readReplicas } from '@prisma/extension-read-replicas';
+import { Logger } from '@nestjs/common';
+import { queryLoggingExtension } from './query-logging.extension';
+
+const logger = new Logger('PrismaClient');
 
 export const extendedPrismaClient = new PrismaClient<
   Prisma.PrismaClientOptions,
@@ -14,8 +18,7 @@ export const extendedPrismaClient = new PrismaClient<
     { level: 'error', emit: 'event' },
   ],
 })
-  // FIXME - `$on()` returns void
-  // .$on('error', (e) => {})
+  .$extends(queryLoggingExtension(logger))
   .$extends({
     model: {
       user: {

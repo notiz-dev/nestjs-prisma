@@ -17,6 +17,7 @@ export const GITHUB_EDIT_URL = `https://github.com/notiz-dev/nestjs-prisma/tree/
 export type Link = {
   title: string;
   link: string;
+  badge?: string;
 };
 
 export type Navigation = {
@@ -36,8 +37,12 @@ export const navigation: Navigation[] = [
   {
     title: 'Basics',
     links: [
-      { title: 'Prisma Middleware', link: '/docs/prisma-middleware' },
       { title: 'Prisma Logging', link: '/docs/prisma-logging' },
+      {
+        title: 'Prisma Middleware',
+        link: '/docs/prisma-middleware',
+        badge: 'Outdated',
+      },
     ],
   },
   {
@@ -52,13 +57,22 @@ export const navigation: Navigation[] = [
         title: 'Prisma Client Extensions',
         link: '/docs/prisma-client-extensions',
       },
+      {
+        title: 'Query Logging Extension',
+        link: '/docs/query-logging-extension',
+        badge: 'New',
+      },
     ],
   },
   {
     title: 'Built-in Tools',
     links: [
       { title: 'Exception Filter', link: '/docs/exception-filter' },
-      { title: 'Logging Middleware', link: '/docs/logging-middleware' },
+      {
+        title: 'Logging Middleware',
+        link: '/docs/logging-middleware',
+        badge: 'Outdated',
+      },
     ],
   },
   {
