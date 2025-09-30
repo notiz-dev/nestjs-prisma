@@ -1,0 +1,18 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  engineType   = "client"
+  runtime      = "nodejs"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:dev.db"
+}
+
+model User {
+  id    String  @id @default(cuid())
+  email String  @unique
+  name  String?
+}
