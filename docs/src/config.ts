@@ -58,6 +58,11 @@ export const navigation: Navigation[] = [
         link: '/docs/prisma-client-extensions',
       },
       {
+        title: 'Rust-free and Driver Adapters',
+        link: '/docs/rust-free-and-driver-adapter',
+        badge: 'New',
+      },
+      {
         title: 'Query Logging Extension',
         link: '/docs/query-logging-extension',
         badge: 'New',
@@ -99,6 +104,11 @@ export const examples: Example[] = [
     name: 'Basics',
     description: 'NestJS app with Express, Prisma and nestjs-prisma.',
     link: 'https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/basics',
+  },
+  {
+    name: 'Rust-free and driver adapter',
+    description: 'NestJS app with prisma-client (Rust-free), driver adapter and nestjs-prisma.',
+    link: 'https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/driver',
   },
   {
     name: 'Fastify',
