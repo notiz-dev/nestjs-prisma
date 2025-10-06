@@ -28,7 +28,7 @@
     "@nestjs/platform-express": "^10.4.12",
     "@prisma/client": "^6.0.0",
     "graphql": "^16.9.0",
-    "nestjs-prisma": "^0.25.0",
+    "nestjs-prisma": "^0.26.0",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1"
   },
