@@ -18,7 +18,6 @@ generator client {
   provider     = "prisma-client"
   output       = "../src/generated/prisma"
   engineType   = "client"
-  runtime      = "nodejs"
   moduleFormat = "cjs"
 }
 

@@ -27,8 +27,7 @@ const config: runtime.GetPrismaClientConfig = {
     },
     "config": {
       "moduleFormat": "cjs",
-      "engineType": "client",
-      "runtime": "nodejs"
+      "engineType": "client"
     },
     "binaryTargets": [
       {
@@ -48,6 +47,7 @@ const config: runtime.GetPrismaClientConfig = {
     "db"
   ],
   "activeProvider": "sqlite",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -56,8 +56,8 @@ const config: runtime.GetPrismaClientConfig = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider     = \"prisma-client\"\n  output       = \"../src/generated/prisma\"\n  engineType   = \"client\"\n  runtime      = \"nodejs\"\n  moduleFormat = \"cjs\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = \"file:dev.db\"\n}\n\nmodel User {\n  id    String  @id @default(cuid())\n  email String  @unique\n  name  String?\n}\n",
-  "inlineSchemaHash": "17a7230a5831aae7660897d63ec868571eaf4d3a9c077d8c5b49bb5d9e7f99bf",
+  "inlineSchema": "generator client {\n  provider     = \"prisma-client\"\n  output       = \"../src/generated/prisma\"\n  engineType   = \"client\"\n  moduleFormat = \"cjs\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = \"file:dev.db\"\n}\n\nmodel User {\n  id    String  @id @default(cuid())\n  email String  @unique\n  name  String?\n}\n",
+  "inlineSchemaHash": "2b68a464f8f7060f5c42f62195b6b763e3a7cd2e7117652711d7a751d5ac3089",
   "copyEngine": true,
   "runtimeDataModel": {
     "models": {},
