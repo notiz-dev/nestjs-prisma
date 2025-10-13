@@ -1,5 +1,7 @@
 ---
 import { Icon } from 'astro-icon';
+
+const year = new Date().getFullYear();
 ---
 
 <footer>
@@ -53,7 +55,7 @@ import { Icon } from 'astro-icon';
     <p
       class="mt-10 text-center text-xs leading-5 text-gray-500 dark:text-gray-400"
     >
-      &copy; 2020-2023 notiz.dev. All rights reserved.
+      &copy; 2020-{year} notiz.dev. All rights reserved.
     </p>
   </div>
 </footer>
