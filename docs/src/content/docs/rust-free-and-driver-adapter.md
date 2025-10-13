@@ -4,13 +4,13 @@ title: Rust-free and driver adapter
 
 > Rust-free Prisma Client is Generally Available with [v6.16.0](https://github.com/prisma/prisma/releases/tag/6.16.0).
 
-Learn how to use the new `prisma-client` provider with a custom output path and adapter driver. For more information see the [No Rust engine](https://www.prisma.io/docs/orm/prisma-client/setup-and-configuration/no-rust-engine) guide on Prisma docs. 
+Learn how to use the new `prisma-client` provider with a custom output path and adapter driver. For more information see the [No Rust engine](https://www.prisma.io/docs/orm/prisma-client/setup-and-configuration/no-rust-engine) guide on Prisma docs.
 
 Make sure you have `prisma` and `@prisma/client` v6.16.0 or later installed.
 
 ## Configure Rust-free Prisma Client
 
-Configure your Prisma schema to use the new `prisma-client` provider and set a output directory. You can include the output directory in git, because it doesn't contain the rust query engine binary. 
+Configure your Prisma schema to use the new `prisma-client` provider and set a output directory. You can include the output directory in git, because it doesn't contain the rust query engine binary.
 
 ```prisma
 // prisma/schema.prisma

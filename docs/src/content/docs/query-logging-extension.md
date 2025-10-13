@@ -6,7 +6,7 @@ Create a PrismaClient extension to log all queries performed by the PrismaClient
 
 ## Add query logging extension
 
-Prisma provides an example for [Prisma Client Extension - Query Logging](https://github.com/prisma/prisma-client-extensions/tree/main/query-logging). You need to create a new `PrismaClient` instance with `$extends` where you will define the query logging extension. 
+Prisma provides an example for [Prisma Client Extension - Query Logging](https://github.com/prisma/prisma-client-extensions/tree/main/query-logging). You need to create a new `PrismaClient` instance with `$extends` where you will define the query logging extension.
 
 ```ts
 // prisma.extension.ts
@@ -115,7 +115,7 @@ export const queryLoggingExtension = (logger: Logger) =>
   });
 ```
 
-Now you can import and use `queryLoggingExtension(new Logger(...))` in `$extends(...)`. 
+Now you can import and use `queryLoggingExtension(new Logger(...))` in `$extends(...)`.
 
 ```ts
 // prisma.extension.ts

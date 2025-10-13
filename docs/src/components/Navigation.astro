@@ -30,14 +30,18 @@ const currentPageMatch = currentPage.endsWith('/')
                 <li>
                   <a
                     href={link.link}
-                    class={`flex gap-2 items-start border-l pl-3 ${
+                    class={`flex items-start gap-2 border-l pl-3 ${
                       currentPageMatch === link.link
                         ? 'border-current text-violet-500 dark:text-violet-400'
                         : 'border-transparent text-gray-700 hover:border-current hover:border-gray-500 dark:text-gray-300 dark:hover:border-gray-400'
                     }`}
                   >
                     <span>{link.title}</span>
-                    {link.badge && (<span class="text-xs py-0.5 px-1.5 rounded-lg bg-pink-600 text-white">{link.badge}</span>)}
+                    {link.badge && (
+                      <span class="rounded-lg bg-pink-600 px-1.5 py-0.5 text-xs text-white">
+                        {link.badge}
+                      </span>
+                    )}
                   </a>
                 </li>
               ))}

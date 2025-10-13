@@ -107,7 +107,8 @@ export const examples: Example[] = [
   },
   {
     name: 'Rust-free and driver adapter',
-    description: 'NestJS app with prisma-client (Rust-free), driver adapter and nestjs-prisma.',
+    description:
+      'NestJS app with prisma-client (Rust-free), driver adapter and nestjs-prisma.',
     link: 'https://github.com/notiz-dev/nestjs-prisma/tree/main/examples/driver',
   },
   {
