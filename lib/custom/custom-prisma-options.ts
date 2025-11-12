@@ -31,7 +31,7 @@ export interface CustomPrismaModuleOptions<Client extends PrismaClientLike> {
    * ){}
    *
    */
-  name: string;
+  name: string | symbol;
 
   /**
    * Pass an instance of your PrismaClient, useful when you specified a custom output path for your PrismaClient.
