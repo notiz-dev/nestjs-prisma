@@ -7,7 +7,8 @@ datasource db {
 
 generator client {
   provider = "prisma-client"
-  output = "./client"
+  // only generated to node_modules for the old @prisma/client import, to build the library
+  output   = "../node_modules/.prisma/client"
 }
 
 model User {

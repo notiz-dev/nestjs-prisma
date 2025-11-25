@@ -12,7 +12,7 @@
     "baseUrl": "./",
     "incremental": true,
     "paths": {
-      "@prisma/client": ["prisma/client/client.ts"]
+      "@prisma/client": ["node_modules/.prisma/client/client.ts"]
     }
   }
 }
