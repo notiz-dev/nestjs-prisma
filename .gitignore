@@ -22,4 +22,5 @@ yarn-error.log*
 .env
 
 prisma/dev.db*
-
+# ignoring only for the library
+prisma/client/
