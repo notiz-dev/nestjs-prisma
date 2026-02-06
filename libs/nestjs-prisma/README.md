@@ -6,16 +6,16 @@ The nestjs-prisma library simplifies the usage of Prisma within NestJS applicati
 
 ```bash
 # npm
-npm install nestjs-prisma
+npm install nestjs-prisma@0.28.0-dev.0
 
 # pnpm
-pnpm add nestjs-prisma
+pnpm add nestjs-prisma@0.28.0-dev.0
 
 # yarn
-yarn add nestjs-prisma
+yarn add nestjs-prisma@0.28.0-dev.0
 ```
 
-[Prerequisites](https://nestjs-prisma.dev/getting-started/installation/#prerequisites) is to install [Prisma](https://www.prisma.io/docs/getting-started) and choose a database [adapter](https://www.prisma.io/docs/getting-started#-already-have-your-own-database).
+[Prerequisites](https://next.nestjs-prisma.dev/getting-started/installation/#prerequisites) is to install [Prisma](https://www.prisma.io/docs/getting-started) and choose a database [adapter](https://www.prisma.io/docs/getting-started#-already-have-your-own-database).
 
 2. Create a `src/app/prisma-client.ts` file and create an instance of the Prisma Client.
 
