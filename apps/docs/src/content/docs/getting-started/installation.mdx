@@ -239,6 +239,10 @@ First, setup [Prisma](https://www.prisma.io/docs/getting-started) in your projec
 
     </FileTree>
 
+    :::note
+    You may need to set `moduleFormat = "cjs"` in your `schema.prisma` file for the `client` generator.
+    :::
+
 4.  Configure the `DATABASE_URL` in `.env` to match your database.
 
 5.  Add a data model in `prisma/schema.prisma`. For example, a `User` model:
