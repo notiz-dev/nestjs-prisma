@@ -1,24 +1,45 @@
-# lib
+# See https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
+
+# compiled output
 dist
+tmp
+out-tsc
 
-# Schematics
-schematics/**/*.js
-schematics/**/*.js.map
-schematics/**/*.d.ts
+# dependencies
+node_modules
 
-# IDEs
-.idea/
-jsconfig.json
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
 
-# Misc
-node_modules/
-npm-debug.log*
-yarn-error.log*
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
-# Mac OSX Finder files.
-**/.DS_Store
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
 .DS_Store
+Thumbs.db
+
+.nx/cache
+.nx/workspace-data
 
 .env
-
-prisma/dev.db*
+prisma/dev.db

@@ -1,0 +1,32 @@
+{
+  "name": "nestjs-prisma",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/nestjs-prisma/src",
+  "projectType": "library",
+  "release": {
+    "version": {
+      "manifestRootsToUpdate": ["dist/{projectRoot}"],
+      "currentVersionResolver": "git-tag",
+      "fallbackCurrentVersionResolver": "disk"
+    }
+  },
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/nestjs-prisma",
+        "tsConfig": "libs/nestjs-prisma/tsconfig.lib.json",
+        "packageJson": "libs/nestjs-prisma/package.json",
+        "main": "libs/nestjs-prisma/src/index.ts",
+        "assets": ["libs/nestjs-prisma/*.md"]
+      }
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}

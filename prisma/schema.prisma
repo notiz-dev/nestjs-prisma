@@ -1,18 +1,17 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+generator client {
+  provider = "prisma-client"
+  output   = "../apps/api/src/app/generated/prisma"
+}
+
 datasource db {
   provider = "sqlite"
 }
 
-generator client {
-  provider = "prisma-client"
-  // only generated to node_modules for the old @prisma/client import, to build the library
-  output   = "../node_modules/.prisma/client"
-}
-
 model User {
-  id    Int     @id @default(autoincrement())
+  id    String  @id @default(cuid())
   email String  @unique
   name  String?
 }

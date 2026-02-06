@@ -1,2 +1,8 @@
-schematics/*/templates/*
-schematics/*/*.d.ts
+# Add files here to ignore them from prettier formatting
+/dist
+/coverage
+/.nx/cache
+/.nx/workspace-data
+
+pnpm-lock.yaml
+apps/api/src/app/generated/prisma/

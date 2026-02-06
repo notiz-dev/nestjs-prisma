@@ -1,0 +1,469 @@
+---
+title: Installation
+description: Learn how to install and integrate Prisma with NestJS.
+---
+
+import { Tabs, TabItem, FileTree, Steps } from '@astrojs/starlight/components';
+
+This guide covers how to install Prisma and integrate it into your NestJS application. You have two main options for integration: using the `nestjs-prisma` library or copying `PrismaService` into your project.
+
+## Prerequisites
+
+First, setup [Prisma](https://www.prisma.io/docs/getting-started) in your project and select an [adapter](https://www.prisma.io/docs/getting-started#-already-have-your-own-database) for your database.
+
+<Steps>
+
+1.  Install the required Prisma dependencies:
+
+    <Tabs syncKey="pkg">
+    <TabItem label="npm">
+
+    ```bash
+    npm install prisma dotenv --save-dev
+    npm install @prisma/client 
+    ```
+
+    </TabItem>
+    <TabItem label="pnpm">
+
+    ```bash
+    pnpm add -D prisma dotenv
+    pnpm add @prisma/client 
+    ```
+
+    </TabItem>
+    <TabItem label="yarn">
+
+    ```bash
+    yarn add -D prisma dotenv
+    yarn add @prisma/client 
+    ```
+
+    </TabItem>
+    </Tabs>
+
+2.  Prisma v7+ requires a [database driver](https://www.prisma.io/docs/orm/overview/databases/database-drivers) to be installed for your chosen database.
+
+    :::note
+    The install commands below cover the drivers for PostgreSQL, MySQL, and SQLite. For other supported databases, please refer to the [Prisma documentation](https://www.prisma.io/docs/getting-started#-already-have-your-own-database).
+    :::
+
+    <Tabs syncKey="db">
+    <TabItem label="PostgreSQL">
+
+    <Tabs syncKey="pkg">
+    <TabItem label="npm">
+
+    ```bash
+    npm install @prisma/adapter-pg pg
+    npm install @types/pg --save-dev
+    ```
+
+    </TabItem>
+    <TabItem label="pnpm">
+
+    ```bash
+    pnpm add @prisma/adapter-pg pg
+    pnpm add -D @types/pg
+    ```
+
+    </TabItem>
+    <TabItem label="yarn">
+
+    ```bash
+    yarn add @prisma/adapter-pg pg
+    yarn add -D @types/pg
+    ```
+
+    </TabItem>
+    </Tabs>
+
+    </TabItem>
+    <TabItem label="MySQL">
+
+    <Tabs syncKey="pkg">
+    <TabItem label="npm">
+
+    ```bash
+    npm install @prisma/adapter-mariadb
+    ```
+
+    </TabItem>
+    <TabItem label="pnpm">
+
+    ```bash
+    pnpm add @prisma/adapter-mariadb
+    ```
+
+    </TabItem>
+    <TabItem label="yarn">
+
+    ```bash
+    yarn add @prisma/adapter-mariadb
+    ```
+
+    </TabItem>
+    </Tabs>
+
+    </TabItem>
+    <TabItem label="SQLite">
+
+    <Tabs syncKey="pkg">
+    <TabItem label="npm">
+
+    ```bash
+    npm install @prisma/adapter-better-sqlite3
+    npm install @types/better-sqlite3 --save-dev
+    ```
+
+    </TabItem>
+    <TabItem label="pnpm">
+
+    ```bash
+    pnpm add @prisma/adapter-better-sqlite3
+    pnpm add -D @types/better-sqlite3
+    ```
+
+    </TabItem>
+    <TabItem label="yarn">
+
+    ```bash
+    yarn add @prisma/adapter-better-sqlite3
+    yarn add -D @types/better-sqlite3
+    ```
+
+    </TabItem>
+    </Tabs>
+
+    </TabItem>
+    </Tabs>
+
+3.  Initialize Prisma with the following command:
+
+    <Tabs syncKey="db">
+    <TabItem label="PostgreSQL">
+
+    <Tabs syncKey="pkg">
+    <TabItem label="npm">
+
+    ```bash
+    npx prisma init --datasource-provider postgresql --output ../src/app/generated/prisma
+    ```
+
+    </TabItem>
+    <TabItem label="pnpm">
+
+    ```bash
+    pnpm prisma init --datasource-provider postgresql --output ../src/app/generated/prisma
+    ```
+
+    </TabItem>
+    <TabItem label="yarn">
+
+    ```bash
+    yarn prisma init --datasource-provider postgresql --output ../src/app/generated/prisma
+    ```
+
+    </TabItem>
+    </Tabs>
+
+    </TabItem>
+    <TabItem label="MySQL">
+
+    <Tabs syncKey="pkg">
+    <TabItem label="npm">
+
+    ```bash
+    npx prisma init --datasource-provider mysql --output ../src/app/generated/prisma
+    ```
+
+    </TabItem>
+    <TabItem label="pnpm">
+
+    ```bash
+    pnpm prisma init --datasource-provider mysql --output ../src/app/generated/prisma
+    ```
+
+    </TabItem>
+    <TabItem label="yarn">
+
+    ```bash
+    yarn prisma init --datasource-provider mysql --output ../src/app/generated/prisma
+    ```
+
+    </TabItem>
+    </Tabs>
+
+    </TabItem>
+    <TabItem label="SQLite">
+
+    <Tabs syncKey="pkg">
+    <TabItem label="npm">
+
+    ```bash
+    npx prisma init --datasource-provider sqlite --output ../src/app/generated/prisma
+    ```
+
+    </TabItem>
+    <TabItem label="pnpm">
+
+    ```bash
+    pnpm prisma init --datasource-provider sqlite --output ../src/app/generated/prisma
+    ```
+
+    </TabItem>
+    <TabItem label="yarn">
+
+    ```bash
+    yarn prisma init --datasource-provider sqlite --output ../src/app/generated/prisma
+    ```
+
+    </TabItem>
+    </Tabs>
+
+    </TabItem>
+    </Tabs>
+
+    :::note
+    Set the `--output` path to your desired location for the generated Prisma Client. The client is generated into that directory, and you should check it into git.
+    :::
+
+    This command creates the following files:
+
+    <FileTree>
+
+    - prisma
+      - schema.prisma schema models
+    - .env add to .gitignore
+    - prisma.config.ts Prisma configuration
+
+    </FileTree>
+
+4.  Configure the `DATABASE_URL` in `.env` to match your database.
+
+5.  Add a data model in `prisma/schema.prisma`. For example, a `User` model:
+
+    ```prisma
+    model User {
+      id    String  @id @default(cuid())
+      email String  @unique
+      name  String?
+    }
+    ```
+
+6.  Create and apply the first Prisma migration and generate the Prisma Client.
+
+    <Tabs syncKey="pkg">
+    <TabItem label="npm">
+
+    ```bash
+    npx prisma migrate dev --name init
+    ```
+
+    </TabItem>
+    <TabItem label="pnpm">
+
+    ```bash
+    pnpm prisma migrate dev --name init
+    ```
+
+    </TabItem>
+    <TabItem label="yarn">
+
+    ```bash
+
+    yarn prisma migrate dev --name init
+    ```
+
+    </TabItem>
+    </Tabs>
+
+</Steps>
+
+## Option 1: Use Library
+
+The `nestjs-prisma` library simplifies the usage of Prisma within NestJS applications and provides additional features.
+
+<Steps>
+
+1.  **Install dependencies**
+
+    Install `nestjs-prisma`:
+
+    <Tabs syncKey="pkg">
+    <TabItem label="npm">
+
+    ```bash
+    npm install nestjs-prisma
+    ```
+
+    </TabItem>
+    <TabItem label="pnpm">
+
+    ```bash
+    pnpm add nestjs-prisma
+    ```
+
+    </TabItem>
+    <TabItem label="yarn">
+
+    ```bash
+    yarn add nestjs-prisma
+    ```
+
+    </TabItem>
+    </Tabs>
+
+2.  **Create Prisma Client Instance**
+
+    Create a `prisma-client.ts` file and create an instance of the Prisma Client.
+
+    ```typescript
+    // src/app/prisma-client.ts
+    import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
+    import { Prisma, PrismaClient } from './generated/prisma/client';
+
+    const adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL! });
+    export const prismaClient = new PrismaClient({ adapter });
+
+    export type BasePrismaClient = typeof prismaClient;
+    ```
+
+3.  **Configure the Module**
+
+    Configure the `PrismaModule` in your `AppModule` imports and import `prismaClient` from `prisma-client.ts`.
+
+    ```typescript
+    // src/app/app.module.ts
+    import { Module } from '@nestjs/common';
+    import { PrismaModule } from 'nestjs-prisma';
+    import { prismaClient } from './prisma-client';
+
+    @Module({
+      imports: [
+        PrismaModule.forRootAsync({
+          isGlobal: true,
+          name: 'PrismaService', // 👈 must be unique for each PrismaClient
+          useFactory: () => {
+            return prismaClient;
+          },
+        }),
+      ],
+    })
+    export class AppModule {}
+    ```
+
+4.  **Usage**
+
+    Inject `PrismaService` providing the `BasePrismaClient` type from step 2.
+
+    ```typescript "this.prisma.client"
+    // src/app/app.service.ts
+    import { Inject, Injectable } from '@nestjs/common';
+    import { PrismaService } from 'nestjs-prisma';
+    import type { BasePrismaClient } from './prisma-client';
+
+    @Injectable()
+    export class AppService {
+      constructor(
+        @Inject('PrismaService') // 👈 use unique name to reference
+        // Use `BasePrismaClient` for correct type-safety
+        private prisma: PrismaService<BasePrismaClient>,
+      ) {}
+
+      users() {
+        // access prisma.client.* for your queries
+        return this.prisma.client.user.findMany();
+      }
+    }
+    ```
+
+</Steps>
+
+## Option 2: Copy Code
+
+If you prefer to manually integrate Prisma without an additional library, you can create your own `PrismaService`.
+
+<Steps>
+
+1.  **Create Files**
+
+    Create `src/app/prisma/` directory with `prisma.module.ts` and `prisma.service.ts`.
+
+    <FileTree>
+
+    - src
+      - app
+        - prisma
+          - prisma.module.ts
+          - prisma.service.ts
+
+    </FileTree>
+
+2.  **Prisma Service**
+
+    Add the following code to `src/app/prisma/prisma.service.ts`:
+
+    ```typescript
+    // src/app/prisma/prisma.service.ts
+    import { Injectable } from '@nestjs/common';
+    import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
+    import { PrismaClient } from '../generated/prisma/client';
+
+    @Injectable()
+    export class PrismaService extends PrismaClient {
+      constructor() {
+        const adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL! });
+        super({ adapter });
+      }
+    }
+    ```
+
+3.  **Prisma Module**
+
+    Add the following code to `src/app/prisma/prisma.module.ts`:
+
+    ```typescript
+    // src/app/prisma/prisma.module.ts
+    import { Global, Module } from '@nestjs/common';
+    import { PrismaService } from './prisma.service';
+
+    @Global()
+    @Module({
+      providers: [PrismaService],
+      exports: [PrismaService],
+    })
+    export class PrismaModule {}
+    ```
+
+    And import `PrismaModule` in `AppModule`.
+
+     ```typescript
+    // src/app/app.module.ts
+    import { Module } from '@nestjs/common';
+    import { PrismaModule } from './prisma/prisma.module';
+
+    @Module({
+      imports: [PrismaModule],
+    })
+    export class AppModule {}
+    ```
+
+4.  **Usage**
+
+    Inject `PrismaService` into your controllers or services.
+
+    ```typescript "this.prisma.user"
+    // src/app/app.service.ts
+    @Injectable()
+    export class AppService {
+      constructor(private prisma: PrismaService) {}
+
+      users() {
+        // access prisma.* for your queries
+        return this.prisma.user.findMany();
+      }
+    }
+    ```
+
+</Steps>
