@@ -8,7 +8,8 @@
     "build:lib": "nx build nestjs-prisma",
     "build:docs": "cd apps/docs && pnpm build",
     "lint": "nx lint api",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "rocket": "pnpm build:lib && cd dist/libs/nestjs-prisma && npm publish --tag dev"
   },
   "private": true,
   "packageManager": "pnpm@10.28.2",
