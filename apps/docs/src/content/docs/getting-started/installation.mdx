@@ -284,6 +284,22 @@ First, setup [Prisma](https://www.prisma.io/docs/getting-started) in your projec
     </TabItem>
     </Tabs>
 
+7.  Add `import 'dotenv/config';` to your `src/main.ts` file to ensure `DATABASE_URL` (environment variables `process.env`) is loaded.
+
+    ```typescript
+    // src/main.ts
+    import 'dotenv/config';
+
+    import { NestFactory } from '@nestjs/core';
+    import { AppModule } from './app.module';
+
+    async function bootstrap() {
+      const app = await NestFactory.create(AppModule);
+      await app.listen(process.env.PORT ?? 3000);
+    }
+    bootstrap();
+    ```
+
 </Steps>
 
 ## Option 1: Use Library
