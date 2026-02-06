@@ -147,21 +147,21 @@ First, setup [Prisma](https://www.prisma.io/docs/getting-started) in your projec
     <TabItem label="npm">
 
     ```bash
-    npx prisma init --datasource-provider postgresql --output ../src/app/generated/prisma
+    npx prisma init --datasource-provider postgresql --output ../src/generated/prisma
     ```
 
     </TabItem>
     <TabItem label="pnpm">
 
     ```bash
-    pnpm prisma init --datasource-provider postgresql --output ../src/app/generated/prisma
+    pnpm prisma init --datasource-provider postgresql --output ../src/generated/prisma
     ```
 
     </TabItem>
     <TabItem label="yarn">
 
     ```bash
-    yarn prisma init --datasource-provider postgresql --output ../src/app/generated/prisma
+    yarn prisma init --datasource-provider postgresql --output ../src/generated/prisma
     ```
 
     </TabItem>
@@ -174,21 +174,21 @@ First, setup [Prisma](https://www.prisma.io/docs/getting-started) in your projec
     <TabItem label="npm">
 
     ```bash
-    npx prisma init --datasource-provider mysql --output ../src/app/generated/prisma
+    npx prisma init --datasource-provider mysql --output ../src/generated/prisma
     ```
 
     </TabItem>
     <TabItem label="pnpm">
 
     ```bash
-    pnpm prisma init --datasource-provider mysql --output ../src/app/generated/prisma
+    pnpm prisma init --datasource-provider mysql --output ../src/generated/prisma
     ```
 
     </TabItem>
     <TabItem label="yarn">
 
     ```bash
-    yarn prisma init --datasource-provider mysql --output ../src/app/generated/prisma
+    yarn prisma init --datasource-provider mysql --output ../src/generated/prisma
     ```
 
     </TabItem>
@@ -201,21 +201,21 @@ First, setup [Prisma](https://www.prisma.io/docs/getting-started) in your projec
     <TabItem label="npm">
 
     ```bash
-    npx prisma init --datasource-provider sqlite --output ../src/app/generated/prisma
+    npx prisma init --datasource-provider sqlite --output ../src/generated/prisma
     ```
 
     </TabItem>
     <TabItem label="pnpm">
 
     ```bash
-    pnpm prisma init --datasource-provider sqlite --output ../src/app/generated/prisma
+    pnpm prisma init --datasource-provider sqlite --output ../src/generated/prisma
     ```
 
     </TabItem>
     <TabItem label="yarn">
 
     ```bash
-    yarn prisma init --datasource-provider sqlite --output ../src/app/generated/prisma
+    yarn prisma init --datasource-provider sqlite --output ../src/generated/prisma
     ```
 
     </TabItem>
@@ -258,6 +258,7 @@ First, setup [Prisma](https://www.prisma.io/docs/getting-started) in your projec
 
     ```bash
     npx prisma migrate dev --name init
+    npx prisma generate
     ```
 
     </TabItem>
@@ -265,14 +266,15 @@ First, setup [Prisma](https://www.prisma.io/docs/getting-started) in your projec
 
     ```bash
     pnpm prisma migrate dev --name init
+    pnpm prisma generate
     ```
 
     </TabItem>
     <TabItem label="yarn">
 
     ```bash
-
     yarn prisma migrate dev --name init
+    yarn prisma generate
     ```
 
     </TabItem>
@@ -284,6 +286,10 @@ First, setup [Prisma](https://www.prisma.io/docs/getting-started) in your projec
 
 The `nestjs-prisma` library simplifies the usage of Prisma within NestJS applications and provides additional features.
 
+:::note
+This documentation is for the current dev release. Visit [nestjs-prisma.dev](https://nestjs-prisma.dev) for the previous stable version.
+:::
+
 <Steps>
 
 1.  **Install dependencies**
@@ -294,21 +300,21 @@ The `nestjs-prisma` library simplifies the usage of Prisma within NestJS applica
     <TabItem label="npm">
 
     ```bash
-    npm install nestjs-prisma
+    npm install nestjs-prisma@0.28.0-dev.0
     ```
 
     </TabItem>
     <TabItem label="pnpm">
 
     ```bash
-    pnpm add nestjs-prisma
+    pnpm add nestjs-prisma@0.28.0-dev.0
     ```
 
     </TabItem>
     <TabItem label="yarn">
 
     ```bash
-    yarn add nestjs-prisma
+    yarn add nestjs-prisma@0.28.0-dev.0
     ```
 
     </TabItem>
@@ -319,7 +325,7 @@ The `nestjs-prisma` library simplifies the usage of Prisma within NestJS applica
     Create a `prisma-client.ts` file and create an instance of the Prisma Client.
 
     ```typescript
-    // src/app/prisma-client.ts
+    // src/prisma-client.ts
     import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
     import { Prisma, PrismaClient } from './generated/prisma/client';
 
@@ -334,7 +340,7 @@ The `nestjs-prisma` library simplifies the usage of Prisma within NestJS applica
     Configure the `PrismaModule` in your `AppModule` imports and import `prismaClient` from `prisma-client.ts`.
 
     ```typescript
-    // src/app/app.module.ts
+    // src/app.module.ts
     import { Module } from '@nestjs/common';
     import { PrismaModule } from 'nestjs-prisma';
     import { prismaClient } from './prisma-client';
@@ -358,7 +364,7 @@ The `nestjs-prisma` library simplifies the usage of Prisma within NestJS applica
     Inject `PrismaService` providing the `BasePrismaClient` type from step 2.
 
     ```typescript "this.prisma.client"
-    // src/app/app.service.ts
+    // src/app.service.ts
     import { Inject, Injectable } from '@nestjs/common';
     import { PrismaService } from 'nestjs-prisma';
     import type { BasePrismaClient } from './prisma-client';
@@ -388,24 +394,23 @@ If you prefer to manually integrate Prisma without an additional library, you ca
 
 1.  **Create Files**
 
-    Create `src/app/prisma/` directory with `prisma.module.ts` and `prisma.service.ts`.
+    Create `src/prisma/` directory with `prisma.module.ts` and `prisma.service.ts`.
 
     <FileTree>
 
     - src
-      - app
-        - prisma
-          - prisma.module.ts
-          - prisma.service.ts
+      - prisma
+        - prisma.module.ts
+        - prisma.service.ts
 
     </FileTree>
 
 2.  **Prisma Service**
 
-    Add the following code to `src/app/prisma/prisma.service.ts`:
+    Add the following code to `src/prisma/prisma.service.ts`:
 
     ```typescript
-    // src/app/prisma/prisma.service.ts
+    // src/prisma/prisma.service.ts
     import { Injectable } from '@nestjs/common';
     import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
     import { PrismaClient } from '../generated/prisma/client';
@@ -421,10 +426,10 @@ If you prefer to manually integrate Prisma without an additional library, you ca
 
 3.  **Prisma Module**
 
-    Add the following code to `src/app/prisma/prisma.module.ts`:
+    Add the following code to `src/prisma/prisma.module.ts`:
 
     ```typescript
-    // src/app/prisma/prisma.module.ts
+    // src/prisma/prisma.module.ts
     import { Global, Module } from '@nestjs/common';
     import { PrismaService } from './prisma.service';
 
@@ -439,7 +444,7 @@ If you prefer to manually integrate Prisma without an additional library, you ca
     And import `PrismaModule` in `AppModule`.
 
      ```typescript
-    // src/app/app.module.ts
+    // src/app.module.ts
     import { Module } from '@nestjs/common';
     import { PrismaModule } from './prisma/prisma.module';
 
@@ -454,7 +459,7 @@ If you prefer to manually integrate Prisma without an additional library, you ca
     Inject `PrismaService` into your controllers or services.
 
     ```typescript "this.prisma.user"
-    // src/app/app.service.ts
+    // src/app.service.ts
     @Injectable()
     export class AppService {
       constructor(private prisma: PrismaService) {}
