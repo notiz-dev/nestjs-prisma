@@ -21,6 +21,10 @@ export default defineConfig({
           label: 'Getting Started',
           autogenerate: { directory: 'getting-started' },
         },
+        {
+          label: 'Concepts',
+          autogenerate: { directory: 'concepts' },
+        },
       ],
       head: [
         {
@@ -36,7 +40,6 @@ export default defineConfig({
 plausible.init()`,
         },
       ],
-
     }),
   ],
 });

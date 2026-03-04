@@ -2,7 +2,7 @@
 title: Owning the Code
 description: Learn how to copy and integrate Prisma with NestJS.
 sidebar:
-    order: 2
+  order: 2
 ---
 
 import { FileTree, Steps } from '@astrojs/starlight/components';
@@ -22,7 +22,6 @@ If you prefer to manually integrate Prisma without an additional library, you ca
     Create `src/prisma/` directory with `prisma.module.ts` and `prisma.service.ts`.
 
     <FileTree>
-
     - src
       - prisma
         - prisma.module.ts
@@ -43,7 +42,9 @@ If you prefer to manually integrate Prisma without an additional library, you ca
     @Injectable()
     export class PrismaService extends PrismaClient {
       constructor() {
-        const adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL! });
+        const adapter = new PrismaBetterSqlite3({
+          url: process.env.DATABASE_URL!,
+        });
         super({ adapter });
       }
     }
@@ -68,7 +69,7 @@ If you prefer to manually integrate Prisma without an additional library, you ca
 
     And import `PrismaModule` in `AppModule`.
 
-     ```typescript
+    ```typescript
     // src/app.module.ts
     import { Module } from '@nestjs/common';
     import { PrismaModule } from './prisma/prisma.module';
