@@ -7,7 +7,25 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
 
 Prisma is compatible with a variety of databases. Below are Docker Compose snippets for setting up PostgreSQL and MySQL, allowing you to easily spin up a database environment for development.
 
-## Postgres
+Create a `compose.yml` and a `.env` file in your project root to store the Docker Compose configuration and environment variables.
+
+```bash
+# Docker compose configuration file
+# you can name it compose.yml or docker-compose.yml
+touch compose.yml 
+
+# add to .gitignore
+touch .env
+```
+
+Copy PostgreSQL and MySQL configurations into the respective files as shown below.
+Start the docker containers using the command:
+
+```bash
+docker compose up -d
+```
+
+## PostgreSQL
 
 <Tabs>
   <TabItem value="compose" label="compose.yml">
@@ -37,10 +55,14 @@ volumes:
 </TabItem>
   <TabItem value="env" label=".env">
 
-```
+```bash
+# docker compose environment variables for PostgreSQL
 POSTGRES_USER=user
 POSTGRES_PASSWORD=password
 POSTGRES_DB=postgres
+
+# Prisma connection string for PostgreSQL
+DATABASE_URL="postgresql://user:password@localhost:5432/postgres?schema=public"
 ```
 
 </TabItem>
@@ -80,10 +102,14 @@ volumes:
   <TabItem value="env" label=".env">
 
 ```bash
+# docker compose environment variables for MySQL
 MYSQL_ROOT_PASSWORD=root
 MYSQL_DATABASE=mysql
 MYSQL_USER=user
 MYSQL_PASSWORD=password
+
+# Prisma connection string for MySQL
+DATABASE_URL="mysql://user:password@localhost:3306/mysql"
 ```
 
   </TabItem>
