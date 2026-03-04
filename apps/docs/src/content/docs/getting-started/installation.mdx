@@ -369,6 +369,7 @@ This documentation is for the current dev release. Visit [nestjs-prisma.dev](htt
 
     @Module({
       imports: [
+        // you can register multiple Prisma Clients with unique names
         PrismaModule.forRootAsync({
           isGlobal: true,
           name: 'PrismaService', // 👈 must be unique for each PrismaClient
