@@ -1,6 +1,8 @@
 ---
 title: Installation
 description: Learn how to install and integrate Prisma with NestJS.
+sidebar:
+    order: 1
 ---
 
 import { Tabs, TabItem, FileTree, Steps } from '@astrojs/starlight/components';
@@ -302,9 +304,9 @@ First, setup [Prisma](https://www.prisma.io/docs/getting-started) in your projec
 
 </Steps>
 
-## Option 1: Use Library
+## Install package
 
-The `nestjs-prisma` library simplifies the usage of Prisma within NestJS applications and provides additional features.
+The `nestjs-prisma` library simplifies the usage of Prisma within NestJS applications.
 
 :::note
 This documentation is for the current dev release. Visit [nestjs-prisma.dev](https://nestjs-prisma.dev) for the previous stable version.
@@ -400,93 +402,6 @@ This documentation is for the current dev release. Visit [nestjs-prisma.dev](htt
       users() {
         // access prisma.client.* for your queries
         return this.prisma.client.user.findMany();
-      }
-    }
-    ```
-
-</Steps>
-
-## Option 2: Copy Code
-
-If you prefer to manually integrate Prisma without an additional library, you can create your own `PrismaService`.
-
-<Steps>
-
-1.  **Create Files**
-
-    Create `src/prisma/` directory with `prisma.module.ts` and `prisma.service.ts`.
-
-    <FileTree>
-
-    - src
-      - prisma
-        - prisma.module.ts
-        - prisma.service.ts
-
-    </FileTree>
-
-2.  **Prisma Service**
-
-    Add the following code to `src/prisma/prisma.service.ts`:
-
-    ```typescript
-    // src/prisma/prisma.service.ts
-    import { Injectable } from '@nestjs/common';
-    import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
-    import { PrismaClient } from '../generated/prisma/client';
-
-    @Injectable()
-    export class PrismaService extends PrismaClient {
-      constructor() {
-        const adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL! });
-        super({ adapter });
-      }
-    }
-    ```
-
-3.  **Prisma Module**
-
-    Add the following code to `src/prisma/prisma.module.ts`:
-
-    ```typescript
-    // src/prisma/prisma.module.ts
-    import { Global, Module } from '@nestjs/common';
-    import { PrismaService } from './prisma.service';
-
-    @Global()
-    @Module({
-      providers: [PrismaService],
-      exports: [PrismaService],
-    })
-    export class PrismaModule {}
-    ```
-
-    And import `PrismaModule` in `AppModule`.
-
-     ```typescript
-    // src/app.module.ts
-    import { Module } from '@nestjs/common';
-    import { PrismaModule } from './prisma/prisma.module';
-
-    @Module({
-      imports: [PrismaModule],
-    })
-    export class AppModule {}
-    ```
-
-4.  **Usage**
-
-    Inject `PrismaService` into your controllers or services.
-
-    ```typescript "this.prisma.user"
-    // src/app.service.ts
-    @Injectable()
-    export class AppService {
-      constructor(private prisma: PrismaService) {}
-
-      users() {
-        // access prisma.* for your queries
-        return this.prisma.user.findMany();
       }
     }
     ```
