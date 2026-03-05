@@ -44,6 +44,9 @@ export default defineConfig({
 plausible.init()`,
         },
       ],
+      editLink: {
+        baseUrl: 'https://github.com/notiz-dev/nestjs-prisma/tree/feat/next/apps/docs/'
+      }
     }),
   ],
 });
