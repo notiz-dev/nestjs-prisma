@@ -2,10 +2,22 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "./node_modules/.bin/astro dev",
-      "name": "Development server",
+      "type": "node",
       "request": "launch",
-      "type": "node-terminal"
+      "name": "Debug api with Nx",
+      "runtimeExecutable": "pnpm exec",
+      "runtimeArgs": ["nx", "serve", "api"],
+      "env": {
+        "NODE_OPTIONS": "--inspect=9229"
+      },
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "skipFiles": ["<node_internals>/**"],
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceFolder}/apps/api/dist/**/*.(m|c|)js",
+        "!**/node_modules/**"
+      ]
     }
   ]
 }

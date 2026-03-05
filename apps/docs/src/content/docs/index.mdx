@@ -1,0 +1,35 @@
+---
+title: nestjs-prisma
+description: Simple Prisma integration for your NestJS application
+template: splash # Remove or comment out this line to display the site sidebar on this page.
+hero:
+  tagline: Simple Prisma integration for your NestJS application.
+  image:
+    file: ../../assets/houston.webp
+  actions:
+    - text: Get Started
+      link: /getting-started/installation/
+      icon: right-arrow
+    - text: View on GitHub
+      link: https://github.com/notiz-dev/nestjs-prisma
+      icon: external
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+  <Card title="Library" icon="puzzle">
+    Integrate Prisma into your NestJS application using the `nestjs-prisma`
+    library.
+  </Card>
+  <Card title="Copy Code" icon="pencil">
+    Copy `PrismaService` int your project. You own the code.
+  </Card>
+  <Card title="Snippets" icon="seti:html">
+    Includes code snippets for Docker Compose etc.
+  </Card>
+  <Card title="Resources" icon="open-book">
+    Additional [resources](/reference/resources/) for using Prisma with NestJS.
+  </Card>
+</CardGrid>

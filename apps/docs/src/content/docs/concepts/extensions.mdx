@@ -1,0 +1,220 @@
+---
+title: Extensions
+description: Learn about Prisma extensions and how to use them with NestJS.
+sidebar:
+  order: 1
+---
+
+[Prisma Client Extensions](https://www.prisma.io/docs/orm/prisma-client/client-extensions) allow you to add custom methods to the Prisma Client, enabling you to encapsulate common queries and logic in a reusable way. This can help keep your codebase clean and maintainable.
+
+`prismaClient.$extends({...})` creates an extended client, which you can apply one or more extensions to. The standard client is not changed.
+
+You can use extensions in two ways:
+
+1. Create one client instance with all your extensions:
+   ```ts
+   export const prismaClient = new PrismaClient({ adapter }).$extends({...})
+   ```
+2. Create one Prisma Client instance and create isolated extended clients:
+   ```ts
+   export const prismaClient = new PrismaClient({ adapter });
+   export const extendedPrismaClient = prismaClient.$extends({...});
+   ```
+
+## Library
+
+### Add an extension to your Prisma Client
+
+Open your `prisma-client.ts` file to add an extension to your Prisma Client. Use `$extends` method on your Prisma Client to add your extensions.
+
+```typescript "$extends" {7-12}
+// src/prisma-client.ts
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
+import { Prisma, PrismaClient } from './generated/prisma/client';
+
+const adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL! });
+export const prismaClient = new PrismaClient({ adapter }).$extends({
+  user: {
+    findByEmail(email: string) {
+      return this.findUnique({ where: { email } });
+    },
+  },
+});
+
+export type BasePrismaClient = typeof prismaClient;
+```
+
+In this example, we are adding a custom method `findByEmail` to the `user` model of the Prisma Client. This method allows us to find a user by their email address.
+
+Use the new `findByEmail` method in your services by accessing it through `prisma.client.user.findByEmail`. Because you use `BasePrismaClient` as the type for your Prisma Client, you will have correct type-safety and autocompletion for your custom methods.
+
+```typescript "user.findByEmail"
+// src/app.service.ts
+import { Inject, Injectable } from '@nestjs/common';
+import { PrismaService } from 'nestjs-prisma';
+import type { BasePrismaClient } from './prisma-client';
+
+@Injectable()
+export class AppService {
+  constructor(
+    @Inject('PrismaService')
+    // Use `BasePrismaClient` for correct type-safety
+    private prisma: PrismaService<BasePrismaClient>,
+  ) {}
+
+  user(email: string) {
+    // 🦾 use new `findByEmail`
+    return this.prisma.client.user.findByEmail(email);
+  }
+}
+```
+
+### Create an isolated Extended Prisma Client
+
+Store your original Prisma Client in a variable and create an extended client using `$extends` on that variable. This way, you can have [multiple extended clients](https://www.prisma.io/docs/orm/prisma-client/client-extensions#option-2-declare-multiple-extended-clients) with different extensions, while still keeping the original Prisma Client.
+
+```typescript {8-18} {22}
+// src/prisma-client.ts
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
+import { Prisma, PrismaClient } from './generated/prisma/client';
+
+const adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL! });
+export const prismaClient = new PrismaClient({ adapter });
+
+export const extendedPrismaClient = prismaClient.$extends({
+  model: {
+    user: {
+      findByEmail: async (email: string) => {
+        return prismaClient.user.findFirstOrThrow({
+          where: { email },
+        });
+      },
+    },
+  },
+});
+
+export type BasePrismaClient = typeof prismaClient;
+
+export type ExtendedPrismaClient = typeof extendedPrismaClient;
+```
+
+You can now register the original `prismaClient` and the `extendedPrismaClient` in your module providers:
+
+```typescript {17-23}
+// src/app.module.ts
+import { Module } from '@nestjs/common';
+import { PrismaModule } from 'nestjs-prisma';
+import { extendedPrismaClient, prismaClient } from './prisma-client';
+
+@Module({
+  imports: [
+    // Register the original prismaClient
+    PrismaModule.forRootAsync({
+      isGlobal: true,
+      name: 'PrismaService', // 👈 must be unique for each PrismaClient
+      useFactory: () => {
+        return prismaClient;
+      },
+    }),
+    // Register the extendedPrismaClient
+    PrismaModule.forRootAsync({
+      isGlobal: true,
+      name: 'ExtendedPrismaService', // 👈 must be unique for each PrismaClient
+      useFactory: () => {
+        return extendedPrismaClient;
+      },
+    }),
+  ],
+})
+export class AppModule {}
+```
+
+Use the original Prisma Client for regular queries and the Extended Prisma Client for queries that use your custom methods.
+
+```typescript {11-13} {23}
+// src/app.service.ts
+import { Inject, Injectable } from '@nestjs/common';
+import { PrismaService } from 'nestjs-prisma';
+import type { BasePrismaClient, ExtendedPrismaClient } from './prisma-client';
+
+@Injectable()
+export class AppService {
+  constructor(
+    @Inject('PrismaService')
+    private prisma: PrismaService<BasePrismaClient>,
+    @Inject('ExtendedPrismaService')
+    // Use `ExtendedPrismaClient` for correct type-safety of extended client
+    private extendedPrisma: PrismaService<ExtendedPrismaClient>,
+  ) {}
+
+  users() {
+    // use prisma for regular queries
+    return this.prisma.client.user.findMany();
+  }
+
+  user(email: string) {
+    // 🦾 use extendedPrisma and call `findByEmail`
+    return this.extendedPrisma.client.user.findByEmail(email);
+  }
+}
+```
+
+## Owning the Code
+
+### Extend your Prisma Client
+
+`$extends` creates a new instance of the Prisma Client with the extensions applied. You need to store and expose the extended client instance.
+
+```typescript {5-16} {20-24} {30}
+import { Injectable } from '@nestjs/common';
+import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
+import { PrismaClient } from '../generated/prisma/client';
+
+const extend = (client: PrismaClient) =>
+  client.$extends({
+    model: {
+      user: {
+        async findByEmail(email: string) {
+          return client.user.findFirst({ where: { email } });
+        },
+      },
+    },
+  });
+
+type ExtendedPrismaClient = ReturnType<typeof extend>;
+
+@Injectable()
+export class PrismaService extends PrismaClient {
+  private _extendedClient: ExtendedPrismaClient;
+
+  get extendedClient() {
+    return this._extendedClient;
+  }
+
+  constructor() {
+    const adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL! });
+    super({ adapter });
+
+    this._extendedClient = extend(this);
+  }
+}
+```
+
+Use the extended client in your services by accessing it through `prisma.extendedClient`. This way, you can keep the original Prisma Client for regular queries and use the extended client for queries that require your custom methods.
+
+```typescript "prisma.extendedClient" "findByEmail"
+// src/app.service.ts
+@Injectable()
+export class AppService {
+  constructor(private prisma: PrismaService) {}
+
+  users() {
+    // access to the original prisma client for regular queries
+    return this.prisma.user.findMany();
+  }
+
+  userByEmail(email: string) {
+    // 🦾 use extendedClient for queries with custom methods
+    return this.prisma.extendedClient.user.findByEmail(email);
+}
+```

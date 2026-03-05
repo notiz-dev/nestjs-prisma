@@ -1,0 +1,117 @@
+---
+title: Docker Compose
+description: Essential Docker Compose configurations for running databases with Prisma.
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+Prisma is compatible with a variety of databases. Below are Docker Compose snippets for setting up PostgreSQL and MySQL, allowing you to easily spin up a database environment for development.
+
+Create a `compose.yml` and a `.env` file in your project root to store the Docker Compose configuration and environment variables.
+
+```bash
+# Docker compose configuration file
+# you can name it compose.yml or docker-compose.yml
+touch compose.yml 
+
+# add to .gitignore
+touch .env
+```
+
+Copy PostgreSQL and MySQL configurations into the respective files as shown below.
+Start the docker containers using the command:
+
+```bash
+docker compose up -d
+```
+
+## PostgreSQL
+
+<Tabs>
+  <TabItem value="compose" label="compose.yml">
+```yml
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - '5432:5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}']
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - postgres_data:/var/lib/postgresql
+
+volumes:
+    postgres_data:
+```
+</TabItem>
+  <TabItem value="env" label=".env">
+
+```bash
+# docker compose environment variables for PostgreSQL
+POSTGRES_USER=user
+POSTGRES_PASSWORD=password
+POSTGRES_DB=postgres
+
+# Prisma connection string for PostgreSQL
+DATABASE_URL="postgresql://user:password@localhost:5432/postgres?schema=public"
+```
+
+</TabItem>
+</Tabs>
+
+## MySQL
+
+<Tabs>
+  <TabItem value="compose" label="compose.yml">
+
+```yaml
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: unless-stopped
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
+```
+
+  </TabItem>
+  <TabItem value="env" label=".env">
+
+```bash
+# docker compose environment variables for MySQL
+MYSQL_ROOT_PASSWORD=root
+MYSQL_DATABASE=mysql
+MYSQL_USER=user
+MYSQL_PASSWORD=password
+
+# Prisma connection string for MySQL
+DATABASE_URL="mysql://user:password@localhost:3306/mysql"
+```
+
+  </TabItem>
+</Tabs>
+

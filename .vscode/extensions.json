@@ -1,4 +1,8 @@
 {
-  "recommendations": ["astro-build.astro-vscode"],
-  "unwantedRecommendations": []
+  "recommendations": [
+    "nrwl.angular-console",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "firsttris.vscode-jest-runner"
+  ]
 }
