@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 import { User } from './generated/prisma/client';
 
@@ -9,5 +9,10 @@ export class AppController {
   @Get()
   users(): Promise<User[]> {
     return this.appService.users();
+  }
+
+  @Get(':email')
+  userByEmail(@Param('email') email: string) {
+    return this.appService.userByEmail(email);
   }
 }

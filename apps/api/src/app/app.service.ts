@@ -14,4 +14,8 @@ export class AppService {
       where: { id: userId },
     });
   }
+
+  userByEmail(email: string) {
+    return this.prisma.extendedClient.user.findByEmail(email);
+  }
 }
