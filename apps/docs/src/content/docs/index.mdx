@@ -15,3 +15,21 @@ hero:
       icon: external
       variant: minimal
 ---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+  <Card title="Library" icon="puzzle">
+    Integrate Prisma into your NestJS application using the `nestjs-prisma`
+    library.
+  </Card>
+  <Card title="Copy Code" icon="pencil">
+    Copy `PrismaService` int your project. You own the code.
+  </Card>
+  <Card title="Snippets" icon="seti:html">
+    Includes code snippets for Docker Compose etc.
+  </Card>
+  <Card title="Resources" icon="open-book">
+    Additional [resources](/reference/resources/) for using Prisma with NestJS.
+  </Card>
+</CardGrid>

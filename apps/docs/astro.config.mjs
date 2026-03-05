@@ -29,6 +29,10 @@ export default defineConfig({
           label: 'Snippets',
           autogenerate: { directory: 'snippets' },
         },
+        {
+          label: 'Reference',
+          autogenerate: { directory: 'reference' },
+        },
       ],
       head: [
         {
@@ -45,8 +49,9 @@ plausible.init()`,
         },
       ],
       editLink: {
-        baseUrl: 'https://github.com/notiz-dev/nestjs-prisma/tree/feat/next/apps/docs/'
-      }
+        baseUrl:
+          'https://github.com/notiz-dev/nestjs-prisma/tree/feat/next/apps/docs/',
+      },
     }),
   ],
 });
